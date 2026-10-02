@@ -1,0 +1,18 @@
+{
+  "originalFileCount": 111,
+  "currentSourceChangedSinceCopy": [],
+  "adaptedFiles": [
+    "features/ai-management/ai-report-page.tsx",
+    "features/ledger-management/ledger-page.tsx",
+    "features/member-management/configuration-pages.tsx",
+    "features/member-management/member-reports-page.tsx",
+    "features/operations/draw-review-page.tsx",
+    "features/operations/omission-health-page.tsx",
+    "features/operations/operations-api.ts",
+    "features/station-management/ledger-report-tab.tsx",
+    "lib/api.ts"
+  ],
+  "unalteredFileCount": 102,
+  "originalStyleFiles": 14,
+  "styleFilesUnchanged": true
+}

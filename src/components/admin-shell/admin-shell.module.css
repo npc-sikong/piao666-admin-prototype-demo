@@ -1,0 +1,366 @@
+.root {
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr);
+  min-height: 100vh;
+  background: #f4f7fb;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 18px 12px 16px;
+  background: var(--color-admin-nav);
+  color: #cbd5e1;
+}
+
+.brand {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.brand[data-compact="true"] {
+  min-height: 50px;
+  padding: 0 9px 18px;
+  border-bottom: 1px solid rgb(255 255 255 / 8%);
+}
+
+.brandMark {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgb(255 255 255 / 16%);
+  border-radius: 11px;
+  background: #2563eb;
+  color: #fff;
+  font-size: 0.6875rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+}
+
+.brandCopy {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.brandCopy strong {
+  overflow: hidden;
+  color: #fff;
+  font-size: 0.9375rem;
+  letter-spacing: 0.025em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.brandCopy small {
+  color: #7f8da3;
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+}
+
+.navigation {
+  flex: 1;
+  padding: 8px 0 22px;
+}
+
+.navGroup {
+  margin-top: 16px;
+}
+
+.navGroup h2 {
+  margin: 0;
+  padding: 0 12px 6px;
+  color: #64748b;
+  font-size: 0.625rem;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.navLink {
+  position: relative;
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  margin: 3px 0;
+  border-radius: 9px;
+  padding: 10px 11px;
+  color: #aeb9ca;
+  font-size: 0.8125rem;
+  font-weight: 620;
+  text-decoration: none;
+  transition: background var(--motion-fast), color var(--motion-fast), transform var(--motion-fast);
+}
+
+.navLink::before {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 0;
+  width: 2px;
+  border-radius: 999px;
+  background: #60a5fa;
+  content: "";
+  opacity: 0;
+  transform: scaleY(0.4);
+  transition: opacity var(--motion-fast), transform var(--motion-fast);
+}
+
+.navLink:hover,
+.navLink[data-active="true"] {
+  background: var(--color-admin-nav-active);
+  color: #fff;
+}
+
+.navLink:hover {
+  transform: translateX(1px);
+}
+
+.navLink[data-active="true"]::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.navIcon {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+}
+
+.realmNote {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  margin: 0 4px;
+  border-top: 1px solid rgb(255 255 255 / 8%);
+  padding: 15px 8px 2px;
+}
+
+.realmNote > span {
+  width: 7px;
+  height: 7px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 0 4px rgb(52 211 153 / 9%);
+}
+
+.realmNote p {
+  display: grid;
+  gap: 3px;
+  margin: 0;
+}
+
+.realmNote strong {
+  color: #e2e8f0;
+  font-size: 0.6875rem;
+}
+
+.realmNote small {
+  color: #64748b;
+  font-size: 0.5625rem;
+  line-height: 1.5;
+}
+
+.mainColumn {
+  min-width: 0;
+}
+
+.topbar {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 68px;
+  border-bottom: 1px solid rgb(220 230 242 / 86%);
+  padding: 0 28px;
+  background: rgb(255 255 255 / 94%);
+  backdrop-filter: blur(18px);
+}
+
+.location {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.location span,
+.location b {
+  color: var(--color-text-tertiary);
+  font-weight: 550;
+}
+
+.location strong {
+  color: var(--color-text-primary);
+}
+
+.account {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.accountCopy {
+  display: grid;
+  gap: 2px;
+  justify-items: end;
+}
+
+.accountCopy strong {
+  font-size: 0.75rem;
+}
+
+.accountCopy small {
+  color: var(--color-text-tertiary);
+  font-size: 0.625rem;
+}
+
+.avatar {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #172033;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.account button,
+.gateAction {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px 11px;
+  background: #fff;
+  color: var(--color-text-secondary);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.account button:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.logoutError {
+  position: absolute;
+  right: 28px;
+  bottom: -31px;
+  margin: 0;
+  border: 1px solid #fecaca;
+  border-radius: 7px;
+  padding: 6px 10px;
+  background: #fff;
+  color: var(--color-danger);
+  font-size: 0.6875rem;
+}
+
+.content {
+  width: min(100% - 56px, 1540px);
+  margin: 0 auto;
+  padding: 30px 0 72px;
+  animation: content-in var(--motion-standard) ease-out both;
+}
+
+.gate {
+  display: grid;
+  grid-template-columns: minmax(0, 520px);
+  gap: 28px;
+  align-content: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 48px;
+  background:
+    radial-gradient(circle at 72% 18%, rgb(37 99 235 / 8%), transparent 34%),
+    var(--color-surface-page);
+}
+
+.gate .brand {
+  color: var(--color-text-primary);
+}
+
+.gate .brandCopy strong {
+  color: var(--color-text-primary);
+}
+
+.gateAction {
+  display: inline-flex;
+  border-color: transparent;
+  padding: 9px 13px;
+  background: var(--color-brand);
+  color: #fff;
+}
+
+@keyframes content-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+@media (max-width: 1180px) {
+  .root {
+    grid-template-columns: 78px minmax(0, 1fr);
+  }
+
+  .sidebar {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .brand[data-compact="true"] {
+    justify-content: center;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .brand[data-compact="true"] .brandCopy,
+  .navGroup h2,
+  .navLink span,
+  .realmNote p {
+    display: none;
+  }
+
+  .navLink {
+    justify-content: center;
+    padding: 11px;
+  }
+
+  .navIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .realmNote {
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content,
+  .navLink,
+  .navLink::before {
+    animation: none;
+    transition: none;
+  }
+}

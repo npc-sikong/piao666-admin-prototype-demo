@@ -1,0 +1,427 @@
+.tabBody {
+  display: grid;
+  gap: 18px;
+  padding: 18px;
+}
+
+.ledgerWorkspace {
+  display: grid;
+  gap: 14px;
+}
+
+.ledgerFilterRail {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  gap: 12px;
+  border: 1px solid #dbe7f3;
+  border-radius: 12px;
+  padding: 14px;
+  background: linear-gradient(180deg, #f8fbff 0%, #f3f8fd 100%);
+}
+
+.filterActions {
+  display: flex;
+  grid-column: 1 / -1;
+  gap: 8px;
+}
+
+.filterHint {
+  margin: 0;
+  color: var(--color-text-tertiary);
+  font-size: 0.6875rem;
+  line-height: 1.6;
+}
+
+.transactionList {
+  display: grid;
+  gap: 12px;
+}
+
+.transactionGroup {
+  overflow: hidden;
+  border: 1px solid #d9e4ef;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 22px rgb(15 62 107 / 5%);
+}
+
+.transactionHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  background: #f7faff;
+  border-bottom: 1px solid #e2ebf4;
+}
+
+.transactionIdentity {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+}
+
+.transactionIdentity > span {
+  color: var(--color-brand-strong);
+  font-size: 0.625rem;
+  font-weight: 800;
+}
+
+.transactionIdentity > strong {
+  overflow-wrap: anywhere;
+  color: var(--color-text-primary);
+  font-size: 0.8125rem;
+}
+
+.transactionIdentity code,
+.referenceLine code,
+.entryOwner code {
+  overflow-wrap: anywhere;
+  color: var(--color-text-tertiary);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.59375rem;
+}
+
+.transactionBadges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 7px;
+}
+
+.transactionMeta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 2px 16px 10px;
+}
+
+.transactionMeta > div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  padding: 10px 10px 4px 0;
+}
+
+.transactionMeta dt,
+.entryBalance span {
+  color: var(--color-text-tertiary);
+  font-size: 0.59375rem;
+}
+
+.transactionMeta dd {
+  overflow-wrap: anywhere;
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.6875rem;
+  line-height: 1.5;
+}
+
+.entryLedger {
+  display: grid;
+  gap: 1px;
+  border-top: 1px solid #e6edf5;
+  background: #e6edf5;
+}
+
+.entryRow {
+  display: grid;
+  grid-template-columns: minmax(145px, 0.8fr) minmax(260px, 1.6fr) minmax(190px, 1fr);
+  gap: 16px;
+  align-items: center;
+  min-width: 0;
+  padding: 13px 16px;
+  background: #fff;
+  box-shadow: inset 3px 0 0 #1d78d0;
+}
+
+.entryRow[data-direction="DEBIT"] {
+  box-shadow: inset 3px 0 0 #d25757;
+}
+
+.entryDirection,
+.entryOwner,
+.entryBalance {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.entryDirection span {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 3px 7px;
+  background: #e9f4ff;
+  color: #1465ad;
+  font-size: 0.59375rem;
+  font-weight: 800;
+}
+
+.entryRow[data-direction="DEBIT"] .entryDirection span {
+  background: #fff0f0;
+  color: #af3434;
+}
+
+.entryDirection strong {
+  color: #1465ad;
+  font-size: 0.8125rem;
+}
+
+.entryRow[data-direction="DEBIT"] .entryDirection strong {
+  color: #af3434;
+}
+
+.entryOwner strong,
+.entryBalance strong {
+  overflow-wrap: anywhere;
+  color: var(--color-text-primary);
+  font-size: 0.71875rem;
+}
+
+.entryOwner > span {
+  color: var(--color-text-secondary);
+  font-size: 0.625rem;
+}
+
+.referenceLine {
+  margin: 0;
+  border-top: 1px solid #edf2f7;
+  padding: 9px 16px;
+  color: var(--color-text-secondary);
+  font-size: 0.625rem;
+}
+
+.filterBar,
+.inlineActions,
+.inlineQuery,
+.reportToolbar,
+.sectionToolbar,
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: end;
+}
+
+.reportToolbar,
+.sectionToolbar,
+.pagination {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reportToolbar,
+.sectionToolbar {
+  border-bottom: 1px solid var(--color-border);
+  padding: 12px 0;
+}
+
+.reportToolbar > div:first-child,
+.sectionToolbar > div:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.reportToolbar strong,
+.sectionToolbar strong {
+  color: var(--color-text-primary);
+  font-size: 0.75rem;
+}
+
+.reportToolbar span,
+.sectionToolbar span,
+.muted,
+.taskIdentity {
+  color: var(--color-text-tertiary);
+  font-size: 0.625rem;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  min-width: 155px;
+}
+
+.field[data-wide="true"] {
+  grid-column: 1 / -1;
+}
+
+.field > span {
+  color: var(--color-text-secondary);
+  font-size: 0.6875rem;
+  font-weight: 720;
+}
+
+.field input,
+.field select,
+.field textarea,
+.inlineActions select,
+.inlineQuery input {
+  min-height: 39px;
+  border: 1px solid #d5dfeb;
+  border-radius: 9px;
+  padding: 8px 10px;
+  background: #fff;
+  color: var(--color-text-primary);
+  font: inherit;
+  font-size: 0.75rem;
+}
+
+.field textarea {
+  width: 100%;
+  min-height: 95px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+.inlineQuery input:focus {
+  border-color: #93c5fd;
+  outline: 0;
+  box-shadow: var(--focus-ring);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid #edf1f6;
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table th {
+  background: #f8fafc;
+  color: #66758a;
+  font-size: 0.625rem;
+  font-weight: 780;
+  white-space: nowrap;
+}
+
+.table td {
+  color: var(--color-text-secondary);
+  font-size: 0.71875rem;
+  line-height: 1.5;
+}
+
+.table td strong {
+  color: var(--color-text-primary);
+}
+
+.pagination {
+  border-top: 1px solid var(--color-border);
+  padding: 12px 0;
+  color: var(--color-text-tertiary);
+  font-size: 0.6875rem;
+}
+
+.operationsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.operationSection {
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 11px;
+  padding: 14px;
+  background: #fbfdff;
+}
+
+.taskBlock {
+  display: grid;
+  gap: 10px;
+}
+
+.taskBlock p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.6875rem;
+}
+
+.downloadLink {
+  width: fit-content;
+  color: var(--color-brand-strong);
+  font-size: 0.75rem;
+  font-weight: 760;
+  text-decoration: none;
+}
+
+.inlineQuery input {
+  flex: 1 1 260px;
+}
+
+.compactDetails {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 12px 0 0;
+}
+
+.compactDetails > div {
+  display: grid;
+  gap: 4px;
+  border-top: 1px solid var(--color-border);
+  padding: 10px 8px;
+}
+
+.compactDetails dt {
+  color: var(--color-text-tertiary);
+  font-size: 0.625rem;
+}
+
+.compactDetails dd {
+  overflow-wrap: anywhere;
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: 0.6875rem;
+  font-weight: 680;
+}
+
+.feedback {
+  grid-column: 1 / -1;
+  margin: 8px 0 0;
+  border-radius: 8px;
+  padding: 9px 11px;
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+  font-size: 0.6875rem;
+  line-height: 1.55;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.625rem;
+}
+
+@media (max-width: 1040px) {
+  .ledgerFilterRail,
+  .transactionMeta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .entryRow {
+    grid-template-columns: minmax(130px, 0.8fr) minmax(240px, 1.4fr) minmax(170px, 1fr);
+  }
+
+  .operationsGrid {
+    grid-template-columns: 1fr;
+  }
+}

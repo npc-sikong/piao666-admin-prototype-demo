@@ -1,0 +1,449 @@
+{
+  "source": "/Volumes/pro990/piao666/NexaLotto/apps/admin",
+  "files": [
+    {
+      "path": "app/account-recovery/page.tsx",
+      "sha256": "aaa8d4cf19cb6269ba44f171f87cca10722f2b6395cd02e6e8e78684b7527261"
+    },
+    {
+      "path": "app/ai-pools/[poolIssueId]/allocation/page.tsx",
+      "sha256": "7d7add12234ff61eb0514afa8f86457dd1936cc33e5454fd99f9b07b26818840"
+    },
+    {
+      "path": "app/ai-pools/[poolIssueId]/page.tsx",
+      "sha256": "17562db66c393f5dec14a6815a8d4613abbc3465f7d0a556e29a591d31dd2810"
+    },
+    {
+      "path": "app/ai-pools/[poolIssueId]/payout/page.tsx",
+      "sha256": "4d19224267ae926cbfb46b5384208d38a8808507e5e1f65af3d3961ade6fc4df"
+    },
+    {
+      "path": "app/ai-pools/page.tsx",
+      "sha256": "509f21d38ad1bc6b0d161311872cf9d4b6839ad32fc8d34aa7aa5b59a0a17230"
+    },
+    {
+      "path": "app/ai-pools/reports/page.tsx",
+      "sha256": "f0f106452b1f0d8774507bce78915f1fedac14ec68b412c1a49cf10a40dad04e"
+    },
+    {
+      "path": "app/employees/page.tsx",
+      "sha256": "e9f979c3c07e2f62481b1744c85d873331c4548c03b3dbcc468c93277d9e5226"
+    },
+    {
+      "path": "app/globals.css",
+      "sha256": "a61dceab94317d1bc979344e47de30e481c18ec4fcd7e334fb619f9681d99a38"
+    },
+    {
+      "path": "app/layout.tsx",
+      "sha256": "b37c05c6bd50a2e2b88a1343c38e7570f30768afe54ce58c133f2808f913ed1d"
+    },
+    {
+      "path": "app/ledger/page.tsx",
+      "sha256": "ca4f1b83e1ba8537ef3127e3ff49046433e118a0bab91c21002a4a527fbde791"
+    },
+    {
+      "path": "app/login/page.tsx",
+      "sha256": "532edab036a99e3f76497ddf15e10de85638dad6f697d72a4738ed0b3a42957a"
+    },
+    {
+      "path": "app/lottery/catalog/page.tsx",
+      "sha256": "888c9ffe2abe4f80ad0340682290938c52b93ea596638c4c5a44b7adc3900114"
+    },
+    {
+      "path": "app/lottery/draws/page.tsx",
+      "sha256": "676fd723240807558834ac90e71dc15a6fd3a520a19853d90b7611f1339956de"
+    },
+    {
+      "path": "app/lottery/issues/page.tsx",
+      "sha256": "54afb8b80d760349ad0743a19079e2f9e3cd2905deef627e772d9bbde8c2a628"
+    },
+    {
+      "path": "app/lottery/omissions/page.tsx",
+      "sha256": "8a3077f718437858c0a429778d0f66151541ea15178e35cab93e97bafbeb0d6d"
+    },
+    {
+      "path": "app/masters/[robotId]/executions/page.tsx",
+      "sha256": "0755668d810dd09c4dd899bd90e0a7911fdf5130c5f0f033014d143780a7ca61"
+    },
+    {
+      "path": "app/masters/[robotId]/page.tsx",
+      "sha256": "af585caa5c8400f6947c03d5b3da432b21e1a05df5f461ed9ca5b393e145209e"
+    },
+    {
+      "path": "app/masters/page.tsx",
+      "sha256": "367e95ce35afea46e3ccf08456103604ee9b1280b34d01f81ad77e274b44db56"
+    },
+    {
+      "path": "app/members/[memberId]/page.tsx",
+      "sha256": "ceb5adbf851cd54ea26bea297e33c6c03bef293519d47c64002ac28cb3dece03"
+    },
+    {
+      "path": "app/members/page.tsx",
+      "sha256": "97cf215647f322297506ecc74f62e2dfe501b0e3a47bb70dcb836e8db8e27bf4"
+    },
+    {
+      "path": "app/members/referrals/page.tsx",
+      "sha256": "0e6ca9769d3cd8e8094bb6279dde256bb633d77b021cb2b86d1a890bdf860f72"
+    },
+    {
+      "path": "app/members/reports/page.tsx",
+      "sha256": "4d58a6e7408d03d933c074dfb6f37eebce8f6f1127188b491af8034191f92698"
+    },
+    {
+      "path": "app/members/vip/page.tsx",
+      "sha256": "95622ad58545b67cc11892c50ae78af7d0c4ae167df647fbfae7c3f1c2974f72"
+    },
+    {
+      "path": "app/orders/[orderId]/page.tsx",
+      "sha256": "b9faef6f39cceeea4fef50cde20eedee7afe44f6f1c011057fd53c86610291c5"
+    },
+    {
+      "path": "app/orders/page.tsx",
+      "sha256": "606bbcc21e672a72bcbade2918e48cf60b3b905e379f348f962493fac6446dae"
+    },
+    {
+      "path": "app/page.tsx",
+      "sha256": "416732cbf46bdb4cb3f15a232b867ff8a6be55af9405c7052bd6d7d702895b78"
+    },
+    {
+      "path": "app/providers.tsx",
+      "sha256": "06b7a41d1145c25467ab05778f22ad86dab5fb377599066996c80158cbaea8ab"
+    },
+    {
+      "path": "app/stations/page.tsx",
+      "sha256": "483a795d7e046736ad24862bd806447ab05e4bce8fb7b2a6b9bd0cf5a0efbc36"
+    },
+    {
+      "path": "components/admin-shell/admin-shell.module.css",
+      "sha256": "347e8433d2ff387738b91cb4b65d543249453e2d3d50c53cf5787291b81ace46"
+    },
+    {
+      "path": "components/admin-shell/admin-shell.tsx",
+      "sha256": "f351bb3522c779bf8a9272c4859824ba5c7996c5fdd6fa99c014f5e5da38e1a6"
+    },
+    {
+      "path": "components/admin-workspace/admin-workspace.module.css",
+      "sha256": "ac3f8e7d7d2d95776d20ec76db9d24b4e53724d8f2385f00e61bd9365593886a"
+    },
+    {
+      "path": "components/admin-workspace/admin-workspace.tsx",
+      "sha256": "475335bc393817a83532e2b503c544806c8173b4c768458c15397a03ebb85b1b"
+    },
+    {
+      "path": "components/number-balls/number-balls.module.css",
+      "sha256": "d8dc709e8c64580a39538570c62b1cc22226cbfebc1f573e2ae7f504dee6b4f1"
+    },
+    {
+      "path": "components/number-balls/number-balls.tsx",
+      "sha256": "c46a82648d6973efaa4266754b34ade5fa920d10f879140dd6b5f7d9586ac02c"
+    },
+    {
+      "path": "components/page-state/page-state.module.css",
+      "sha256": "b35db5c1c82edcd21616e34dd8046d11a59b4ef08c0e7b5cdaa5d462e46ab01e"
+    },
+    {
+      "path": "components/page-state/page-state.tsx",
+      "sha256": "3de064ccb9a6cde4959610de14f3fa5539e83f6fb07372832e2f9ebc43465d53"
+    },
+    {
+      "path": "components/task-status/task-status.module.css",
+      "sha256": "8ba425c43cb821861c57d0baa1feefa5df7c7e601b9a3204619ad154d5ebc5b6"
+    },
+    {
+      "path": "components/task-status/task-status.tsx",
+      "sha256": "ba339fc9f7f678e408bae9bf0dfc5ffa3c56c8bcde88ca1259169d8cc4490b1e"
+    },
+    {
+      "path": "features/ai-management/ai-allocation-page.tsx",
+      "sha256": "b2902abfef35ce68b83247dd2eb36207a26b77e2578cb7715af69808574467b1"
+    },
+    {
+      "path": "features/ai-management/ai-allocation-preview-dialog.tsx",
+      "sha256": "6332cbbeca41fc97c4535b429e17468d33a9f662006e449745c5d42c0e4c0c8e"
+    },
+    {
+      "path": "features/ai-management/ai-budget-dialog.tsx",
+      "sha256": "86edfca42c0ae40d21ad80a0493779426662bb4ef0e051922f1b64226205369a"
+    },
+    {
+      "path": "features/ai-management/ai-issue-operations-dialog.tsx",
+      "sha256": "09912919019b8dcd79c4244f1ac5d2be4eb3625633d79a2b0fa0c1aaa1d7b473"
+    },
+    {
+      "path": "features/ai-management/ai-issue-reports-panel.tsx",
+      "sha256": "c9899c7ce9ab83f248dd621f4321111aa5a82aa0befd4651d84b79c7c6e0b50c"
+    },
+    {
+      "path": "features/ai-management/ai-management-api.ts",
+      "sha256": "2e07f5a541d79277bb045ccbbaba2cd4b0e0006735561a1f126887589c99578d"
+    },
+    {
+      "path": "features/ai-management/ai-management-models.ts",
+      "sha256": "9249eb2b35472fd742ae48ddf57c7dc2dfeaeb16aa55a302b74da46c2d0244ec"
+    },
+    {
+      "path": "features/ai-management/ai-management-ui.tsx",
+      "sha256": "25054d56c68002ce107156552972cea78d31f892562d07f8e2ab4e6930f9caa9"
+    },
+    {
+      "path": "features/ai-management/ai-management.module.css",
+      "sha256": "f479086f374b8fb42e1e279a0224b4ba1fbe6fa13f994bed748239182cdd0221"
+    },
+    {
+      "path": "features/ai-management/ai-payout-page.tsx",
+      "sha256": "2f9b7a542777ca8a192d0d539a656bc4f1f707b66d71b9ae92d1448e75800f41"
+    },
+    {
+      "path": "features/ai-management/ai-pool-detail-page.tsx",
+      "sha256": "b4cfaf9b61dc0557fe30ac97fcad6267266518408754ccff3d96f529edfb9a66"
+    },
+    {
+      "path": "features/ai-management/ai-projects-page.tsx",
+      "sha256": "11fbed4f34aafbae741222bf9489c10ea4ccbbf8ce951a6ef86f27578bfd35f3"
+    },
+    {
+      "path": "features/ai-management/ai-report-page.tsx",
+      "sha256": "9e0c4e50a8b6956b10d6540f3776c16fc50ee9d4ca15571a32e3c7be07e8172f"
+    },
+    {
+      "path": "features/ai-management/use-ai-task.ts",
+      "sha256": "f8b83474f2c82b8a5f769ffe81bc4ac1f5a5043d3c9f65a715f36c28e1c3a00c"
+    },
+    {
+      "path": "features/employee-security/account-recovery-page.tsx",
+      "sha256": "b36a0dde7bd0a53f1c58b7cfb4269a9761ad092659d76ea2f8359935ff9780e2"
+    },
+    {
+      "path": "features/employee-security/employee-api.ts",
+      "sha256": "309096dd853bb50c66f1168f1820f2d51fca4e120ab638d8cc53716a6f1f09a3"
+    },
+    {
+      "path": "features/employee-security/employee-models.ts",
+      "sha256": "a7093fb3d83a388333174eaff0c72645ce65cddac05d40fda7e7deba80378176"
+    },
+    {
+      "path": "features/employee-security/employee-security.module.css",
+      "sha256": "35214525db9e884faea8dbcf509e0b1f5c5c98ef6b2b626fe6e0752fefcf316f"
+    },
+    {
+      "path": "features/employee-security/employees-page.tsx",
+      "sha256": "a5ddb8869c3ad8331957e9780e87dd18c37bea0b2004e091de33eb5b25da92a3"
+    },
+    {
+      "path": "features/employee-security/force-password-change-page.tsx",
+      "sha256": "049423349ebbf7faccbbcdc2a0d47dd33ec9e6b2c036daab5183c8fcfb9abb41"
+    },
+    {
+      "path": "features/employee-security/login-page.tsx",
+      "sha256": "08d7149f70709515d0a5e5c81dca85affeb58e692db66f904d4cd39ef3936b60"
+    },
+    {
+      "path": "features/employee-security/mfa-enrollment-dialog.tsx",
+      "sha256": "026e1fa5668a81ca3dcbf3a448e5f3b9ab056224546fd54302e66e9d72b1d1d0"
+    },
+    {
+      "path": "features/ledger-management/ledger-api.ts",
+      "sha256": "8c3131b35bd8079394e2bee0a8d562b61ab0060d54ac4f89b2c301bf6b28f50d"
+    },
+    {
+      "path": "features/ledger-management/ledger-management.module.css",
+      "sha256": "49ac463c32c3aac767a095e6c24c1d7dee9caf7787c3328309e93e6687e4090e"
+    },
+    {
+      "path": "features/ledger-management/ledger-models.ts",
+      "sha256": "8270ef35f92853de2a79df05308b95ea6de1ef591ac69db6581f013f6c57d8ea"
+    },
+    {
+      "path": "features/ledger-management/ledger-page.tsx",
+      "sha256": "14a4b39a81bc7a42577ba8852dca53710fef5104510c794fdf02c1efcc473ccd"
+    },
+    {
+      "path": "features/ledger-management/platform-budget-panel.tsx",
+      "sha256": "57d1f5f1945caf434a9a8d0d66f7baa0efa89ce31b9741145a7fa5e681ccaeb0"
+    },
+    {
+      "path": "features/ledger-management/transaction-ledger-tab.tsx",
+      "sha256": "90571a11ea04210d471fd47cad82ce41594a0ba2e179673bd156c9e7af85c14e"
+    },
+    {
+      "path": "features/member-management/configuration-pages.tsx",
+      "sha256": "c57b7704720796ddee944ef943e84c868de211bee922a4438fe042acb4cbd0b0"
+    },
+    {
+      "path": "features/member-management/member-api.ts",
+      "sha256": "f775c6c70b065f8196604251ea500323ecf87cbb9a32618a27dbdf1450000d58"
+    },
+    {
+      "path": "features/member-management/member-detail-page.tsx",
+      "sha256": "e253c352a2c6f8185a767eafb55d4eac2c2a1d0ba9bf540af70d4f80068e5c98"
+    },
+    {
+      "path": "features/member-management/member-format.ts",
+      "sha256": "885e3c0c517eb1c5ab0d046c70c3ef829ddfc5c3d56b1c5eef45ec8fd5dfdea2"
+    },
+    {
+      "path": "features/member-management/member-management.module.css",
+      "sha256": "486fd70a141e07fc4df73cdc56c1703696614c42c3f9f4ce3f262cb3bd8ee025"
+    },
+    {
+      "path": "features/member-management/member-models.ts",
+      "sha256": "1cb86b27680bcd06deb178d99869fd412df33e44d65730ed2873be4f892dde80"
+    },
+    {
+      "path": "features/member-management/member-navigation.tsx",
+      "sha256": "633732fa5ae80ca701ccd46705bdac6f2fdab8d63b5cf52e0a07b63bdb3b8d94"
+    },
+    {
+      "path": "features/member-management/member-reports-page.tsx",
+      "sha256": "d596790c950666ec123a8b5d8efea5121337bbe0a822d83912a3b484a2c837af"
+    },
+    {
+      "path": "features/member-management/members-page.tsx",
+      "sha256": "324a3ab4e1a570d2552b30b8e0fd772ef4845b26e7ab8ba21d324ad60b29892f"
+    },
+    {
+      "path": "features/member-management/use-member-task.ts",
+      "sha256": "e5c374777385a3a29bd80a03c04520c9ef87e2399d972e96f1a1fff47e582a97"
+    },
+    {
+      "path": "features/operations/business-decisions-panel.tsx",
+      "sha256": "820919bfe28c66fdeb37b0be6271de09ae3dd3a2e01eb7e2a3ab95291d12d89d"
+    },
+    {
+      "path": "features/operations/catalog-page.tsx",
+      "sha256": "f1b1c9b0db4aab870b8b2aa7daae220aacfaa0c690837addf524ca423f4f017e"
+    },
+    {
+      "path": "features/operations/draw-review-page.tsx",
+      "sha256": "f6feb5afe3d8121396df190b9403e84574e85c7caa5e3ef5bc0c9e3034870937"
+    },
+    {
+      "path": "features/operations/fixed-award-dialog.tsx",
+      "sha256": "c94e72ff182bd669475c29f87ec0c9744e4f7c988a9d2c2b5cb26d56e2be2cc8"
+    },
+    {
+      "path": "features/operations/issues-page.tsx",
+      "sha256": "e957fd0c3c615dd66ffb33f2ff4c5d5f292d48bd6fa62f7a823ac862a2bd0aca"
+    },
+    {
+      "path": "features/operations/omission-health-page.tsx",
+      "sha256": "079314018c13140f6a5e6456efcf2b93d6961e35fb15aaf9c3d0d5af948b8216"
+    },
+    {
+      "path": "features/operations/operations-api.ts",
+      "sha256": "b9e639ab154a2888e4fca78485a3fbc67cbebe988dd35350cf7c7e15a4e06a00"
+    },
+    {
+      "path": "features/operations/operations-models.ts",
+      "sha256": "ed8c2c4af3625d57fb4dd035371ae62c968ed26183414b2ac7612678a733fbd3"
+    },
+    {
+      "path": "features/operations/operations-pages.module.css",
+      "sha256": "f1bce5909aa85e21e6801daf66d13c3ea557a29128d6d44b0861034b718f4f99"
+    },
+    {
+      "path": "features/operations/overview-page.tsx",
+      "sha256": "49ec949bd9c8a20ebdf5e734e2f094d7ebe9f6f2289be0136a8b85596b4e8144"
+    },
+    {
+      "path": "features/operations/use-admin-task.ts",
+      "sha256": "d065577de6e7b1eb4a1f9ee83cc717cc4a61e645d47cfeb5e9e81ecba0c0e704"
+    },
+    {
+      "path": "features/order-management/order-api.ts",
+      "sha256": "0cb1cee992148b4609f1302f42b1e1cbfdc7d8c35fbab767347ca5beb38f2a0f"
+    },
+    {
+      "path": "features/order-management/order-detail-page.tsx",
+      "sha256": "9a46bf84ca8b5040c1ed9098aea54cefd4f31013129e8abe362567d60e864a01"
+    },
+    {
+      "path": "features/order-management/order-management.module.css",
+      "sha256": "87ac67e8e3e3b5c577587c9719e07efc53debddb1f94391539b56c7f6033ed37"
+    },
+    {
+      "path": "features/order-management/order-models.ts",
+      "sha256": "634575acbad63a7cd3733f392f336c822aadcde0eefb46feb2e6b8b0abfe1a17"
+    },
+    {
+      "path": "features/order-management/order-retry-dialog.tsx",
+      "sha256": "fd97923fa0f2432e022d726f76faa8aaa38214ffa337dc45c36528bd2789812e"
+    },
+    {
+      "path": "features/order-management/orders-page.tsx",
+      "sha256": "b9ae6c8d1b5f6673227674fb06f6f001f2a63981eac4dc702e6c1b823281cbf9"
+    },
+    {
+      "path": "features/robots/robot-detail-page.tsx",
+      "sha256": "307ab4e5eb0da3e2064974e6a312bfcb97474bb889fb494f81efef03700155ca"
+    },
+    {
+      "path": "features/robots/robot-editor.tsx",
+      "sha256": "387b5f9637465e4904e53cddcc6c1b935c42a1c8869434e1b4caf85db91e7d62"
+    },
+    {
+      "path": "features/robots/robot-executions-page.tsx",
+      "sha256": "5d2a0506e12c25448b40a4c6d15e5d5fe69cb3fe94ecab26e9f991e966613f58"
+    },
+    {
+      "path": "features/robots/robot-list-page.tsx",
+      "sha256": "1b7c03a3b2237947eae17f1a2d8767079b36e477be5ebadc4cd84c5781bd39a1"
+    },
+    {
+      "path": "features/robots/robot-models.ts",
+      "sha256": "814eba699b4732ebb305323f4b3716cb2508616e8085884bbb40ee02ffea5afc"
+    },
+    {
+      "path": "features/robots/robot-ui.tsx",
+      "sha256": "02dd26382f25822863799f4da1340147549a20c2aa3bd52965b04da2efd44740"
+    },
+    {
+      "path": "features/robots/robots-api.ts",
+      "sha256": "85f21c0425b2fd5521ce63261ee131f2eade44898ec4f51d39f69fa808ee58de"
+    },
+    {
+      "path": "features/robots/robots-pages.module.css",
+      "sha256": "c9af1cda52e313b87693fceedd088475add4dc086f8f1591b58055ed524e1cc1"
+    },
+    {
+      "path": "features/robots/use-robot-task.ts",
+      "sha256": "7b64265d44b00cb51f023bcc6ec167fa2ca2d64e276b377e0ec9e96ea3510a57"
+    },
+    {
+      "path": "features/station-management/ledger-report-tab.tsx",
+      "sha256": "7b2aba4632abbc69b4c3c097b3bac21c30ddfda2f2a1ebe8de15e8039a12f978"
+    },
+    {
+      "path": "features/station-management/station-management-api.ts",
+      "sha256": "a638e46e4effa34a7b17c01d8772e0939745e535d97d26977b1d511fc9230d51"
+    },
+    {
+      "path": "features/station-management/station-management-models.ts",
+      "sha256": "fff518bf79db1c007b7c7c4b2995ea337cf36c1d6bae23f15f274128d263d3eb"
+    },
+    {
+      "path": "features/station-management/station-management-page.tsx",
+      "sha256": "9087e0847d18632a2e77c12d9835da9381fa24c4878facb55b53097df5debb01"
+    },
+    {
+      "path": "features/station-management/station-management.module.css",
+      "sha256": "a1bfdb89dcedb4c12f5d2d550eab730b3eb3e4abe4de97ee4216ed9f7043e388"
+    },
+    {
+      "path": "features/station-management/station-masters-tab.tsx",
+      "sha256": "b20de1aac0b38f22f55131d8b71935dbe48b3ff2fb857fd5e188a43fe44dbf4b"
+    },
+    {
+      "path": "features/station-management/stations-tab.tsx",
+      "sha256": "36b5f2bfdb127284eb0eaf2b8d9cdaf31f4631118b7891c783e3aef7cdaf2304"
+    },
+    {
+      "path": "lib/api.ts",
+      "sha256": "7b0955aec19c5c1889c316b2cc675217a06cb8cba05ecd374e2e11d9630ad1c9"
+    },
+    {
+      "path": "session/admin-session.tsx",
+      "sha256": "79e92987586aa147dcc20abfcb176e1aa34c67ba928eb75e3878b942954be8ca"
+    }
+  ]
+}

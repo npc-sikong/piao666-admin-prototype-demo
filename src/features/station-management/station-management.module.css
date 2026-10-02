@@ -1,0 +1,511 @@
+.tabContent {
+  padding: 18px;
+}
+
+.sectionLead,
+.subsectionHeader {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.sectionLead > div:first-child,
+.subsectionHeader > div:first-child {
+  display: grid;
+  gap: 4px;
+}
+
+.sectionLead strong,
+.subsectionHeader strong {
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+}
+
+.sectionLead span,
+.subsectionHeader span {
+  color: var(--color-text-secondary);
+  font-size: 0.6875rem;
+  line-height: 1.5;
+}
+
+.headerActions,
+.rowActions,
+.dialogActionRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  align-items: center;
+}
+
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+  margin-bottom: 16px;
+  border-block: 1px solid var(--color-border);
+  padding: 14px 0;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  min-width: 150px;
+}
+
+.field[data-grow="true"] {
+  flex: 1 1 250px;
+}
+
+.field > span {
+  color: var(--color-text-secondary);
+  font-size: 0.6875rem;
+  font-weight: 720;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid #d5dfeb;
+  border-radius: 9px;
+  padding: 8px 10px;
+  background: #fff;
+  color: var(--color-text-primary);
+  font: inherit;
+  font-size: 0.75rem;
+}
+
+.field textarea {
+  min-height: 92px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: #93c5fd;
+  outline: 0;
+  box-shadow: var(--focus-ring);
+}
+
+.field small {
+  color: var(--color-text-tertiary);
+  font-size: 0.625rem;
+  line-height: 1.45;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.formStack,
+.detailStack {
+  display: grid;
+  gap: 15px;
+}
+
+.span2 {
+  grid-column: 1 / -1;
+}
+
+.checkField {
+  display: flex;
+  gap: 9px;
+  align-items: flex-start;
+  border: 1px solid #d8e2ee;
+  border-radius: 9px;
+  padding: 11px 12px;
+  background: #fbfdff;
+  color: var(--color-text-secondary);
+  font-size: 0.71875rem;
+  line-height: 1.5;
+}
+
+.checkField input {
+  margin-top: 2px;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 11px;
+}
+
+.table {
+  width: 100%;
+  min-width: 940px;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.table[data-wide="true"] {
+  min-width: 1180px;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid #edf1f6;
+  padding: 12px 13px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table th {
+  background: #f8fafc;
+  color: #66758a;
+  font-size: 0.625rem;
+  font-weight: 780;
+  white-space: nowrap;
+}
+
+.table td {
+  color: var(--color-text-secondary);
+  font-size: 0.71875rem;
+  line-height: 1.5;
+}
+
+.table tbody tr {
+  transition: background var(--motion-fast);
+}
+
+.table tbody tr:hover {
+  background: #fbfdff;
+}
+
+.table tbody tr:last-child td,
+.table tfoot tr:last-child th {
+  border-bottom: 0;
+}
+
+.table tfoot th {
+  border-top: 1px solid #dbe5f0;
+  background: #eef5ff;
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.table strong {
+  color: var(--color-text-primary);
+}
+
+.entity {
+  display: grid;
+  gap: 3px;
+  min-width: 120px;
+}
+
+.entity small {
+  /* 这一行放的是编号与登录账号这类标识符。原先 180px 加省略号，
+     "SM-BAD66E81CC3A · harper444" 正好卡在边界，被裁掉的恰是登录账号最后一位，
+     运营照着屏幕输入就成了 harper44，连试 5 次触发登录封锁。
+     标识符宁可换行也不截断。 */
+  max-width: 220px;
+  color: var(--color-text-tertiary);
+  font-size: 0.625rem;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.625rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.points,
+.positive,
+.negative {
+  font-variant-numeric: tabular-nums;
+}
+
+.points {
+  color: #5b21b6 !important;
+}
+
+.positive {
+  color: #15803d !important;
+}
+
+.negative {
+  color: #b91c1c !important;
+}
+
+.rowActions button,
+.inlineLink {
+  border: 0;
+  padding: 3px 0;
+  background: transparent;
+  color: var(--color-brand-strong);
+  font-size: 0.6875rem;
+  font-weight: 720;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.stationList {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 11px;
+  background: #fff;
+}
+
+.stationRow {
+  display: grid;
+  grid-template-columns: auto minmax(220px, 1fr) auto auto;
+  gap: 15px;
+  align-items: center;
+  border-bottom: 1px solid #edf1f6;
+  padding: 14px 16px;
+  transition: background var(--motion-fast);
+}
+
+.stationRow:last-child {
+  border-bottom: 0;
+}
+
+.stationRow:hover {
+  background: #fbfdff;
+}
+
+.stationMark {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 10px;
+  background: #eef2ff;
+  color: #4338ca;
+  font-size: 0.875rem;
+  font-weight: 820;
+}
+
+.stationIdentity {
+  display: grid;
+  gap: 4px;
+}
+
+.stationIdentity > div {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.stationIdentity strong {
+  color: var(--color-text-primary);
+  font-size: 0.78125rem;
+}
+
+.stationIdentity span,
+.stationIdentity small {
+  color: var(--color-text-tertiary);
+  font-size: 0.625rem;
+}
+
+.stationFacts {
+  display: flex;
+  gap: 24px;
+}
+
+.stationFacts > span {
+  display: grid;
+  min-width: 52px;
+  gap: 3px;
+  text-align: center;
+}
+
+.stationFacts strong {
+  color: var(--color-text-primary);
+  font-size: 1rem;
+}
+
+.stationFacts small {
+  color: var(--color-text-tertiary);
+  font-size: 0.625rem;
+}
+
+.feedback {
+  margin: 12px 0;
+  border-radius: 8px;
+  padding: 9px 11px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 0.6875rem;
+  line-height: 1.55;
+}
+
+.commandBar {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 12px 0;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  padding: 11px 13px;
+  background: #fff7ed;
+}
+
+.commandBar > div {
+  display: grid;
+  gap: 3px;
+}
+
+.commandBar strong {
+  color: #9a3412;
+  font-size: 0.75rem;
+}
+
+.commandBar span {
+  color: #b45309;
+  font-size: 0.625rem;
+  line-height: 1.5;
+}
+
+.loadMore {
+  display: flex;
+  justify-content: center;
+  padding-top: 14px;
+}
+
+.factGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.factGrid > span {
+  display: grid;
+  gap: 6px;
+  min-height: 82px;
+  align-content: center;
+  padding: 12px;
+}
+
+.factGrid > span + span {
+  border-left: 1px solid var(--color-border);
+}
+
+.factGrid small {
+  color: var(--color-text-tertiary);
+  font-size: 0.625rem;
+}
+
+.factGrid strong {
+  overflow: hidden;
+  color: var(--color-text-primary);
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+  text-overflow: ellipsis;
+}
+
+.definitionList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  border-block: 1px solid var(--color-border);
+}
+
+.definitionList > div {
+  display: grid;
+  grid-template-columns: minmax(100px, 0.8fr) minmax(0, 1fr);
+  gap: 12px;
+  padding: 11px 0;
+}
+
+.definitionList dt {
+  color: var(--color-text-tertiary);
+  font-size: 0.6875rem;
+}
+
+.definitionList dd {
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: 0.71875rem;
+}
+
+.reportSection {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 20px;
+}
+
+.reportSection:first-of-type {
+  margin-top: 18px;
+}
+
+@media (max-width: 1050px) {
+  .stationRow {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .stationRow .rowActions {
+    grid-column: 2 / -1;
+  }
+
+  .factGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .factGrid > span:nth-child(3) {
+    border-left: 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .factGrid > span:nth-child(4) {
+    border-top: 1px solid var(--color-border);
+  }
+}
+
+@media (max-width: 760px) {
+  .tabContent {
+    padding: 14px;
+  }
+
+  .sectionLead,
+  .subsectionHeader,
+  .commandBar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .formGrid,
+  .definitionList {
+    grid-template-columns: 1fr;
+  }
+
+  .span2 {
+    grid-column: auto;
+  }
+
+  .stationRow {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .stationFacts,
+  .stationRow .rowActions {
+    grid-column: 1 / -1;
+  }
+
+  .stationFacts {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stationRow,
+  .table tbody tr {
+    transition: none;
+  }
+}

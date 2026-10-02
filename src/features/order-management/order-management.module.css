@@ -1,0 +1,275 @@
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+}
+
+.field,
+.formStack {
+  display: grid;
+  gap: 7px;
+}
+
+.field {
+  min-width: 160px;
+}
+
+.field[data-grow="true"] {
+  flex: 1 1 240px;
+}
+
+.field > span {
+  color: var(--color-text-secondary);
+  font-size: 0.6875rem;
+  font-weight: 720;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 39px;
+  border: 1px solid #d5dfeb;
+  border-radius: 9px;
+  padding: 8px 10px;
+  background: #fff;
+  color: var(--color-text-primary);
+  font: inherit;
+  font-size: 0.75rem;
+}
+
+.field textarea {
+  min-height: 110px;
+  resize: vertical;
+  line-height: 1.65;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: #93c5fd;
+  outline: 0;
+  box-shadow: var(--focus-ring);
+}
+
+.filterActions,
+.rowActions,
+.pagination,
+.selectionMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 1050px;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid #edf1f6;
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table th {
+  background: #f8fafc;
+  color: #66758a;
+  font-size: 0.625rem;
+  font-weight: 780;
+  white-space: nowrap;
+}
+
+.table td {
+  color: var(--color-text-secondary);
+  font-size: 0.71875rem;
+  line-height: 1.5;
+}
+
+.table tbody tr:hover {
+  background: #fbfdff;
+}
+
+.entity {
+  display: grid;
+  gap: 3px;
+  min-width: 120px;
+}
+
+.entity strong,
+.points {
+  color: var(--color-text-primary);
+  font-weight: 780;
+  font-variant-numeric: tabular-nums;
+}
+
+.entity small,
+.intentNote {
+  color: var(--color-text-tertiary);
+  font-size: 0.625rem;
+}
+
+.textButton,
+.textLink,
+.backLink {
+  border: 0;
+  padding: 3px 0;
+  background: transparent;
+  color: var(--color-brand-strong);
+  font-size: 0.6875rem;
+  font-weight: 740;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.backLink {
+  border: 1px solid var(--color-border);
+  border-radius: 9px;
+  padding: 9px 12px;
+  background: #fff;
+  color: var(--color-text-secondary);
+}
+
+.textButton:disabled {
+  color: var(--color-text-tertiary);
+  cursor: not-allowed;
+}
+
+.pagination {
+  justify-content: space-between;
+  border-top: 1px solid var(--color-border);
+  padding: 13px 18px;
+  color: var(--color-text-tertiary);
+  font-size: 0.6875rem;
+}
+
+.feedback {
+  margin: 0;
+  border-radius: 8px;
+  padding: 9px 11px;
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+  font-size: 0.6875rem;
+  line-height: 1.55;
+}
+
+.detailGrid {
+  display: grid;
+  gap: 0;
+}
+
+.definitionGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+}
+
+.definition {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  border-bottom: 1px solid #edf1f6;
+  padding: 13px 14px;
+}
+
+.definition[data-wide="true"] {
+  grid-column: 1 / -1;
+}
+
+.definition dt {
+  color: var(--color-text-tertiary);
+  font-size: 0.625rem;
+}
+
+.definition dd {
+  overflow-wrap: anywhere;
+  margin: 0;
+  color: var(--color-text-primary);
+  font-size: 0.75rem;
+  font-weight: 680;
+  line-height: 1.55;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.625rem !important;
+}
+
+.selectionBlock,
+.areaList,
+.area,
+.numberLine {
+  display: grid;
+  gap: 12px;
+}
+
+.selectionMeta span {
+  border-radius: 999px;
+  padding: 5px 9px;
+  background: #edf2f8;
+  color: var(--color-text-secondary);
+  font-size: 0.625rem;
+}
+
+.areaList {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.area {
+  border-top: 1px solid var(--color-border);
+  padding-top: 13px;
+}
+
+.area > strong {
+  color: var(--color-text-primary);
+  font-size: 0.75rem;
+}
+
+.numberLine {
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: start;
+}
+
+.numberLine > span {
+  padding-top: 6px;
+  color: var(--color-text-tertiary);
+  font-size: 0.625rem;
+}
+
+.numberLine > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.numberLine b {
+  display: inline-grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  border: 1px solid #cfe0f6;
+  border-radius: 50%;
+  background: #f5f9ff;
+  color: var(--color-brand-strong);
+  font-size: 0.6875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.inPanelState {
+  padding: 18px;
+}
+
+@media (max-width: 980px) {
+  .definitionGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

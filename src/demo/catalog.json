@@ -1,0 +1,224 @@
+{
+  "version": "FORMAL-20260919-V1",
+  "approvalStatus": "APPROVED",
+  "lotteries": [
+    {
+      "id": "10000000-0000-0000-0000-000000000001",
+      "code": "SSQ",
+      "name": "双色球",
+      "latestIssueCode": "2026261",
+      "plays": [
+        {
+          "id": "20000000-0000-0000-0000-000000000001",
+          "code": "SSQ_BASIC",
+          "name": "双色球基本玩法",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        }
+      ]
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000002",
+      "code": "DLT",
+      "name": "大乐透",
+      "latestIssueCode": "2026261",
+      "plays": [
+        {
+          "id": "20000000-0000-0000-0000-000000000002",
+          "code": "DLT_BASIC",
+          "name": "大乐透基本玩法",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        }
+      ]
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000003",
+      "code": "FC3D",
+      "name": "福彩3D",
+      "latestIssueCode": "2026261",
+      "plays": [
+        {
+          "id": "20000000-0000-0000-0000-000000000003",
+          "code": "FC3D_STRAIGHT",
+          "name": "福彩3D单选",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        },
+        {
+          "id": "20000000-0000-0000-0000-000000000004",
+          "code": "FC3D_GROUP3",
+          "name": "福彩3D组选3",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        },
+        {
+          "id": "20000000-0000-0000-0000-000000000005",
+          "code": "FC3D_GROUP6",
+          "name": "福彩3D组选6",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        },
+        {
+          "id": "20000000-0000-0000-0000-000000000006",
+          "code": "FC3D_TONGXUAN",
+          "name": "福彩3D通选",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        }
+      ]
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000004",
+      "code": "PL3",
+      "name": "排列三",
+      "latestIssueCode": "2026261",
+      "plays": [
+        {
+          "id": "20000000-0000-0000-0000-000000000007",
+          "code": "PL3_STRAIGHT",
+          "name": "排列三直选",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        },
+        {
+          "id": "20000000-0000-0000-0000-000000000008",
+          "code": "PL3_GROUP3",
+          "name": "排列三组选3",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        },
+        {
+          "id": "20000000-0000-0000-0000-000000000009",
+          "code": "PL3_GROUP6",
+          "name": "排列三组选6",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        }
+      ]
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000005",
+      "code": "PL5",
+      "name": "排列五",
+      "latestIssueCode": "2026261",
+      "plays": [
+        {
+          "id": "20000000-0000-0000-0000-000000000010",
+          "code": "PL5_STRAIGHT",
+          "name": "排列五直选",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        }
+      ]
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000006",
+      "code": "QLC",
+      "name": "七乐彩",
+      "latestIssueCode": "2026261",
+      "plays": [
+        {
+          "id": "20000000-0000-0000-0000-000000000011",
+          "code": "QLC_BASIC",
+          "name": "七乐彩基本玩法",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        }
+      ]
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000007",
+      "code": "KL8",
+      "name": "快乐8",
+      "latestIssueCode": "2026261",
+      "plays": [
+        {
+          "id": "20000000-0000-0000-0000-000000000013",
+          "code": "KL8_PICK_01",
+          "name": "快乐8选1",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        },
+        {
+          "id": "20000000-0000-0000-0000-000000000014",
+          "code": "KL8_PICK_02",
+          "name": "快乐8选2",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        },
+        {
+          "id": "20000000-0000-0000-0000-000000000015",
+          "code": "KL8_PICK_03",
+          "name": "快乐8选3",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        },
+        {
+          "id": "20000000-0000-0000-0000-000000000016",
+          "code": "KL8_PICK_04",
+          "name": "快乐8选4",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        },
+        {
+          "id": "20000000-0000-0000-0000-000000000017",
+          "code": "KL8_PICK_05",
+          "name": "快乐8选5",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        },
+        {
+          "id": "20000000-0000-0000-0000-000000000018",
+          "code": "KL8_PICK_06",
+          "name": "快乐8选6",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        },
+        {
+          "id": "20000000-0000-0000-0000-000000000019",
+          "code": "KL8_PICK_07",
+          "name": "快乐8选7",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        },
+        {
+          "id": "20000000-0000-0000-0000-000000000020",
+          "code": "KL8_PICK_08",
+          "name": "快乐8选8",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        },
+        {
+          "id": "20000000-0000-0000-0000-000000000021",
+          "code": "KL8_PICK_09",
+          "name": "快乐8选9",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        },
+        {
+          "id": "20000000-0000-0000-0000-000000000022",
+          "code": "KL8_PICK_10",
+          "name": "快乐8选10",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        }
+      ]
+    },
+    {
+      "id": "10000000-0000-0000-0000-000000000008",
+      "code": "QXC",
+      "name": "7星彩",
+      "latestIssueCode": "2026261",
+      "plays": [
+        {
+          "id": "20000000-0000-0000-0000-000000000012",
+          "code": "QXC_BASIC",
+          "name": "7星彩基本玩法",
+          "ruleVersion": "FORMAL-20260919-V1",
+          "readiness": "READY"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "selection": {
+    "vipLevels": [
+      {
+        "id": "VIP_0",
+        "levelNo": 0,
+        "name": "VIP0",
+        "requiredRechargePoints": "0.00",
+        "aiPoolBaseDailyLimit": "10.00"
+      },
+      {
+        "id": "VIP_1",
+        "levelNo": 1,
+        "name": "VIP1",
+        "requiredRechargePoints": "100.00",
+        "aiPoolBaseDailyLimit": "20.00"
+      },
+      {
+        "id": "VIP_2",
+        "levelNo": 2,
+        "name": "VIP2",
+        "requiredRechargePoints": "500.00",
+        "aiPoolBaseDailyLimit": "50.00"
+      },
+      {
+        "id": "VIP_3",
+        "levelNo": 3,
+        "name": "VIP3",
+        "requiredRechargePoints": "1000.00",
+        "aiPoolBaseDailyLimit": "100.00"
+      },
+      {
+        "id": "VIP_4",
+        "levelNo": 4,
+        "name": "VIP4",
+        "requiredRechargePoints": "3000.00",
+        "aiPoolBaseDailyLimit": "200.00"
+      },
+      {
+        "id": "VIP_5",
+        "levelNo": 5,
+        "name": "VIP5",
+        "requiredRechargePoints": "5000.00",
+        "aiPoolBaseDailyLimit": "500.00"
+      },
+      {
+        "id": "VIP_6",
+        "levelNo": 6,
+        "name": "VIP6",
+        "requiredRechargePoints": "10000.00",
+        "aiPoolBaseDailyLimit": "1000.00"
+      },
+      {
+        "id": "VIP_7",
+        "levelNo": 7,
+        "name": "VIP7",
+        "requiredRechargePoints": "20000.00",
+        "aiPoolBaseDailyLimit": "2000.00"
+      },
+      {
+        "id": "VIP_8",
+        "levelNo": 8,
+        "name": "VIP8",
+        "requiredRechargePoints": "50000.00",
+        "aiPoolBaseDailyLimit": "5000.00"
+      },
+      {
+        "id": "VIP_9",
+        "levelNo": 9,
+        "name": "VIP9",
+        "requiredRechargePoints": "100000.00",
+        "aiPoolBaseDailyLimit": "10000.00"
+      },
+      {
+        "id": "VIP_10",
+        "levelNo": 10,
+        "name": "VIP10",
+        "requiredRechargePoints": "200000.00",
+        "aiPoolBaseDailyLimit": "20000.00"
+      },
+      {
+        "id": "VIP_11",
+        "levelNo": 11,
+        "name": "VIP11",
+        "requiredRechargePoints": "500000.00",
+        "aiPoolBaseDailyLimit": "50000.00"
+      }
+    ],
+    "referralLevels": [
+      {
+        "id": "REFERRAL_0",
+        "levelNo": 0,
+        "name": "推广0",
+        "requiredDirectValidMembers": 0,
+        "validRechargePoints": "500.00",
+        "fixedRewardPoints": "0.00",
+        "directAiShareRate": "0",
+        "aiExtraDailyLimit": "0.00",
+        "status": "ENABLED"
+      },
+      {
+        "id": "REFERRAL_1",
+        "levelNo": 1,
+        "name": "推广1",
+        "requiredDirectValidMembers": 3,
+        "validRechargePoints": "500.00",
+        "fixedRewardPoints": "5.00",
+        "directAiShareRate": "0.01",
+        "aiExtraDailyLimit": "10.00",
+        "status": "ENABLED"
+      },
+      {
+        "id": "REFERRAL_2",
+        "levelNo": 2,
+        "name": "推广2",
+        "requiredDirectValidMembers": 6,
+        "validRechargePoints": "500.00",
+        "fixedRewardPoints": "10.00",
+        "directAiShareRate": "0.02",
+        "aiExtraDailyLimit": "20.00",
+        "status": "ENABLED"
+      },
+      {
+        "id": "REFERRAL_3",
+        "levelNo": 3,
+        "name": "推广3",
+        "requiredDirectValidMembers": 10,
+        "validRechargePoints": "500.00",
+        "fixedRewardPoints": "20.00",
+        "directAiShareRate": "0.03",
+        "aiExtraDailyLimit": "50.00",
+        "status": "ENABLED"
+      },
+      {
+        "id": "REFERRAL_4",
+        "levelNo": 4,
+        "name": "推广4",
+        "requiredDirectValidMembers": 20,
+        "validRechargePoints": "500.00",
+        "fixedRewardPoints": "50.00",
+        "directAiShareRate": "0.04",
+        "aiExtraDailyLimit": "100.00",
+        "status": "ENABLED"
+      },
+      {
+        "id": "REFERRAL_5",
+        "levelNo": 5,
+        "name": "推广5",
+        "requiredDirectValidMembers": 50,
+        "validRechargePoints": "500.00",
+        "fixedRewardPoints": "100.00",
+        "directAiShareRate": "0.05",
+        "aiExtraDailyLimit": "200.00",
+        "status": "ENABLED"
+      },
+      {
+        "id": "REFERRAL_6",
+        "levelNo": 6,
+        "name": "推广6",
+        "requiredDirectValidMembers": 100,
+        "validRechargePoints": "500.00",
+        "fixedRewardPoints": "200.00",
+        "directAiShareRate": "0.06",
+        "aiExtraDailyLimit": "500.00",
+        "status": "ENABLED"
+      },
+      {
+        "id": "REFERRAL_7",
+        "levelNo": 7,
+        "name": "推广7",
+        "requiredDirectValidMembers": 200,
+        "validRechargePoints": "500.00",
+        "fixedRewardPoints": "500.00",
+        "directAiShareRate": "0.07",
+        "aiExtraDailyLimit": "1000.00",
+        "status": "ENABLED"
+      },
+      {
+        "id": "REFERRAL_8",
+        "levelNo": 8,
+        "name": "推广8",
+        "requiredDirectValidMembers": 500,
+        "validRechargePoints": "500.00",
+        "fixedRewardPoints": "1000.00",
+        "directAiShareRate": "0.08",
+        "aiExtraDailyLimit": "2000.00",
+        "status": "ENABLED"
+      },
+      {
+        "id": "REFERRAL_9",
+        "levelNo": 9,
+        "name": "推广9",
+        "requiredDirectValidMembers": 1000,
+        "validRechargePoints": "500.00",
+        "fixedRewardPoints": "2000.00",
+        "directAiShareRate": "0.1",
+        "aiExtraDailyLimit": "5000.00",
+        "status": "ENABLED"
+      },
+      {
+        "id": "REFERRAL_10",
+        "levelNo": 10,
+        "name": "推广10",
+        "requiredDirectValidMembers": 2000,
+        "validRechargePoints": "500.00",
+        "fixedRewardPoints": "5000.00",
+        "directAiShareRate": "0.12",
+        "aiExtraDailyLimit": "10000.00",
+        "status": "ENABLED"
+      },
+      {
+        "id": "REFERRAL_11",
+        "levelNo": 11,
+        "name": "推广11",
+        "requiredDirectValidMembers": 5000,
+        "validRechargePoints": "500.00",
+        "fixedRewardPoints": "10000.00",
+        "directAiShareRate": "0.15",
+        "aiExtraDailyLimit": "20000.00",
+        "status": "ENABLED"
+      }
+    ],
+    "baseVipId": "VIP_0",
+    "baseReferralId": "REFERRAL_0",
+    "editableWholeTables": true,
+    "allowAddDeleteRows": true,
+    "preserveBaseLevelAndHistory": true
+  }
+}

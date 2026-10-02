@@ -1,0 +1,61 @@
+{
+  "scope": "会员列表原型局部验收",
+  "preview": "http://127.0.0.1:8877/#/members",
+  "fixtureMemberCount": 125,
+  "fixtureIsolatedFromPreview": true,
+  "pagination": [
+    {
+      "pageSize": 20,
+      "firstPageRows": 20,
+      "secondPageRows": 20,
+      "secondPageFirstMember": "分页会员021",
+      "hasNext": true
+    },
+    {
+      "pageSize": 40,
+      "firstPageRows": 40,
+      "secondPageRows": 40,
+      "secondPageFirstMember": "分页会员041",
+      "hasNext": true
+    },
+    {
+      "pageSize": 60,
+      "firstPageRows": 60,
+      "secondPageRows": 60,
+      "secondPageFirstMember": "分页会员061",
+      "hasNext": true
+    },
+    {
+      "pageSize": 80,
+      "firstPageRows": 80,
+      "secondPageRows": 45,
+      "secondPageFirstMember": "分页会员081",
+      "hasNext": false
+    },
+    {
+      "pageSize": 100,
+      "firstPageRows": 100,
+      "secondPageRows": 25,
+      "secondPageFirstMember": "分页会员101",
+      "hasNext": false
+    },
+    {
+      "lastPageRows": 5,
+      "range": "121–125",
+      "nextDisabled": true
+    },
+    {
+      "previousPage": true,
+      "filterReturnsFirstPage": true,
+      "filteredTotal": 42,
+      "emptyState": true,
+      "reset": true
+    }
+  ],
+  "columnsInRequestedOrder": true,
+  "memberNameOnly": true,
+  "detailFieldsConsistent": true,
+  "modificationNotesVerified": true,
+  "versionSummaryAndModuleLinkVerified": true,
+  "versionNumberAssigned": false
+}

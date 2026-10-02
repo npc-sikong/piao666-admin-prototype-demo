@@ -1,0 +1,161 @@
+{
+  "routes": [
+    {
+      "path": "/account-recovery",
+      "screenComponent": "AccountRecoveryPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/ai-pools/[poolIssueId]/allocation",
+      "screenComponent": "AiAllocationPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/ai-pools/[poolIssueId]",
+      "screenComponent": "AiPoolDetailPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/ai-pools/[poolIssueId]/payout",
+      "screenComponent": "AiPayoutPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/ai-pools",
+      "screenComponent": "AiProjectsPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/ai-pools/reports",
+      "screenComponent": "AiReportPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/employees",
+      "screenComponent": "EmployeesPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/ledger",
+      "screenComponent": "LedgerPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/login",
+      "screenComponent": "AdminLoginPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/lottery/catalog",
+      "screenComponent": "CatalogPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/lottery/draws",
+      "screenComponent": "DrawReviewPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/lottery/issues",
+      "screenComponent": "IssuesPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/lottery/omissions",
+      "screenComponent": "OmissionHealthPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/masters/[robotId]/executions",
+      "screenComponent": "RobotExecutionsPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/masters/[robotId]",
+      "screenComponent": "RobotDetailPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/masters",
+      "screenComponent": "RobotListPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/members/[memberId]",
+      "screenComponent": "MemberDetailPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/members",
+      "screenComponent": "MembersPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/members/referrals",
+      "screenComponent": "ReferralConfigurationPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/members/reports",
+      "screenComponent": "MemberReportsPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/members/vip",
+      "screenComponent": "VipConfigurationPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/orders/[orderId]",
+      "screenComponent": "OrderDetailPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/orders",
+      "screenComponent": "OrdersPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/",
+      "screenComponent": "OverviewPage",
+      "observedInBrowser": true
+    },
+    {
+      "path": "/stations",
+      "screenComponent": "StationManagementPage",
+      "observedInBrowser": true
+    }
+  ],
+  "uiFlows": [
+    "all 12 navigation entries",
+    "member detail and order links",
+    "VIP and referral configurations",
+    "member reports",
+    "station creation saved",
+    "member disabled and restored; state persisted after reload",
+    "master strategy and executions",
+    "AI allocation confirm -> disclosure -> preparation -> payout -> 10 items",
+    "AI project issues and report",
+    "ordinary order detail and retry",
+    "employee roles and audit",
+    "ledger budgets and reconciliation report",
+    "logout -> recovery instructions -> login -> overview"
+  ],
+  "xlsxDownload": {
+    "file": "export-sample.xlsx",
+    "bytes": 40737,
+    "worksheetRowsIncludingHeader": 6,
+    "zipAndXmlValid": true
+  },
+  "sourceStylesUnchanged": true,
+  "fullLiveSourcePixelComparison": false,
+  "sourceComparisonLimit": "Source service stopped during comparison. Service later returned but its employee session had expired.",
+  "fileProtocolBrowserTest": false,
+  "fileProtocolLimit": "Browser automation permits HTTP and HTTPS only.",
+  "standaloneExternalResources": 0,
+  "bundleNetworkCalls": 0,
+  "previewStatus": 200,
+  "nestedRouteStatus": 200,
+  "apiRouteStatus": 404,
+  "postStatus": 405
+}

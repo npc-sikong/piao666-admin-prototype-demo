@@ -1,0 +1,370 @@
+{
+  "passed": 91,
+  "total": 91,
+  "results": [
+    {
+      "name": "目录 / 8 彩种 / 22 玩法",
+      "passed": true
+    },
+    {
+      "name": "期次",
+      "passed": true
+    },
+    {
+      "name": "规则详情",
+      "passed": true
+    },
+    {
+      "name": "数据健康",
+      "passed": true
+    },
+    {
+      "name": "数据来源",
+      "passed": true
+    },
+    {
+      "name": "规则版本",
+      "passed": true
+    },
+    {
+      "name": "政策版本",
+      "passed": true
+    },
+    {
+      "name": "开奖候选",
+      "passed": true
+    },
+    {
+      "name": "开奖版本",
+      "passed": true
+    },
+    {
+      "name": "遗漏缺口",
+      "passed": true
+    },
+    {
+      "name": "大师策略",
+      "passed": true
+    },
+    {
+      "name": "大师列表 / 48 头像",
+      "passed": true
+    },
+    {
+      "name": "大师详情",
+      "passed": true
+    },
+    {
+      "name": "大师执行",
+      "passed": true
+    },
+    {
+      "name": "大师推荐",
+      "passed": true
+    },
+    {
+      "name": "站点",
+      "passed": true
+    },
+    {
+      "name": "站点详情",
+      "passed": true
+    },
+    {
+      "name": "站长",
+      "passed": true
+    },
+    {
+      "name": "站长详情",
+      "passed": true
+    },
+    {
+      "name": "会员列表",
+      "passed": true
+    },
+    {
+      "name": "会员 125 条 / 五档分页 / 首尾边界 / 筛选",
+      "passed": true
+    },
+    {
+      "name": "积分公式 / 负净收益 / 冻结单列 / AI 三项额度",
+      "passed": true
+    },
+    {
+      "name": "直属与三级下级汇总 / 归属变更 / 不受分页影响",
+      "passed": true
+    },
+    {
+      "name": "旧本地数据补齐 / AI 历史发放 / 邀请码稳定",
+      "passed": true
+    },
+    {
+      "name": "会员详情",
+      "passed": true
+    },
+    {
+      "name": "会员流水",
+      "passed": true
+    },
+    {
+      "name": "会员订单",
+      "passed": true
+    },
+    {
+      "name": "VIP 配置",
+      "passed": true
+    },
+    {
+      "name": "VIP 版本",
+      "passed": true
+    },
+    {
+      "name": "推广配置",
+      "passed": true
+    },
+    {
+      "name": "推广版本",
+      "passed": true
+    },
+    {
+      "name": "AI 项目",
+      "passed": true
+    },
+    {
+      "name": "AI 项目详情",
+      "passed": true
+    },
+    {
+      "name": "AI 设置",
+      "passed": true
+    },
+    {
+      "name": "AI 50x20 组合",
+      "passed": true
+    },
+    {
+      "name": "AI 期次",
+      "passed": true
+    },
+    {
+      "name": "AI 期次详情",
+      "passed": true
+    },
+    {
+      "name": "AI 认购",
+      "passed": true
+    },
+    {
+      "name": "AI 分配历史",
+      "passed": true
+    },
+    {
+      "name": "AI 分配详情",
+      "passed": true
+    },
+    {
+      "name": "AI 发放进度",
+      "passed": true
+    },
+    {
+      "name": "订单列表",
+      "passed": true
+    },
+    {
+      "name": "订单详情",
+      "passed": true
+    },
+    {
+      "name": "双边积分账本",
+      "passed": true
+    },
+    {
+      "name": "预算账户",
+      "passed": true
+    },
+    {
+      "name": "员工",
+      "passed": true
+    },
+    {
+      "name": "角色权限",
+      "passed": true
+    },
+    {
+      "name": "审计",
+      "passed": true
+    },
+    {
+      "name": "报表 MEMBER_OVERVIEW",
+      "passed": true
+    },
+    {
+      "name": "报表 MEMBER_POINTS",
+      "passed": true
+    },
+    {
+      "name": "报表 VIP_LEVELS",
+      "passed": true
+    },
+    {
+      "name": "报表 REFERRAL_LEVELS",
+      "passed": true
+    },
+    {
+      "name": "报表 AI_QUOTA",
+      "passed": true
+    },
+    {
+      "name": "报表 AI_POOLS",
+      "passed": true
+    },
+    {
+      "name": "报表 STATION_MASTERS",
+      "passed": true
+    },
+    {
+      "name": "报表 LEDGER_RECONCILIATION",
+      "passed": true
+    },
+    {
+      "name": "新增站点 / 更新 / 停用",
+      "passed": true
+    },
+    {
+      "name": "会员停用 / 恢复",
+      "passed": true
+    },
+    {
+      "name": "大师新增 / 编辑 / 删除",
+      "passed": true
+    },
+    {
+      "name": "AI 重算 → 确认 → 公示 → 发放 → 进度",
+      "passed": true
+    },
+    {
+      "name": "AI 分红与可用积分到账联动 / 列表详情一致",
+      "passed": true
+    },
+    {
+      "name": "上传仅在本地解析",
+      "passed": true
+    },
+    {
+      "name": "导出生成及读取",
+      "passed": true
+    },
+    {
+      "name": "上海日期筛选保留当天账本",
+      "passed": true
+    },
+    {
+      "name": "空筛选 / 重置 / 分页",
+      "passed": true
+    },
+    {
+      "name": "新增站长及初始额度",
+      "passed": true
+    },
+    {
+      "name": "站长额度调整及账本联动",
+      "passed": true
+    },
+    {
+      "name": "站长迁移",
+      "passed": true
+    },
+    {
+      "name": "会员纠正归属",
+      "passed": true
+    },
+    {
+      "name": "VIP 整表保存与历史",
+      "passed": true
+    },
+    {
+      "name": "推广整表保存与历史",
+      "passed": true
+    },
+    {
+      "name": "资格重建",
+      "passed": true
+    },
+    {
+      "name": "会员报表解析",
+      "passed": true
+    },
+    {
+      "name": "AI 报表解析",
+      "passed": true
+    },
+    {
+      "name": "站长报表解析",
+      "passed": true
+    },
+    {
+      "name": "对账报表解析",
+      "passed": true
+    },
+    {
+      "name": "新建员工及权限更新",
+      "passed": true
+    },
+    {
+      "name": "员工恢复",
+      "passed": true
+    },
+    {
+      "name": "账本冲正",
+      "passed": true
+    },
+    {
+      "name": "发起对账并读取结果",
+      "passed": true
+    },
+    {
+      "name": "普通订单恢复结算及会员账本联动",
+      "passed": true
+    },
+    {
+      "name": "规则提交及独立复核",
+      "passed": true
+    },
+    {
+      "name": "政策登记",
+      "passed": true
+    },
+    {
+      "name": "开奖复核",
+      "passed": true
+    },
+    {
+      "name": "遗漏重建",
+      "passed": true
+    },
+    {
+      "name": "大师试算与执行更新",
+      "passed": true
+    },
+    {
+      "name": "AI 配置保存",
+      "passed": true
+    },
+    {
+      "name": "AI 截止认购与生成分配",
+      "passed": true
+    },
+    {
+      "name": "AI 人工一键结算",
+      "passed": true
+    },
+    {
+      "name": "未知演示操作明确报错",
+      "passed": true
+    },
+    {
+      "name": "演示状态不存储密码",
+      "passed": true
+    }
+  ]
+}

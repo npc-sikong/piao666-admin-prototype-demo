@@ -1,0 +1,20 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { build } from 'esbuild';
+
+const root=process.cwd(),meta=JSON.parse(fs.readFileSync('src/demo/meta.json','utf8'));
+const components=[...new Map(meta.routes.map(r=>[r.component,r.import]))];
+const imports=components.map(([name,from])=>`import { ${name} } from '${from}';`).join('\n');
+const routes=meta.routes.slice().sort((a,b)=>Number(a.path.includes('['))-Number(b.path.includes('['))).map(r=>`{ path:${JSON.stringify(r.path)}, component:${r.component}, params:${JSON.stringify(r.props.map(p=>p[0]))} }`).join(',\n');
+fs.writeFileSync('src/demo/routes.tsx',`${imports}\nexport const routes=[${routes}];\n`);
+const assets={};for(const file of fs.readdirSync('public/images/masters'))assets[`/images/masters/${file}`]=`data:image/webp;base64,${fs.readFileSync(path.join('public/images/masters',file)).toString('base64')}`;
+fs.writeFileSync('src/demo/assets.json',JSON.stringify(assets));
+fs.mkdirSync('dist',{recursive:true});
+const result=await build({entryPoints:['src/main.tsx'],bundle:true,outfile:'dist/app.js',format:'iife',platform:'browser',target:['es2022'],minify:true,jsx:'automatic',metafile:true,define:{'process.env.NODE_ENV':'"production"'},alias:{'@':path.join(root,'src'),'@piao777/api-client':path.join(root,'shared/api-client/index.ts'),'@piao777/ui-tokens/tokens.css':path.join(root,'shared/ui-tokens/tokens.css'),'@piao777/ui-tokens':path.join(root,'shared/ui-tokens/index.ts'),'next/link':path.join(root,'src/demo/router.tsx'),'next/navigation':path.join(root,'src/demo/router.tsx'),'next/image':path.join(root,'src/demo/image.ts')},logLevel:'warning'});
+const head='<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src \'self\' data: blob:; connect-src \'none\'; script-src \'self\' \'unsafe-inline\'; style-src \'self\' \'unsafe-inline\'; img-src \'self\' data: blob:; font-src \'self\' data:;"><title>piao666 运营后台 · 演示原型</title>';
+fs.writeFileSync('dist/index.html',`${head}<link rel="stylesheet" href="./app.css"></head><body><div id="root"></div><script src="./app.js"></script></body></html>`);
+const css=fs.readFileSync('dist/app.css','utf8'),js=fs.readFileSync('dist/app.js','utf8').replaceAll('</script','<\\/script');
+fs.writeFileSync('standalone.html',`${head}<style>${css}</style></head><body><div id="root"></div><script>${js}</script></body></html>`);
+fs.copyFileSync('standalone.html','dist/standalone.html');
+fs.writeFileSync('evidence/build.json',JSON.stringify({routes:meta.routes.map(r=>r.path),inputCount:Object.keys(result.metafile.inputs).length,routeCount:meta.routes.length,avatarCount:Object.keys(assets).length,standaloneBytes:fs.statSync('standalone.html').size,apiServer:false},null,2));
+console.log(`Built ${meta.routes.length} routes, ${Object.keys(assets).length} avatars, standalone.html ${(fs.statSync('standalone.html').size/1024/1024).toFixed(2)} MiB`);

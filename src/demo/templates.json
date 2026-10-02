@@ -1,0 +1,1511 @@
+{
+  "ai-management": {
+    "SettlementMode": "MANUAL",
+    "ProjectStatus": "ENABLED",
+    "PoolStatus": "OPEN",
+    "Page": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false,
+      "snapshotId": null
+    },
+    "AiSettings": {
+      "effectiveDate": "2026-10-03",
+      "timeZone": "Asia/Shanghai",
+      "cutoffOffsetMinutes": 0,
+      "endDate": null,
+      "settlementMode": "MANUAL",
+      "initialOfficialPoints": "0.00",
+      "userIncrementRatioBps": 0,
+      "defaultTargetNetReturnPercent": 0,
+      "maxOfficialContributionPoints": "0.00",
+      "rewardBudgetLimitPoints": "0.00"
+    },
+    "AiProject": {
+      "drawSchedule": null,
+      "id": "",
+      "code": "",
+      "name": "",
+      "lotteryId": "",
+      "playId": "",
+      "status": "ENABLED",
+      "activeConfigVersion": null,
+      "latestPoolIssueId": null,
+      "version": "1"
+    },
+    "AiProjectConfig": {
+      "projectId": "",
+      "version": "1",
+      "settings": {
+        "effectiveDate": "2026-10-03",
+        "timeZone": "Asia/Shanghai",
+        "cutoffOffsetMinutes": 0,
+        "endDate": null,
+        "settlementMode": "MANUAL",
+        "initialOfficialPoints": "0.00",
+        "userIncrementRatioBps": 0,
+        "defaultTargetNetReturnPercent": 0,
+        "maxOfficialContributionPoints": "0.00",
+        "rewardBudgetLimitPoints": "0.00"
+      },
+      "authorId": "",
+      "createdAt": "2026-10-03T02:00:00+08:00"
+    },
+    "AiPool": {
+      "id": "",
+      "projectId": "",
+      "lotteryId": "",
+      "playId": "",
+      "issueCode": "2026261",
+      "settlementMode": "MANUAL",
+      "ruleSetCode": "",
+      "status": "OPEN",
+      "cutoffAt": "2026-10-03T02:00:00+08:00",
+      "generatedAt": "0.00",
+      "groupCount": 0,
+      "configVersion": "1",
+      "initialOfficialPoints": "0.00",
+      "userIncrementRatioBps": 0,
+      "defaultTargetNetReturnPercent": 0,
+      "maxOfficialContributionPoints": "0.00",
+      "rewardBudgetLimitPoints": "0.00",
+      "actualUserShare": "0.00",
+      "userPurchasePoints": "0.00",
+      "platformPoints": "0.00",
+      "rawTotalPoints": "0.00",
+      "alignmentPoints": "0.00",
+      "totalPurchasePoints": "0.00",
+      "participantCount": 0,
+      "totalWinningPoints": null,
+      "userWinningPoints": null,
+      "numbersDisclosed": false,
+      "disclosureVersion": null,
+      "version": "1"
+    },
+    "SelectionArea": {
+      "key": "",
+      "chosen": [],
+      "dan": [],
+      "tuo": []
+    },
+    "Selection": {
+      "schemaId": "",
+      "schemaVersion": "1",
+      "mode": "SINGLE",
+      "areas": []
+    },
+    "FixedCombination": {
+      "id": "",
+      "sequenceNo": 0,
+      "selection": {
+        "schemaId": "",
+        "schemaVersion": "1",
+        "mode": "SINGLE",
+        "areas": []
+      },
+      "selectionHash": "1",
+      "numberCodes": [],
+      "groupHash": "1",
+      "baseBetCount": "",
+      "baseCostPoints": "0.00",
+      "generatedAt": "0.00"
+    },
+    "PreviewCombination": {
+      "sequenceNo": 0,
+      "selection": {
+        "schemaId": "",
+        "schemaVersion": "1",
+        "mode": "SINGLE",
+        "areas": []
+      },
+      "selectionHash": "1",
+      "numberCodes": [],
+      "groupHash": "1",
+      "baseBetCount": "",
+      "baseCostPoints": "0.00"
+    },
+    "AiCombinationPreview": {
+      "projectId": "",
+      "issueId": "",
+      "issueCode": "2026261",
+      "configVersion": "1",
+      "ruleVersion": "1",
+      "algorithmVersion": "1",
+      "inputVersionSetHash": "1",
+      "generatedAt": "0.00",
+      "combinations": []
+    },
+    "AiPoolAdmin": {
+      "pool": {
+        "id": "",
+        "projectId": "",
+        "lotteryId": "",
+        "playId": "",
+        "issueCode": "2026261",
+        "settlementMode": "MANUAL",
+        "ruleSetCode": "",
+        "status": "OPEN",
+        "cutoffAt": "2026-10-03T02:00:00+08:00",
+        "generatedAt": "0.00",
+        "groupCount": 0,
+        "configVersion": "1",
+        "initialOfficialPoints": "0.00",
+        "userIncrementRatioBps": 0,
+        "defaultTargetNetReturnPercent": 0,
+        "maxOfficialContributionPoints": "0.00",
+        "rewardBudgetLimitPoints": "0.00",
+        "actualUserShare": "0.00",
+        "userPurchasePoints": "0.00",
+        "platformPoints": "0.00",
+        "rawTotalPoints": "0.00",
+        "alignmentPoints": "0.00",
+        "totalPurchasePoints": "0.00",
+        "participantCount": 0,
+        "totalWinningPoints": null,
+        "userWinningPoints": null,
+        "numbersDisclosed": false,
+        "disclosureVersion": null,
+        "version": "1"
+      },
+      "configVersion": "1",
+      "combinations": [],
+      "inputVersionSetHash": "1",
+      "allowedActions": []
+    },
+    "Subscription": {
+      "id": "",
+      "poolIssueId": "",
+      "points": "0.00",
+      "quotaDate": "2026-10-03",
+      "status": "RESERVED",
+      "ledgerTransactionId": "",
+      "lockedAt": null,
+      "createdAt": "2026-10-03T02:00:00+08:00"
+    },
+    "AllocationItem": {
+      "combinationId": "",
+      "sequenceNo": 0,
+      "allocatedPoints": "0.00",
+      "multiplier": "",
+      "allocationRatio": "0.00",
+      "awardCodes": [],
+      "winningPoints": "0.00"
+    },
+    "Allocation": {
+      "id": "",
+      "poolIssueId": "",
+      "version": "1",
+      "inputVersionSetHash": "1",
+      "drawVersion": "1",
+      "ruleVersion": "1",
+      "simulationPolicyVersion": "1",
+      "ruleSetCode": "",
+      "algorithmVersion": "1",
+      "status": "SOLVED",
+      "items": [],
+      "totalPurchasePoints": "0.00",
+      "totalWinningPoints": null,
+      "userWinningPoints": null,
+      "platformWinningPoints": null,
+      "requestedTargetNetReturnPercent": 0,
+      "actualNetReturnRate": null,
+      "differencePercentagePoints": null,
+      "withinTolerance": false,
+      "rewardRequiredPoints": null,
+      "targetRoundingAdjustmentPoints": "0.00",
+      "winningNumberCode": "",
+      "winningGroupSequenceNo": 0,
+      "initialOfficialPoints": "0.00",
+      "userPurchasePoints": "0.00",
+      "incrementTotalPoints": "0.00",
+      "platformIncrementBasePoints": "0.00",
+      "rawTotalPoints": "0.00",
+      "alignmentPoints": "0.00",
+      "officialContributionPoints": "0.00",
+      "maxOfficialContributionPoints": "0.00",
+      "officialContributionWithinLimit": false,
+      "rewardBudgetLimitPoints": "0.00",
+      "rewardBudgetWithinLimit": false,
+      "groupingInputHash": "1",
+      "subscriptionInputHash": "1",
+      "drawInputHash": "1",
+      "ruleInputHash": "1",
+      "previewInputHash": "1",
+      "confirmationStatus": "NOT_CONFIRMABLE"
+    },
+    "DisclosureReceipt": {
+      "id": "",
+      "poolIssueId": "",
+      "version": "1",
+      "status": "PUBLISHED",
+      "label": "",
+      "reason": "",
+      "publishedAt": "2026-10-03T02:00:00+08:00"
+    },
+    "PayoutPreparation": {
+      "preparationId": "0.00",
+      "poolIssueId": "",
+      "allocationVersion": "1",
+      "disclosureVersion": "1",
+      "expectedInputVersionSetHash": "1",
+      "dueTotalPoints": "0.00",
+      "dueUserPoints": "0.00",
+      "eligible": false,
+      "blockingCodes": [],
+      "expiresAt": "2026-10-03T02:00:00+08:00"
+    },
+    "PayoutBatch": {
+      "id": "",
+      "poolIssueId": "",
+      "status": "PENDING",
+      "expectedPoints": "0.00",
+      "postedPoints": "0.00",
+      "pendingPoints": "0.00",
+      "differencePoints": "0.00",
+      "inputVersionSetHash": "1",
+      "completedItemCount": 0,
+      "totalItemCount": 0,
+      "updatedAt": "2026-10-03T02:00:00+08:00"
+    },
+    "PayoutItem": {
+      "id": "",
+      "maskedBeneficiary": "",
+      "duePoints": "0.00",
+      "postedPoints": "0.00",
+      "status": "PENDING",
+      "transactionId": null
+    },
+    "BudgetAccount": {
+      "id": "",
+      "type": "DISTRIBUTION_BUDGET",
+      "availablePoints": "0.00",
+      "reservedPoints": "0.00",
+      "version": "1"
+    },
+    "TaskAccepted": {
+      "taskId": "",
+      "status": "PENDING",
+      "statusUrl": "",
+      "pollAfterSeconds": 0
+    },
+    "TaskStatus": {
+      "id": "",
+      "taskType": "",
+      "status": "PENDING",
+      "progress": 0,
+      "resultUrl": null,
+      "resultCode": null,
+      "failureCode": null,
+      "updatedAt": "2026-10-03T02:00:00+08:00"
+    },
+    "CommandReceipt": {
+      "commandId": "",
+      "operationId": "0.00",
+      "resourceId": "",
+      "status": "ACCEPTED",
+      "createdAt": "2026-10-03T02:00:00+08:00"
+    },
+    "CommandResult": {
+      "operationId": "0.00",
+      "resourceId": null,
+      "taskId": null,
+      "status": "PROCESSING",
+      "httpStatus": 0,
+      "resultUrl": null,
+      "failureCode": null
+    },
+    "NameRef": {
+      "id": "",
+      "code": "",
+      "name": ""
+    },
+    "ReportFilter": {
+      "from": "",
+      "to": "",
+      "asOf": null,
+      "projectId": "",
+      "lotteryId": "",
+      "issueCode": "2026261",
+      "status": "",
+      "groupBy": "POOL_ISSUE"
+    },
+    "ReportRow": {
+      "dimensions": {},
+      "metrics": {}
+    },
+    "ReportResult": {
+      "reportType": "AI_POOLS",
+      "metricDictionaryVersion": "1",
+      "snapshotId": "",
+      "filters": {
+        "from": "",
+        "to": "",
+        "asOf": null,
+        "projectId": "",
+        "lotteryId": "",
+        "issueCode": "2026261",
+        "status": "",
+        "groupBy": "POOL_ISSUE"
+      },
+      "asOf": "2026-10-03T02:00:00+08:00",
+      "projectionVersion": "1",
+      "sourceWatermark": "1",
+      "items": [],
+      "totals": {},
+      "totalScope": "FULL_FILTER",
+      "nextCursor": null,
+      "hasMore": false,
+      "complete": false
+    },
+    "ExportStatus": {
+      "id": "",
+      "status": "",
+      "rowCount": "",
+      "downloadUrl": null,
+      "expiresAt": null
+    },
+    "ActionAuthorization": {
+      "actionToken": "",
+      "expiresAt": "2026-10-03T02:00:00+08:00"
+    },
+    "SettlementExecution": {
+      "poolIssueId": "",
+      "settlementMode": "MANUAL",
+      "modeChangeAllowed": false,
+      "currentAllocationId": null,
+      "currentAllocationVersion": null,
+      "targetNetReturnPercent": 0,
+      "totalReturnPoints": null,
+      "postedReturnPoints": "0.00",
+      "targetRoundingAdjustmentPoints": null,
+      "payoutBatchId": null,
+      "automaticTaskId": null,
+      "automaticTaskStatus": null,
+      "failureCode": null
+    }
+  },
+  "employee-security": {
+    "MfaEnrollment": {
+      "enrollmentId": "",
+      "provisioningUri": "",
+      "expiresAt": "2026-10-03T02:00:00+08:00"
+    },
+    "Employee": {
+      "id": "",
+      "account": "",
+      "name": "",
+      "status": "ENABLED",
+      "roleIds": [],
+      "scopeStationIds": [],
+      "version": "1"
+    },
+    "Role": {
+      "id": "",
+      "name": "",
+      "permissions": []
+    },
+    "AuditView": {
+      "id": "",
+      "actorId": "",
+      "operationId": "0.00",
+      "resourceId": "",
+      "reason": "",
+      "beforeVersion": null,
+      "afterVersion": null,
+      "resultCode": "",
+      "createdAt": "2026-10-03T02:00:00+08:00",
+      "traceId": ""
+    },
+    "CursorPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false,
+      "snapshotId": null
+    }
+  },
+  "ledger-management": {
+    "ReportFilter": {
+      "from": "",
+      "to": "",
+      "asOf": null,
+      "status": null,
+      "groupBy": null
+    },
+    "ReportRow": {
+      "dimensions": {},
+      "metrics": {}
+    },
+    "LedgerReport": {
+      "reportType": "LEDGER_RECONCILIATION",
+      "metricDictionaryVersion": "1",
+      "snapshotId": "",
+      "filters": {
+        "from": "",
+        "to": "",
+        "asOf": null,
+        "status": null,
+        "groupBy": null
+      },
+      "asOf": "2026-10-03T02:00:00+08:00",
+      "projectionVersion": "1",
+      "sourceWatermark": "1",
+      "items": [],
+      "totals": {},
+      "totalScope": "FULL_FILTER",
+      "nextCursor": null,
+      "hasMore": false,
+      "complete": false
+    },
+    "BudgetAccount": {
+      "id": "",
+      "type": "DISTRIBUTION_BUDGET",
+      "availablePoints": "0.00",
+      "reservedPoints": "0.00",
+      "version": "1"
+    },
+    "BudgetAccountPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false,
+      "snapshotId": null
+    },
+    "LedgerAssetType": "POINTS",
+    "LedgerEntryDirection": "CREDIT",
+    "AdminLedgerEntry": {
+      "id": "",
+      "entryNo": 0,
+      "accountId": "",
+      "ownerType": "",
+      "ownerId": "",
+      "ownerAccount": null,
+      "ownerName": null,
+      "assetType": "POINTS",
+      "bucket": "",
+      "direction": "CREDIT",
+      "changePoints": "0.00",
+      "balanceBefore": "0.00",
+      "balanceAfter": "0.00"
+    },
+    "AdminLedgerTransaction": {
+      "id": "",
+      "sequence": "",
+      "businessNumber": "",
+      "assetType": "POINTS",
+      "sourceType": "",
+      "sourceId": "",
+      "type": "",
+      "status": "",
+      "economicPoints": "0.00",
+      "reversedPoints": "0.00",
+      "referenceTransactionId": null,
+      "stationId": null,
+      "stationCode": null,
+      "stationName": null,
+      "stationMasterId": null,
+      "stationMasterCode": null,
+      "stationMasterName": null,
+      "memberId": null,
+      "issueCode": null,
+      "operatorRealm": "",
+      "operatorId": "",
+      "reason": "",
+      "createdAt": "2026-10-03T02:00:00+08:00",
+      "entries": []
+    },
+    "AdminLedgerTransactionPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false,
+      "snapshotId": null
+    },
+    "TaskAccepted": {
+      "taskId": "",
+      "status": "",
+      "statusUrl": "",
+      "pollAfterSeconds": 0
+    },
+    "TaskStatus": {
+      "id": "",
+      "taskType": "",
+      "status": "",
+      "progress": 0,
+      "resultUrl": null,
+      "resultCode": null,
+      "failureCode": null,
+      "updatedAt": "2026-10-03T02:00:00+08:00"
+    },
+    "ExportStatus": {
+      "id": "",
+      "status": "PENDING",
+      "rowCount": "",
+      "downloadUrl": null,
+      "expiresAt": null
+    },
+    "Reconciliation": {
+      "id": "",
+      "status": "PENDING",
+      "expectedPoints": null,
+      "actualPoints": null,
+      "differencePoints": null,
+      "asOf": null
+    },
+    "CommandReceipt": {
+      "commandId": "",
+      "operationId": "0.00",
+      "resourceId": "",
+      "status": "ACCEPTED",
+      "createdAt": "2026-10-03T02:00:00+08:00"
+    }
+  },
+  "member-management": {
+    "StatusToggle": "ENABLED",
+    "QualificationStatus": "READY",
+    "EligibilityStatus": "READY",
+    "NameRef": {
+      "id": "",
+      "code": "",
+      "name": ""
+    },
+    "MemberScope": {
+      "station": {
+        "id": "",
+        "code": "",
+        "name": ""
+      },
+      "stationMaster": {
+        "id": "",
+        "code": "",
+        "name": ""
+      },
+      "referrerMember": null,
+      "version": "1"
+    },
+    "MemberWallet": {
+      "availablePoints": "0.00",
+      "reservedPoints": "0.00",
+      "asOf": "2026-10-03T02:00:00+08:00",
+      "ledgerWatermark": "1"
+    },
+    "MemberQuota": {
+      "businessDate": "2026-10-03",
+      "timeZone": "",
+      "vipBaseLimit": "0.00",
+      "referralExtraLimit": "0.00",
+      "totalLimit": "0.00",
+      "usedPoints": "0.00",
+      "remainingPoints": "0.00",
+      "eligibilityStatus": "READY",
+      "qualificationVersion": "1",
+      "vipConfigVersion": "1",
+      "referralConfigVersion": "1",
+      "asOf": "2026-10-03T02:00:00+08:00"
+    },
+    "MemberAdmin": {
+      "id": "",
+      "account": "",
+      "displayName": "",
+      "status": "ENABLED",
+      "scope": {
+        "station": {
+          "id": "",
+          "code": "",
+          "name": ""
+        },
+        "stationMaster": {
+          "id": "",
+          "code": "",
+          "name": ""
+        },
+        "referrerMember": null,
+        "version": "1"
+      },
+      "qualifiedRechargePoints": "0.00",
+      "stationDeductedPoints": "0.00",
+      "wallet": {
+        "availablePoints": "0.00",
+        "reservedPoints": "0.00",
+        "asOf": "2026-10-03T02:00:00+08:00",
+        "ledgerWatermark": "1"
+      },
+      "vipName": "",
+      "referralName": "",
+      "quota": {
+        "businessDate": "2026-10-03",
+        "timeZone": "",
+        "vipBaseLimit": "0.00",
+        "referralExtraLimit": "0.00",
+        "totalLimit": "0.00",
+        "usedPoints": "0.00",
+        "remainingPoints": "0.00",
+        "eligibilityStatus": "READY",
+        "qualificationVersion": "1",
+        "vipConfigVersion": "1",
+        "referralConfigVersion": "1",
+        "asOf": "2026-10-03T02:00:00+08:00"
+      },
+      "totalBetPoints": "0.00",
+      "netProfitPoints": "0.00",
+      "directMemberCount": 0,
+      "directMemberAvailableTotal": "",
+      "version": "1"
+    },
+    "CursorPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false,
+      "snapshotId": null
+    },
+    "MemberAdminPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false,
+      "snapshotId": null
+    },
+    "LedgerView": {
+      "id": "",
+      "transactionId": "",
+      "type": "",
+      "bucket": "AVAILABLE",
+      "changePoints": "0.00",
+      "balanceBefore": "0.00",
+      "balanceAfter": "0.00",
+      "sourceType": "",
+      "sourceId": "",
+      "remark": "",
+      "createdAt": "2026-10-03T02:00:00+08:00"
+    },
+    "LedgerViewPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false,
+      "snapshotId": null
+    },
+    "MemberOrder": {
+      "id": "",
+      "type": "ORDINARY",
+      "projectId": null,
+      "projectName": null,
+      "lotteryId": "",
+      "playId": "",
+      "issueCode": "2026261",
+      "status": "",
+      "purchasePoints": "0.00",
+      "dueAwardPoints": null,
+      "netPostedAwardPoints": "0.00",
+      "refundPoints": "0.00",
+      "settlementVersion": null,
+      "createdAt": "2026-10-03T02:00:00+08:00",
+      "detailUrl": ""
+    },
+    "MemberOrderPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false,
+      "snapshotId": null
+    },
+    "VipLevel": {
+      "id": "",
+      "levelNo": 0,
+      "name": "",
+      "requiredRechargePoints": "0.00",
+      "aiPoolBaseDailyLimit": "0.00"
+    },
+    "VipConfig": {
+      "version": "1",
+      "levels": [],
+      "createdAt": null,
+      "qualificationStatus": "READY"
+    },
+    "VipConfigPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false,
+      "snapshotId": null
+    },
+    "ReferralLevel": {
+      "id": "",
+      "levelNo": 0,
+      "name": "",
+      "requiredDirectValidMembers": 0,
+      "validRechargePoints": "0.00",
+      "fixedRewardPoints": "0.00",
+      "directAiShareRate": "0.00",
+      "aiExtraDailyLimit": "0.00",
+      "status": "ENABLED"
+    },
+    "ReferralConfig": {
+      "version": "1",
+      "levels": [],
+      "fixedRewardPolicyVersion": null,
+      "aiSharePolicyVersion": null,
+      "qualificationStatus": "READY"
+    },
+    "ReferralConfigPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false,
+      "snapshotId": null
+    },
+    "CommandReceipt": {
+      "commandId": "",
+      "operationId": "0.00",
+      "resourceId": "",
+      "status": "ACCEPTED",
+      "createdAt": "2026-10-03T02:00:00+08:00"
+    },
+    "CommandResult": {
+      "operationId": "0.00",
+      "resourceId": null,
+      "taskId": null,
+      "status": "PROCESSING",
+      "httpStatus": 0,
+      "resultUrl": null,
+      "failureCode": null
+    },
+    "TaskAccepted": {
+      "taskId": "",
+      "status": "PENDING",
+      "statusUrl": "",
+      "pollAfterSeconds": 0
+    },
+    "TaskStatusSummary": {
+      "id": "",
+      "taskType": "",
+      "status": "PENDING",
+      "progress": 0,
+      "resultUrl": null,
+      "resultCode": null,
+      "failureCode": null,
+      "updatedAt": "2026-10-03T02:00:00+08:00"
+    },
+    "MemberReportType": "MEMBER_OVERVIEW",
+    "ReportFilter": {
+      "from": "",
+      "to": "",
+      "asOf": "2026-10-03T02:00:00+08:00",
+      "stationId": "",
+      "stationMasterId": "",
+      "memberId": "",
+      "vipLevelId": "",
+      "referralLevelId": "",
+      "groupBy": ""
+    },
+    "ReportRow": {
+      "dimensions": {},
+      "metrics": {}
+    },
+    "ReportResult": {
+      "reportType": "MEMBER_OVERVIEW",
+      "metricDictionaryVersion": "1",
+      "snapshotId": "",
+      "filters": {
+        "from": "",
+        "to": "",
+        "asOf": "2026-10-03T02:00:00+08:00",
+        "stationId": "",
+        "stationMasterId": "",
+        "memberId": "",
+        "vipLevelId": "",
+        "referralLevelId": "",
+        "groupBy": ""
+      },
+      "asOf": "2026-10-03T02:00:00+08:00",
+      "projectionVersion": "1",
+      "sourceWatermark": "1",
+      "items": [],
+      "totals": {},
+      "totalScope": "FULL_FILTER",
+      "nextCursor": null,
+      "hasMore": false,
+      "complete": false
+    },
+    "ExportStatus": {
+      "id": "",
+      "status": "PENDING",
+      "rowCount": "",
+      "downloadUrl": null,
+      "expiresAt": null
+    },
+    "ActionAuthorization": {
+      "actionToken": "",
+      "expiresAt": "2026-10-03T02:00:00+08:00"
+    }
+  },
+  "operations": {
+    "AdminLottery": {
+      "id": "",
+      "code": "SSQ",
+      "name": "",
+      "latestIssueCode": null,
+      "plays": []
+    },
+    "AdminPlay": {
+      "id": "",
+      "code": "",
+      "name": "",
+      "ruleVersion": null,
+      "readiness": "READY"
+    },
+    "PlayReadiness": "READY",
+    "AdminCatalog": {
+      "version": "1",
+      "approvalStatus": "APPROVED",
+      "lotteries": []
+    },
+    "AdminIssue": {
+      "id": "",
+      "lotteryId": "",
+      "issueCode": "2026261",
+      "status": "SCHEDULED",
+      "openAt": null,
+      "cutoffAt": null,
+      "drawAt": null,
+      "drawDate": "2026-10-03",
+      "officialIssueCode": "2026261",
+      "version": "1"
+    },
+    "AdminIssuePage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false
+    },
+    "DataHealthItem": {
+      "lotteryId": "",
+      "latestConfirmedIssue": null,
+      "drawVersion": null,
+      "omissionGeneration": null,
+      "gapCount": 0,
+      "trailingGap": false,
+      "drawVersionSetHash": null,
+      "qualificationLag": 0,
+      "pendingTaskCount": 0,
+      "projectionLag": 0,
+      "acknowledgedGapCount": 0,
+      "status": "READY"
+    },
+    "OmissionGap": {
+      "beforeIssueCode": "2026261",
+      "afterIssueCode": "2026261",
+      "acknowledged": false,
+      "acknowledgementId": null,
+      "reason": null,
+      "acknowledgedBy": null,
+      "acknowledgedAt": null
+    },
+    "OmissionGapPage": {
+      "lotteryId": "",
+      "gapCount": 0,
+      "acknowledgedGapCount": 0,
+      "items": []
+    },
+    "DataHealthPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false
+    },
+    "SourceHealthItem": {
+      "id": "",
+      "name": "",
+      "lotteryIds": [],
+      "status": "APPROVED",
+      "lastSuccessAt": null,
+      "failureCode": null
+    },
+    "SourceHealthPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false
+    },
+    "ReportType": "MEMBER_OVERVIEW",
+    "ReportRow": {
+      "dimensions": {},
+      "metrics": {}
+    },
+    "ReportResult": {
+      "reportType": "MEMBER_OVERVIEW",
+      "metricDictionaryVersion": "1",
+      "snapshotId": "",
+      "asOf": "2026-10-03T02:00:00+08:00",
+      "projectionVersion": "1",
+      "sourceWatermark": "1",
+      "items": [],
+      "totals": {},
+      "totalScope": "",
+      "nextCursor": null,
+      "hasMore": false,
+      "complete": false
+    },
+    "RuleDetail": {
+      "playId": "",
+      "officialRuleVersion": "1",
+      "simulationRuleVersion": null,
+      "readiness": "READY",
+      "ruleText": "",
+      "baseCostPoints": "0.00",
+      "sourceEvidenceIds": []
+    },
+    "RuleDraft": {
+      "id": "",
+      "playId": "",
+      "version": "1",
+      "recordVersion": "1",
+      "status": "DRAFT",
+      "authorId": "",
+      "artifactHash": "1",
+      "effectiveFromIssue": ""
+    },
+    "RuleDraftPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false
+    },
+    "PolicyCode": "SIMULATION_AWARD",
+    "PolicyView": {
+      "id": "",
+      "code": "SIMULATION_AWARD",
+      "version": "1",
+      "recordVersion": "1",
+      "status": "UNCONFIRMED",
+      "artifactId": "",
+      "artifactHash": "1",
+      "decisionIds": [],
+      "authorId": "",
+      "createdAt": "2026-10-03T02:00:00+08:00"
+    },
+    "PolicyViewPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false
+    },
+    "DrawArea": {
+      "key": "",
+      "chosen": []
+    },
+    "DrawCandidate": {
+      "id": "",
+      "lotteryId": "",
+      "issueCode": "2026261",
+      "areas": [],
+      "source": "MANUAL",
+      "status": "PENDING_REVIEW",
+      "evidenceIds": [],
+      "authorId": "",
+      "replacesDrawVersion": null,
+      "version": "1",
+      "createdAt": "2026-10-03T02:00:00+08:00"
+    },
+    "DrawCandidatePage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false
+    },
+    "DrawVersion": {
+      "lotteryId": "",
+      "lotteryCode": "SSQ",
+      "issueCode": "2026261",
+      "version": "1",
+      "status": "PENDING",
+      "source": "SYSTEM",
+      "areas": [],
+      "confirmedAt": null,
+      "correctionNote": null,
+      "prizeReferenceStatus": "PENDING"
+    },
+    "DrawVersionPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false
+    },
+    "TaskAccepted": {
+      "taskId": "",
+      "status": "",
+      "statusUrl": "",
+      "pollAfterSeconds": 0
+    },
+    "TaskStatusSummary": {
+      "id": "",
+      "taskType": "",
+      "status": "",
+      "progress": 0,
+      "resultUrl": null,
+      "resultCode": null,
+      "failureCode": null,
+      "updatedAt": "2026-10-03T02:00:00+08:00"
+    },
+    "EvidenceUpload": {
+      "id": "",
+      "status": "",
+      "sha256": "",
+      "purpose": ""
+    },
+    "ActionAuthorization": {
+      "actionToken": "",
+      "expiresAt": "2026-10-03T02:00:00+08:00"
+    }
+  },
+  "order-management": {
+    "OrderStatus": "RESERVED",
+    "AreaSelection": {
+      "key": "",
+      "chosen": [],
+      "dan": [],
+      "tuo": []
+    },
+    "Selection": {
+      "schemaId": "",
+      "schemaVersion": "1",
+      "mode": "",
+      "areas": []
+    },
+    "AdminOrder": {
+      "id": "",
+      "type": "ORDINARY",
+      "projectId": null,
+      "projectName": null,
+      "lotteryId": "",
+      "playId": "",
+      "issueCode": "2026261",
+      "selection": null,
+      "status": "RESERVED",
+      "purchasePoints": "0.00",
+      "dueAwardPoints": null,
+      "netPostedAwardPoints": "0.00",
+      "refundPoints": "0.00",
+      "settlementVersion": null,
+      "createdAt": "2026-10-03T02:00:00+08:00",
+      "detailUrl": ""
+    },
+    "AdminOrderPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false,
+      "snapshotId": null
+    },
+    "OrdinarySettlement": {
+      "settlementVersion": "1",
+      "drawVersionId": "1",
+      "calculationReference": "",
+      "awardCodes": null,
+      "dueAwardPoints": "0.00",
+      "economicDeltaPoints": "0.00",
+      "actionType": "",
+      "actionStatus": "",
+      "requestedPoints": "0.00",
+      "postedPoints": "0.00",
+      "platformBornePoints": "0.00",
+      "ledgerTransactionId": null,
+      "createdAt": "2026-10-03T02:00:00+08:00",
+      "completedAt": null
+    },
+    "OrdinaryRefund": {
+      "refundPoints": "0.00",
+      "recoveredAwardPoints": "0.00",
+      "platformBornePoints": "0.00",
+      "refundTransactionId": "",
+      "recoveryTransactionId": null,
+      "reason": "",
+      "refundedAt": "2026-10-03T02:00:00+08:00"
+    },
+    "AdminOrderDetail": {
+      "order": {
+        "id": "",
+        "type": "ORDINARY",
+        "projectId": null,
+        "projectName": null,
+        "lotteryId": "",
+        "playId": "",
+        "issueCode": "2026261",
+        "selection": null,
+        "status": "RESERVED",
+        "purchasePoints": "0.00",
+        "dueAwardPoints": null,
+        "netPostedAwardPoints": "0.00",
+        "refundPoints": "0.00",
+        "settlementVersion": null,
+        "createdAt": "2026-10-03T02:00:00+08:00",
+        "detailUrl": ""
+      },
+      "selection": {
+        "schemaId": "",
+        "schemaVersion": "1",
+        "mode": "",
+        "areas": []
+      },
+      "recommendationId": null,
+      "betCount": "",
+      "multiple": 0,
+      "ruleVersion": "1",
+      "simulationRuleVersion": "1",
+      "ledgerTransactionId": "",
+      "lockTransactionId": null,
+      "lockedAt": null,
+      "settlements": [],
+      "refund": null
+    },
+    "TaskAccepted": {
+      "taskId": "",
+      "status": "",
+      "statusUrl": "",
+      "pollAfterSeconds": 0
+    }
+  },
+  "robots": {
+    "StrategyCode": "BALANCED",
+    "RecommendationFeature": "STRUCTURE",
+    "GenerationMode": "PER_ISSUE",
+    "StatusToggle": "ENABLED",
+    "WeightItem": {
+      "feature": "STRUCTURE",
+      "basisPoints": 0
+    },
+    "StrategyCommon": {
+      "shortWindow": 0,
+      "mediumWindow": 0,
+      "longWindow": 0,
+      "maxGroupsPerPlay": 0,
+      "candidateMultiplier": 0,
+      "minRecommendationScore": 0,
+      "maxPointsPerIssue": "0.00",
+      "explorationRate": "0.00",
+      "minDiversityRate": "0.00",
+      "maxRerunsPerIssue": 0,
+      "weights": []
+    },
+    "StrategyConfig": {
+      "code": "BALANCED",
+      "common": {
+        "shortWindow": 0,
+        "mediumWindow": 0,
+        "longWindow": 0,
+        "maxGroupsPerPlay": 0,
+        "candidateMultiplier": 0,
+        "minRecommendationScore": 0,
+        "maxPointsPerIssue": "0.00",
+        "explorationRate": "0.00",
+        "minDiversityRate": "0.00",
+        "maxRerunsPerIssue": 0,
+        "weights": []
+      }
+    },
+    "HistoryPerformance": {
+      "settledGroups": "",
+      "hitGroups": "",
+      "hitRate": null,
+      "asOf": "2026-10-03T02:00:00+08:00"
+    },
+    "RobotPublic": {
+      "id": "",
+      "name": "",
+      "strategyCode": "BALANCED",
+      "strategyLabel": "0.00",
+      "strategyDescription": "0.00",
+      "lotteryIds": [],
+      "performance": {
+        "settledGroups": "",
+        "hitGroups": "",
+        "hitRate": null,
+        "asOf": "2026-10-03T02:00:00+08:00"
+      },
+      "currentGroups": "",
+      "recommendationScore": null,
+      "scoreLabel": "推荐评分"
+    },
+    "RobotAdmin": {
+      "robot": {
+        "id": "",
+        "name": "",
+        "strategyCode": "BALANCED",
+        "strategyLabel": "0.00",
+        "strategyDescription": "0.00",
+        "lotteryIds": [],
+        "performance": {
+          "settledGroups": "",
+          "hitGroups": "",
+          "hitRate": null,
+          "asOf": "2026-10-03T02:00:00+08:00"
+        },
+        "currentGroups": "",
+        "recommendationScore": null,
+        "scoreLabel": "推荐评分"
+      },
+      "status": "ENABLED",
+      "strategy": {
+        "code": "BALANCED",
+        "common": {
+          "shortWindow": 0,
+          "mediumWindow": 0,
+          "longWindow": 0,
+          "maxGroupsPerPlay": 0,
+          "candidateMultiplier": 0,
+          "minRecommendationScore": 0,
+          "maxPointsPerIssue": "0.00",
+          "explorationRate": "0.00",
+          "minDiversityRate": "0.00",
+          "maxRerunsPerIssue": 0,
+          "weights": []
+        }
+      },
+      "strategyVersion": "0.00",
+      "generationMode": "PER_ISSUE",
+      "generationTime": null,
+      "currentLotteryCount": "",
+      "currentPlayCount": "",
+      "currentBetCount": "",
+      "currentPricePoints": "0.00",
+      "latestExecutionAt": null,
+      "version": "1"
+    },
+    "StrategyDefinition": {
+      "code": "BALANCED",
+      "label": "",
+      "description": "",
+      "schemaRef": "",
+      "defaultConfig": {
+        "code": "BALANCED",
+        "common": {
+          "shortWindow": 0,
+          "mediumWindow": 0,
+          "longWindow": 0,
+          "maxGroupsPerPlay": 0,
+          "candidateMultiplier": 0,
+          "minRecommendationScore": 0,
+          "maxPointsPerIssue": "0.00",
+          "explorationRate": "0.00",
+          "minDiversityRate": "0.00",
+          "maxRerunsPerIssue": 0,
+          "weights": []
+        }
+      }
+    },
+    "AreaSelection": {
+      "key": "",
+      "chosen": [],
+      "dan": [],
+      "tuo": []
+    },
+    "Selection": {
+      "schemaId": "",
+      "schemaVersion": "1",
+      "mode": "SINGLE",
+      "areas": []
+    },
+    "RecommendationScoreComponent": {
+      "feature": "STRUCTURE",
+      "score": 0,
+      "weightBasisPoints": 0
+    },
+    "Recommendation": {
+      "id": "",
+      "executionId": "",
+      "robotId": "",
+      "lotteryId": "",
+      "playId": "",
+      "issueCode": "2026261",
+      "selection": {
+        "schemaId": "",
+        "schemaVersion": "1",
+        "mode": "SINGLE",
+        "areas": []
+      },
+      "recommendationScore": 0,
+      "betCount": "",
+      "pricePoints": "0.00",
+      "strategyVersion": "0.00",
+      "generationVersion": "0.00",
+      "algorithmVersion": "1",
+      "ruleVersion": "1",
+      "scoreBreakdown": [],
+      "explanations": [],
+      "cutoffAt": "2026-10-03T02:00:00+08:00",
+      "outcome": {
+        "status": "PENDING",
+        "drawVersion": null,
+        "verifiedAt": null
+      },
+      "generatedAt": "0.00",
+      "status": "PREVIEW"
+    },
+    "CursorPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false,
+      "snapshotId": null
+    },
+    "TaskAccepted": {
+      "taskId": "",
+      "status": "PENDING",
+      "statusUrl": "",
+      "pollAfterSeconds": 0
+    },
+    "TaskStatusSummary": {
+      "id": "",
+      "taskType": "",
+      "status": "PENDING",
+      "progress": 0,
+      "resultUrl": null,
+      "resultCode": null,
+      "failureCode": null,
+      "updatedAt": "2026-10-03T02:00:00+08:00"
+    }
+  },
+  "station-management": {
+    "ToggleStatus": "ENABLED",
+    "NameRef": {
+      "id": "",
+      "code": "",
+      "name": ""
+    },
+    "CursorPage": {
+      "items": [],
+      "nextCursor": null,
+      "hasMore": false,
+      "snapshotId": null
+    },
+    "Station": {
+      "id": "",
+      "code": "",
+      "name": "",
+      "regionLabel": "",
+      "status": "ENABLED",
+      "remark": "",
+      "stationMasterCount": 0,
+      "memberCount": 0,
+      "version": "1"
+    },
+    "StationLimits": {
+      "singleGrantLimit": "0.00",
+      "singleDeductLimit": "0.00",
+      "dailyOperationLimit": "0.00"
+    },
+    "StationMaster": {
+      "id": "",
+      "code": "",
+      "userId": "",
+      "name": "",
+      "account": "",
+      "station": {
+        "id": "",
+        "code": "",
+        "name": ""
+      },
+      "status": "ENABLED",
+      "limits": {
+        "singleGrantLimit": "0.00",
+        "singleDeductLimit": "0.00",
+        "dailyOperationLimit": "0.00"
+      },
+      "remark": "",
+      "disposablePoints": "0.00",
+      "operationCredentialConfigured": false,
+      "memberCount": 0,
+      "grantedMemberPoints": "0.00",
+      "deductedMemberPoints": "0.00",
+      "identityVersion": "1",
+      "version": "1"
+    },
+    "LedgerView": {
+      "id": "",
+      "transactionId": "",
+      "type": "",
+      "bucket": "AVAILABLE",
+      "changePoints": "0.00",
+      "balanceBefore": "0.00",
+      "balanceAfter": "0.00",
+      "sourceType": "",
+      "sourceId": "",
+      "remark": "",
+      "createdAt": "2026-10-03T02:00:00+08:00"
+    },
+    "BudgetAccount": {
+      "id": "",
+      "type": "DISTRIBUTION_BUDGET",
+      "availablePoints": "0.00",
+      "reservedPoints": "0.00",
+      "version": "1"
+    },
+    "PointChangeReceipt": {
+      "transactionId": "",
+      "operationType": "STATION_VIP_CREDIT",
+      "points": "0.00",
+      "memberId": null,
+      "stationMasterId": "",
+      "stationMasterBalanceBefore": "0.00",
+      "stationMasterBalanceAfter": "0.00",
+      "memberBalanceBefore": null,
+      "memberBalanceAfter": null,
+      "createdAt": "2026-10-03T02:00:00+08:00"
+    },
+    "TaskAccepted": {
+      "taskId": "",
+      "status": "PENDING",
+      "statusUrl": "",
+      "pollAfterSeconds": 0
+    },
+    "CommandResult": {
+      "operationId": "0.00",
+      "resourceId": null,
+      "taskId": null,
+      "status": "PROCESSING",
+      "httpStatus": 0,
+      "resultUrl": null,
+      "failureCode": null
+    },
+    "ReportFilter": {
+      "from": "",
+      "to": "",
+      "asOf": null,
+      "stationId": "",
+      "stationMasterId": "",
+      "memberId": "",
+      "vipLevelId": "",
+      "referralLevelId": "",
+      "projectId": "",
+      "lotteryId": "",
+      "issueCode": "2026261",
+      "status": "",
+      "affiliationMode": "CURRENT_COHORT",
+      "groupBy": "DAY"
+    },
+    "ReportRow": {
+      "dimensions": {},
+      "metrics": {}
+    },
+    "StationMasterReport": {
+      "reportType": "STATION_MASTERS",
+      "metricDictionaryVersion": "1",
+      "snapshotId": "",
+      "filters": {
+        "from": "",
+        "to": "",
+        "asOf": null,
+        "stationId": "",
+        "stationMasterId": "",
+        "memberId": "",
+        "vipLevelId": "",
+        "referralLevelId": "",
+        "projectId": "",
+        "lotteryId": "",
+        "issueCode": "2026261",
+        "status": "",
+        "affiliationMode": "CURRENT_COHORT",
+        "groupBy": "DAY"
+      },
+      "asOf": "2026-10-03T02:00:00+08:00",
+      "projectionVersion": "1",
+      "sourceWatermark": "1",
+      "items": [],
+      "totals": {},
+      "totalScope": "FULL_FILTER",
+      "nextCursor": null,
+      "hasMore": false,
+      "complete": false
+    },
+    "ExportStatus": {
+      "id": "",
+      "status": "PENDING",
+      "rowCount": "",
+      "downloadUrl": null,
+      "expiresAt": null
+    }
+  }
+}

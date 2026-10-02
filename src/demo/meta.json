@@ -1,0 +1,543 @@
+{
+  "permissions": [
+    "action:authorize",
+    "ai-disclosure:publish",
+    "ai-payout:execute",
+    "ai-payout:prepare",
+    "ai-payout:retry",
+    "ai-payout:view",
+    "ai-pool:calculate",
+    "ai-pool:close",
+    "ai-pool:subscriptions:view",
+    "ai-pool:view",
+    "ai-project:configure",
+    "ai-project:create",
+    "ai-project:status",
+    "ai-project:view",
+    "audit:view",
+    "budget:approve",
+    "budget:view",
+    "budget:write",
+    "business-decision:approve",
+    "business-decision:view",
+    "business-decision:write",
+    "command:read:self",
+    "draw:candidate:create",
+    "draw:confirm",
+    "draw:fetch",
+    "draw:review:view",
+    "employee:create",
+    "employee:permission:write",
+    "employee:recover",
+    "employee:status",
+    "employee:view",
+    "evidence:write",
+    "ledger:reconcile",
+    "ledger:reverse",
+    "ledger:view",
+    "lottery:data:view",
+    "member:ledger:view",
+    "member:membership:migrate",
+    "member:orders:view",
+    "member:status",
+    "member:view",
+    "omission:rebuild",
+    "order:settlement:retry",
+    "order:view",
+    "policy:approve",
+    "policy:view",
+    "policy:write",
+    "qualification:rebuild",
+    "referral:config:view",
+    "referral:config:write",
+    "report:export",
+    "report:view",
+    "robot:create",
+    "robot:delete",
+    "robot:generate",
+    "robot:status",
+    "robot:update",
+    "robot:view",
+    "rule:approve",
+    "rule:view",
+    "rule:write",
+    "station-master:create",
+    "station-master:migrate",
+    "station-master:password:reset",
+    "station-master:points:adjust",
+    "station-master:points:view",
+    "station-master:status",
+    "station-master:update",
+    "station-master:view",
+    "station:create",
+    "station:update",
+    "station:view",
+    "task:view",
+    "vip:config:view",
+    "vip:config:write"
+  ],
+  "avatars": [
+    {
+      "id": "fd067211-131c-a0ac-d696-d8244b3e9f1b",
+      "name": "七乐彩降权过滤大师"
+    },
+    {
+      "id": "fa4b4657-a786-b552-69ee-1cbd913180f7",
+      "name": "七乐彩均衡大师"
+    },
+    {
+      "id": "f95e981c-57aa-c7e7-27c4-cb674e18455d",
+      "name": "大乐透趋势大师"
+    },
+    {
+      "id": "f9448353-1ac0-5160-cdd4-0eb866c6e668",
+      "name": "福彩3D降权过滤大师"
+    },
+    {
+      "id": "f01da2d9-cec8-1a62-14ab-4bc5fa0677b5",
+      "name": "排列三冷热混合大师"
+    },
+    {
+      "id": "eeee31fb-bf3f-ebd6-7104-80f7aeb3fc31",
+      "name": "双色球冷热混合大师"
+    },
+    {
+      "id": "ed756d4a-258e-96b5-5aa2-6f9eb600dc3f",
+      "name": "双色球均衡大师"
+    },
+    {
+      "id": "e8a3b690-34c2-29d8-c14b-2806df1c33af",
+      "name": "排列三趋势大师"
+    },
+    {
+      "id": "e2f0fc54-72e7-93b8-de5c-725a3c37e8c0",
+      "name": "排列三多模型组合大师"
+    },
+    {
+      "id": "dbdc1527-3217-c3be-a5c1-047ff31c39e6",
+      "name": "排列三降权过滤大师"
+    },
+    {
+      "id": "cdf42bf9-8bf2-6dc3-34b7-ffa35dc0fe11",
+      "name": "福彩3D探索大师"
+    },
+    {
+      "id": "c9e4ad3d-e696-c0cd-d5f0-fcfd82813bda",
+      "name": "快乐8探索大师"
+    },
+    {
+      "id": "c9892f8d-63e1-3005-dc2b-f013b92d0acc",
+      "name": "快乐8多模型组合大师"
+    },
+    {
+      "id": "c511a4ce-229a-f1aa-d0c8-7f8259393642",
+      "name": "排列五探索大师"
+    },
+    {
+      "id": "bdd2b658-38b9-62f5-2bdc-f8ad9b76e165",
+      "name": "七乐彩趋势大师"
+    },
+    {
+      "id": "bc7ca6ca-8f8c-4047-7517-ad95e194db31",
+      "name": "福彩3D均衡大师"
+    },
+    {
+      "id": "b6474b49-7960-6884-1d17-06621c8b1e56",
+      "name": "福彩3D多模型组合大师"
+    },
+    {
+      "id": "b5625fea-11bc-6631-73fe-def5e14f06bb",
+      "name": "双色球多模型组合大师"
+    },
+    {
+      "id": "b14257f6-c019-bdc8-c07b-85851c5814ad",
+      "name": "7星彩均衡大师"
+    },
+    {
+      "id": "ad5f30b7-2e39-8f16-f0cf-15488d5a2539",
+      "name": "七乐彩冷热混合大师"
+    },
+    {
+      "id": "a3a5e8cf-dbf8-874b-f748-672d09714412",
+      "name": "排列五降权过滤大师"
+    },
+    {
+      "id": "a26042f9-2cd8-ccb8-cadf-a6dda6c87097",
+      "name": "大乐透降权过滤大师"
+    },
+    {
+      "id": "9d572651-fa4c-0190-96c8-86f31e900241",
+      "name": "7星彩探索大师"
+    },
+    {
+      "id": "9cfc03ab-89ca-1529-3aa1-71f1ccab9485",
+      "name": "快乐8均衡大师"
+    },
+    {
+      "id": "8ed5aa16-1024-6e35-3b49-c983a9304f7e",
+      "name": "福彩3D趋势大师"
+    },
+    {
+      "id": "88f17a06-f30d-bb19-2972-c8666599cbcd",
+      "name": "7星彩趋势大师"
+    },
+    {
+      "id": "87055581-50bc-3ded-79cc-eaa4890a3f18",
+      "name": "七乐彩探索大师"
+    },
+    {
+      "id": "823fd625-9f18-446b-4f5f-c500b2629f0c",
+      "name": "大乐透冷热混合大师"
+    },
+    {
+      "id": "7d0b2c1d-7028-c205-7d34-7e8055831b39",
+      "name": "排列五趋势大师"
+    },
+    {
+      "id": "79ffea34-dc26-2a9c-a113-0e5ecaf3ae89",
+      "name": "排列三探索大师"
+    },
+    {
+      "id": "708c1e0f-3397-dd1e-31ad-fd9b2d2c7f64",
+      "name": "福彩3D冷热混合大师"
+    },
+    {
+      "id": "6371e0aa-25f9-3fb5-50b7-8d451efd82c0",
+      "name": "双色球降权过滤大师"
+    },
+    {
+      "id": "6271ae6c-c884-47c2-e863-c2dfd7dda63f",
+      "name": "大乐透探索大师"
+    },
+    {
+      "id": "5f7e314d-131d-b833-f2e4-5d7b6420edd9",
+      "name": "快乐8冷热混合大师"
+    },
+    {
+      "id": "57a01e1d-7f64-6c07-bda7-44d5a85fc8eb",
+      "name": "7星彩降权过滤大师"
+    },
+    {
+      "id": "4c527068-b623-ff7d-fab4-f957df962cfc",
+      "name": "排列五冷热混合大师"
+    },
+    {
+      "id": "4a84bef1-fbaa-a495-9be3-c5234595fc6d",
+      "name": "双色球探索大师"
+    },
+    {
+      "id": "481d2c9a-b380-bc04-bbc5-ec562c2f3f5f",
+      "name": "快乐8降权过滤大师"
+    },
+    {
+      "id": "4624013b-0d33-fcb5-cb32-3122d3589180",
+      "name": "快乐8趋势大师"
+    },
+    {
+      "id": "3e61954a-8062-2810-0364-3e50bb0c3449",
+      "name": "大乐透均衡大师"
+    },
+    {
+      "id": "3aa0cfb9-6306-359d-7155-dc05f0f004a9",
+      "name": "排列三均衡大师"
+    },
+    {
+      "id": "2932cc95-c26a-3cbf-ac4d-a73aa0e439b2",
+      "name": "7星彩多模型组合大师"
+    },
+    {
+      "id": "272a7a94-14cd-4d9d-c47a-e656da58b40d",
+      "name": "七乐彩多模型组合大师"
+    },
+    {
+      "id": "1d31c769-5a34-0bd1-892d-6f4f7b58bd17",
+      "name": "双色球趋势大师"
+    },
+    {
+      "id": "1596c943-3d45-c285-3670-c226e77aa78c",
+      "name": "大乐透多模型组合大师"
+    },
+    {
+      "id": "146dd3bd-6be8-633e-421c-b3844d7e2410",
+      "name": "排列五均衡大师"
+    },
+    {
+      "id": "11e4d4a2-13b3-a48d-5a63-7bad72fa0eab",
+      "name": "7星彩冷热混合大师"
+    },
+    {
+      "id": "0fc4415d-fcf5-8074-5683-2436a0a4edb4",
+      "name": "排列五多模型组合大师"
+    }
+  ],
+  "metrics": [
+    "actualNetReturnRate",
+    "actualUserShare",
+    "aiShareBasisPoints",
+    "aiSharePendingPoints",
+    "aiSharePolicyVersion",
+    "aiSharePostedPoints",
+    "availablePoints",
+    "combinationCount",
+    "date",
+    "deductCount",
+    "deductMemberCount",
+    "differencePoints",
+    "directAvailablePoints",
+    "directMemberCount",
+    "endingBalancePoints",
+    "expectedPoints",
+    "fixedRewardCount",
+    "fixedRewardDuePoints",
+    "fixedRewardPolicyVersion",
+    "fixedRewardPostedCount",
+    "fixedRewardPostedPoints",
+    "interceptCount",
+    "issueCount",
+    "lockedAiShareRate",
+    "memberCount",
+    "memberDeductedPoints",
+    "memberGrantedPoints",
+    "memberShare",
+    "mismatchAccountCount",
+    "netEffectivePurchasePoints",
+    "netGrantedPoints",
+    "netProfitPoints",
+    "newMemberCount",
+    "openingBalancePoints",
+    "outsideToleranceCount",
+    "participantCount",
+    "participationPersonTimes",
+    "periodDeductedPoints",
+    "periodGrantedPoints",
+    "platformPoints",
+    "platformWinningPoints",
+    "postedPoints",
+    "postedUserWinningPoints",
+    "qualifiedRechargePoints",
+    "quotaOccupiedPoints",
+    "quotaReleasedPoints",
+    "quotaRemainingPoints",
+    "quotaUsageRate",
+    "quotaUsedPoints",
+    "rebuildingMemberCount",
+    "rechargeCount",
+    "rechargeMemberCount",
+    "referralExtraLimit",
+    "referralLevel",
+    "requestedTargetNetReturnRate",
+    "requiredRechargePoints",
+    "reservedPoints",
+    "reversalNetPoints",
+    "rewardRequiredPoints",
+    "settledStakePoints",
+    "station",
+    "stationMaster",
+    "targetRoundingAdjustmentPoints",
+    "totalPurchasePoints",
+    "totalQuotaLimit",
+    "totalWinningPoints",
+    "upgradeCount",
+    "upgradeMemberCount",
+    "userPurchasePoints",
+    "userWinningPoints",
+    "validMemberCount",
+    "validRate",
+    "vipBaseLimit",
+    "vipBaseLimitPerMember",
+    "vipLevel"
+  ],
+  "routes": [
+    {
+      "path": "/account-recovery",
+      "component": "AccountRecoveryPage",
+      "import": "@/features/employee-security/account-recovery-page",
+      "props": []
+    },
+    {
+      "path": "/ai-pools/[poolIssueId]/allocation",
+      "component": "AiAllocationPage",
+      "import": "@/features/ai-management/ai-allocation-page",
+      "props": [
+        [
+          "poolIssueId",
+          "poolIssueId"
+        ]
+      ]
+    },
+    {
+      "path": "/ai-pools/[poolIssueId]",
+      "component": "AiPoolDetailPage",
+      "import": "@/features/ai-management/ai-pool-detail-page",
+      "props": [
+        [
+          "poolIssueId",
+          "poolIssueId"
+        ]
+      ]
+    },
+    {
+      "path": "/ai-pools/[poolIssueId]/payout",
+      "component": "AiPayoutPage",
+      "import": "@/features/ai-management/ai-payout-page",
+      "props": [
+        [
+          "poolIssueId",
+          "poolIssueId"
+        ]
+      ]
+    },
+    {
+      "path": "/ai-pools",
+      "component": "AiProjectsPage",
+      "import": "@/features/ai-management/ai-projects-page",
+      "props": []
+    },
+    {
+      "path": "/ai-pools/reports",
+      "component": "AiReportPage",
+      "import": "@/features/ai-management/ai-report-page",
+      "props": []
+    },
+    {
+      "path": "/employees",
+      "component": "EmployeesPage",
+      "import": "@/features/employee-security/employees-page",
+      "props": []
+    },
+    {
+      "path": "/ledger",
+      "component": "LedgerPage",
+      "import": "@/features/ledger-management/ledger-page",
+      "props": []
+    },
+    {
+      "path": "/login",
+      "component": "AdminLoginPage",
+      "import": "@/features/employee-security/login-page",
+      "props": []
+    },
+    {
+      "path": "/lottery/catalog",
+      "component": "CatalogPage",
+      "import": "@/features/operations/catalog-page",
+      "props": []
+    },
+    {
+      "path": "/lottery/draws",
+      "component": "DrawReviewPage",
+      "import": "@/features/operations/draw-review-page",
+      "props": []
+    },
+    {
+      "path": "/lottery/issues",
+      "component": "IssuesPage",
+      "import": "@/features/operations/issues-page",
+      "props": []
+    },
+    {
+      "path": "/lottery/omissions",
+      "component": "OmissionHealthPage",
+      "import": "@/features/operations/omission-health-page",
+      "props": []
+    },
+    {
+      "path": "/masters/[robotId]/executions",
+      "component": "RobotExecutionsPage",
+      "import": "@/features/robots/robot-executions-page",
+      "props": [
+        [
+          "robotId",
+          "robotId"
+        ]
+      ]
+    },
+    {
+      "path": "/masters/[robotId]",
+      "component": "RobotDetailPage",
+      "import": "@/features/robots/robot-detail-page",
+      "props": [
+        [
+          "robotId",
+          "robotId"
+        ]
+      ]
+    },
+    {
+      "path": "/masters",
+      "component": "RobotListPage",
+      "import": "@/features/robots/robot-list-page",
+      "props": []
+    },
+    {
+      "path": "/members/[memberId]",
+      "component": "MemberDetailPage",
+      "import": "@/features/member-management/member-detail-page",
+      "props": [
+        [
+          "memberId",
+          "memberId"
+        ]
+      ]
+    },
+    {
+      "path": "/version-changes",
+      "component": "VersionChangesPage",
+      "import": "@/features/change-notes/change-notes",
+      "props": []
+    },
+    {
+      "path": "/members",
+      "component": "MembersPage",
+      "import": "@/features/member-management/members-page",
+      "props": []
+    },
+    {
+      "path": "/members/referrals",
+      "component": "ReferralConfigurationPage",
+      "import": "@/features/member-management/configuration-pages",
+      "props": []
+    },
+    {
+      "path": "/members/reports",
+      "component": "MemberReportsPage",
+      "import": "@/features/member-management/member-reports-page",
+      "props": []
+    },
+    {
+      "path": "/members/vip",
+      "component": "VipConfigurationPage",
+      "import": "@/features/member-management/configuration-pages",
+      "props": []
+    },
+    {
+      "path": "/orders/[orderId]",
+      "component": "OrderDetailPage",
+      "import": "@/features/order-management/order-detail-page",
+      "props": [
+        [
+          "orderId",
+          "orderId"
+        ]
+      ]
+    },
+    {
+      "path": "/orders",
+      "component": "OrdersPage",
+      "import": "@/features/order-management/orders-page",
+      "props": []
+    },
+    {
+      "path": "/",
+      "component": "OverviewPage",
+      "import": "@/features/operations/overview-page",
+      "props": []
+    },
+    {
+      "path": "/stations",
+      "component": "StationManagementPage",
+      "import": "@/features/station-management/station-management-page",
+      "props": []
+    }
+  ]
+}

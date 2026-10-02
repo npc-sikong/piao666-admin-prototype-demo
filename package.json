@@ -1,0 +1,24 @@
+{
+  "name": "piao666-admin-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/serve.mjs",
+    "start": "node scripts/serve.mjs",
+    "check": "tsc --noEmit",
+    "verify": "node scripts/verify.mjs"
+  },
+  "dependencies": {
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "typescript": "5.9.3",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/node": "24.13.5"
+  }
+}

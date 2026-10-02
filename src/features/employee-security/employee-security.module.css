@@ -1,0 +1,461 @@
+.loginPage,
+.recoveryPage {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 18% 16%, rgb(37 99 235 / 13%), transparent 31%),
+    linear-gradient(135deg, #0f172a 0 48%, #f4f7fb 48% 100%);
+}
+
+.loginPage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.72fr);
+  gap: clamp(48px, 9vw, 130px);
+  align-items: center;
+  padding: clamp(44px, 7vw, 96px);
+}
+
+.loginIntro {
+  max-width: 680px;
+  color: #fff;
+}
+
+.realmTag {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: #60a5fa;
+  font-size: 0.6875rem;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+}
+
+.loginIntro h1,
+.recoveryPanel h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.loginIntro > p {
+  max-width: 570px;
+  margin: 24px 0 0;
+  color: #aebbd0;
+  font-size: 0.9375rem;
+  line-height: 1.8;
+}
+
+.securityFacts {
+  display: grid;
+  gap: 11px;
+  margin-top: 38px;
+}
+
+.securityFacts span {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #d9e4f3;
+  font-size: 0.75rem;
+}
+
+.securityFacts span::before {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #60a5fa;
+  box-shadow: 0 0 0 5px rgb(96 165 250 / 10%);
+  content: "";
+}
+
+.loginPanel,
+.recoveryPanel {
+  width: 100%;
+  border: 1px solid rgb(219 229 241 / 90%);
+  border-radius: 18px;
+  padding: clamp(28px, 4vw, 44px);
+  background: rgb(255 255 255 / 96%);
+  box-shadow: 0 30px 90px rgb(15 23 42 / 16%);
+  animation: panel-in var(--motion-standard) ease-out both;
+}
+
+.loginPanel > header > span {
+  color: var(--color-brand-strong);
+  font-size: 0.6875rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+}
+
+.loginPanel h2 {
+  margin: 9px 0 0;
+  font-size: 1.8rem;
+  letter-spacing: -0.035em;
+}
+
+.loginPanel header p,
+.recoveryPanel > p {
+  margin: 8px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+  line-height: 1.7;
+}
+
+.loginForm {
+  display: grid;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.loginForm label,
+.field {
+  display: grid;
+  gap: 7px;
+}
+
+.loginForm label > span,
+.field > span {
+  color: var(--color-text-secondary);
+  font-size: 0.6875rem;
+  font-weight: 720;
+}
+
+.loginForm input,
+.loginForm textarea,
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid #d5dfeb;
+  border-radius: 9px;
+  padding: 9px 11px;
+  background: #fff;
+  color: var(--color-text-primary);
+  font: inherit;
+  font-size: 0.75rem;
+}
+
+.loginForm textarea,
+.field textarea {
+  min-height: 96px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.loginForm input:focus,
+.loginForm textarea:focus,
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: #93c5fd;
+  outline: 0;
+  box-shadow: var(--focus-ring);
+}
+
+.feedback {
+  grid-column: 1 / -1;
+  margin: 14px 0 0;
+  border-radius: 8px;
+  padding: 9px 11px;
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+  font-size: 0.6875rem;
+  line-height: 1.55;
+}
+
+.loginPanel > footer {
+  margin-top: 24px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 17px;
+}
+
+.loginPanel > footer a,
+.primaryLink {
+  color: var(--color-brand-strong);
+  font-size: 0.6875rem;
+  font-weight: 740;
+  text-decoration: none;
+}
+
+.recoveryPage {
+  display: grid;
+  place-items: center;
+  padding: 48px;
+}
+
+.recoveryPanel {
+  max-width: 720px;
+}
+
+.recoveryPanel h1 {
+  color: var(--color-text-primary);
+  font-size: clamp(2rem, 5vw, 3.7rem);
+}
+
+.recoveryPanel > p {
+  margin-bottom: 24px;
+  font-size: 0.8125rem;
+}
+
+.recoveryPanel .primaryLink {
+  display: inline-flex;
+  margin-top: 24px;
+  border-radius: 9px;
+  padding: 10px 14px;
+  background: var(--color-brand);
+  color: #fff;
+}
+
+.workspaceBody {
+  display: grid;
+  gap: 18px;
+  padding: 18px;
+}
+
+.filterBar,
+.rowActions,
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: end;
+}
+
+.filterBar {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 16px;
+}
+
+.field {
+  min-width: 150px;
+}
+
+.field[data-wide="true"] {
+  grid-column: 1 / -1;
+}
+
+.field small {
+  color: var(--color-text-tertiary);
+  font-size: 0.625rem;
+  overflow-wrap: anywhere;
+}
+
+.recoveryBoundary {
+  grid-column: 1 / -1;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.mfaSetup {
+  display: grid;
+  gap: 16px;
+}
+
+.mfaSetup textarea {
+  min-height: 112px;
+  overflow-wrap: anywhere;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 960px;
+  border-collapse: collapse;
+}
+
+.table[data-wide="true"] {
+  min-width: 1280px;
+}
+
+.table th,
+.table td {
+  border-bottom: 1px solid #edf1f6;
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table th {
+  background: #f8fafc;
+  color: #66758a;
+  font-size: 0.625rem;
+  font-weight: 780;
+  white-space: nowrap;
+}
+
+.table td {
+  color: var(--color-text-secondary);
+  font-size: 0.71875rem;
+  line-height: 1.5;
+}
+
+.table td code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.625rem;
+}
+
+.entity {
+  display: grid;
+  gap: 3px;
+  min-width: 170px;
+}
+
+.entity strong {
+  color: var(--color-text-primary);
+}
+
+.entity small {
+  color: var(--color-text-tertiary);
+  font-size: 0.625rem;
+}
+
+.textButton {
+  border: 0;
+  padding: 3px 0;
+  background: transparent;
+  color: var(--color-brand-strong);
+  font-size: 0.6875rem;
+  font-weight: 740;
+  cursor: pointer;
+}
+
+.textButton:disabled {
+  color: var(--color-text-tertiary);
+  cursor: not-allowed;
+}
+
+.pagination {
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-border);
+  padding: 13px 0 0;
+  color: var(--color-text-tertiary);
+  font-size: 0.6875rem;
+}
+
+.roleList {
+  display: grid;
+  gap: 0;
+}
+
+.roleList > section {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.35fr) minmax(0, 1fr);
+  gap: 24px;
+  border-bottom: 1px solid var(--color-border);
+  padding: 16px 0;
+}
+
+.roleList header {
+  display: grid;
+  align-content: start;
+  gap: 5px;
+}
+
+.roleList header strong {
+  color: var(--color-text-primary);
+  font-size: 0.8125rem;
+}
+
+.roleList header code {
+  color: var(--color-text-tertiary);
+  font-size: 0.625rem;
+}
+
+.roleList > section > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.roleList span {
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: #edf2f8;
+  color: var(--color-text-secondary);
+  font-size: 0.625rem;
+}
+
+.rolePicker {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 14px;
+}
+
+.rolePicker legend {
+  padding: 0 5px;
+  color: var(--color-text-secondary);
+  font-size: 0.6875rem;
+  font-weight: 720;
+}
+
+.rolePicker > label {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  border-top: 1px solid #edf1f6;
+  padding-top: 9px;
+}
+
+.rolePicker input {
+  margin-top: 3px;
+}
+
+.rolePicker label > span {
+  display: grid;
+  gap: 3px;
+}
+
+.rolePicker strong {
+  color: var(--color-text-primary);
+  font-size: 0.75rem;
+}
+
+.rolePicker small,
+.rolePicker p {
+  margin: 0;
+  color: var(--color-text-tertiary);
+  font-size: 0.625rem;
+  line-height: 1.5;
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (max-width: 980px) {
+  .loginPage {
+    grid-template-columns: 1fr;
+    background: linear-gradient(180deg, #0f172a 0 45%, #f4f7fb 45% 100%);
+  }
+
+  .loginIntro h1 {
+    font-size: 3rem;
+  }
+
+  .formGrid,
+  .roleList > section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loginPanel,
+  .recoveryPanel {
+    animation: none;
+  }
+}

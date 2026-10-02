@@ -1,0 +1,40 @@
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 14px;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.area {
+  display: grid;
+  gap: 5px;
+}
+
+.label {
+  color: var(--color-text-tertiary);
+  font-size: 0.625rem;
+  font-weight: 700;
+}
+
+.balls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.ball {
+  display: inline-grid;
+  place-items: center;
+  min-width: 26px;
+  height: 26px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: var(--number-ball-fill);
+  color: var(--number-ball-ink);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  box-shadow: var(--number-ball-shadow);
+  text-shadow: var(--number-ball-text-shadow);
+}
