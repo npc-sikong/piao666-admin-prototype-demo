@@ -142,6 +142,27 @@
   background: #f8fafc;
 }
 
+.table[data-width="members"] th:last-child,
+.table[data-width="members"] td:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 1;
+  min-width: 88px;
+  background: #fff;
+  box-shadow: -1px 0 0 #edf1f6;
+  text-align: center;
+}
+
+.table[data-width="members"] th:last-child {
+  z-index: 3;
+  background: #f8fafc;
+}
+
+.table[data-width="members"] tbody tr:hover td:first-child,
+.table[data-width="members"] tbody tr:hover td:last-child {
+  background: #fbfdff;
+}
+
 .table[data-width="config-vip"] {
   min-width: 980px;
 }
@@ -318,6 +339,56 @@
   background: #fff;
   color: var(--color-text-primary);
   font-size: 0.75rem;
+}
+
+.pageNumbers,
+.jumpPage {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.pageNumbers button,
+.jumpPage button {
+  min-width: 34px;
+  min-height: 34px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 5px 10px;
+  background: #fff;
+  color: var(--color-text-secondary);
+  font-size: 0.6875rem;
+  font-weight: 720;
+  cursor: pointer;
+}
+
+.pageNumbers button[data-active="true"] {
+  border-color: var(--color-brand);
+  background: var(--color-brand);
+  color: #fff;
+}
+
+.pageNumbers button:disabled,
+.jumpPage button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.pageEllipsis {
+  min-width: 18px;
+  text-align: center;
+}
+
+.jumpPage input {
+  width: 52px;
+  min-height: 34px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 5px 8px;
+  background: #fff;
+  color: var(--color-text-primary);
+  font-size: 0.75rem;
+  text-align: center;
 }
 
 .detailHero {

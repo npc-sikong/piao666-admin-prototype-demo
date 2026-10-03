@@ -33,7 +33,7 @@ const emptyFilters: MemberFilters = {
   referralLevelId: "",
 };
 
-const pageSizes = [20, 40, 60, 80, 100] as const;
+const pageSizes = [10, 20, 40, 60, 80, 100] as const;
 
 export function MembersPage() {
   const session = useAdminSession();
@@ -43,10 +43,11 @@ export function MembersPage() {
   const [page, setPage] = useState<MemberAdminPage | null>(null);
   const [status, setStatus] = useState<"loading" | "ready" | "error" | "forbidden">("loading");
   const [error, setError] = useState<string | null>(null);
-  const [cursorStack, setCursorStack] = useState<readonly (string | undefined)[]>([undefined]);
-  const [pageSize, setPageSize] = useState<number>(20);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [jumpPage, setJumpPage] = useState("1");
+  const [pageSize, setPageSize] = useState<number>(10);
   const loadSequence = useRef(0);
-  const currentCursor = cursorStack[cursorStack.length - 1];
+  const currentCursor = currentPage === 1 ? undefined : String((currentPage - 1) * pageSize);
 
   const load = useCallback(async (filters: MemberFilters, cursor?: string) => {
     const sequence = ++loadSequence.current;
@@ -76,14 +77,24 @@ export function MembersPage() {
   }, [applied, currentCursor, load, session.status]);
 
   function applyFilters() {
-    setCursorStack([undefined]);
+    setCurrentPage(1);
+    setJumpPage("1");
     setApplied({ ...draft });
   }
 
   function resetFilters() {
     setDraft(emptyFilters);
-    setCursorStack([undefined]);
+    setCurrentPage(1);
+    setJumpPage("1");
     setApplied(emptyFilters);
+  }
+
+  const totalPages = Math.max(1, Math.ceil((page?.totalCount ?? 0) / pageSize));
+
+  function goToPage(target: number) {
+    const next = Math.min(totalPages, Math.max(1, Math.trunc(target)));
+    setCurrentPage(next);
+    setJumpPage(String(next));
   }
 
   return (
@@ -175,7 +186,7 @@ export function MembersPage() {
         <Panel
           description={`共 ${page.totalCount} 条会员，当前页 ${page.items.length} 条。${availablePointsFormula}；净输赢值对应已结算净收益。`}
           flush
-          title="会员清单"
+          title="会员列表"
         >
           {page.items.length === 0 ? (
             <PageState kind="empty" title="当前筛选没有会员" />
@@ -184,7 +195,7 @@ export function MembersPage() {
               <table className={styles.table} data-width="members">
                 <thead>
                   <tr>
-                    <th>会员</th>
+                    <th>会员名称</th>
                     <th>状态</th>
                     <th>所属站点</th>
                     <th>所属站长</th>
@@ -252,30 +263,72 @@ export function MembersPage() {
               <span>每页展示</span>
               <select aria-label="每页展示会员条数" value={pageSize} onChange={(event) => {
                 setPageSize(Number(event.target.value));
-                setCursorStack([undefined]);
+                setCurrentPage(1);
+                setJumpPage("1");
               }}>
                 {pageSizes.map(size => <option key={size} value={size}>{size} 条</option>)}
               </select>
             </label>
-            <span>共 {page.totalCount} 条 · 当前 {page.items.length === 0 ? 0 : Number(currentCursor ?? 0) + 1}–{Number(currentCursor ?? 0) + page.items.length} 条</span>
-            <span>第 {cursorStack.length} / {Math.max(1, Math.ceil(page.totalCount / pageSize))} 页</span>
-            <ActionButton
-              disabled={cursorStack.length === 1}
-              onClick={() => setCursorStack((value) => value.slice(0, -1))}
-            >上一页</ActionButton>
-            <ActionButton
-              disabled={!page.hasMore || page.nextCursor === null}
-              onClick={() => {
-                if (page.nextCursor !== null) {
-                  setCursorStack((value) => [...value, page.nextCursor ?? undefined]);
-                }
-              }}
-            >下一页</ActionButton>
+            <span>共 {page.totalCount} 条 · 当前 {page.items.length === 0 ? 0 : (currentPage - 1) * pageSize + 1}–{(currentPage - 1) * pageSize + page.items.length} 条</span>
+            <nav aria-label="会员列表分页" className={styles.pageNumbers}>
+              <button disabled={currentPage === 1} onClick={() => goToPage(currentPage - 1)} type="button">上一页</button>
+              {paginationItems(currentPage, totalPages).map((item, index) => item === "ellipsis"
+                ? <span aria-hidden="true" className={styles.pageEllipsis} key={`ellipsis-${index}`}>…</span>
+                : (
+                  <button
+                    aria-current={item === currentPage ? "page" : undefined}
+                    data-active={item === currentPage || undefined}
+                    key={item}
+                    onClick={() => goToPage(item)}
+                    type="button"
+                  >{item}</button>
+                ))}
+              <button disabled={currentPage === totalPages} onClick={() => goToPage(currentPage + 1)} type="button">下一页</button>
+              <button disabled={currentPage === totalPages} onClick={() => goToPage(totalPages)} type="button">最后一页</button>
+            </nav>
+            <form className={styles.jumpPage} onSubmit={(event) => {
+              event.preventDefault();
+              goToPage(Number(jumpPage));
+            }}>
+              <span>第</span>
+              <input
+                aria-label="跳转页码"
+                inputMode="numeric"
+                max={totalPages}
+                min="1"
+                onChange={(event) => setJumpPage(event.target.value.replace(/\D/g, ""))}
+                type="number"
+                value={jumpPage}
+              />
+              <span>页</span>
+              <button type="submit">确认</button>
+            </form>
           </div>
         </Panel>
       ) : null}
     </>
   );
+}
+
+function paginationItems(currentPage: number, totalPages: number): readonly (number | "ellipsis")[] {
+  if (totalPages <= 10) return Array.from({ length: totalPages }, (_, index) => index + 1);
+  const visible = new Set<number>([1, 2, totalPages - 1, totalPages]);
+  if (currentPage <= 6) {
+    for (let page = 1; page <= 6; page++) visible.add(page);
+  } else if (currentPage >= totalPages - 5) {
+    for (let page = totalPages - 5; page <= totalPages; page++) visible.add(page);
+  } else {
+    for (let page = currentPage - 2; page <= currentPage + 2; page++) visible.add(page);
+  }
+  const pages = [...visible].sort((left, right) => left - right);
+  const result: (number | "ellipsis")[] = [];
+  for (const page of pages) {
+    if (result.length > 0 && typeof result[result.length - 1] === "number" && page - Number(result[result.length - 1]) > 1) {
+      result.push("ellipsis");
+    }
+    result.push(page);
+  }
+  return result;
 }
 
 function ScopeCell({ code, name }: Readonly<{ code: string; name: string }>) {

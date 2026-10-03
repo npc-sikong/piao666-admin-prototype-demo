@@ -78,7 +78,7 @@ export async function listAdminMembers(query: MemberListQuery): Promise<MemberAd
       referralLevelId: clean(query.referralLevelId),
       keyword: clean(query.keyword),
       cursor: query.cursor,
-      limit: query.limit ?? 20,
+      limit: query.limit ?? 10,
     },
   });
   return readMemberAdminPage(response.data);
