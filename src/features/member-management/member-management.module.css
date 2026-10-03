@@ -348,8 +348,7 @@
   align-items: center;
 }
 
-.pageNumbers button,
-.jumpPage button {
+.pageNumbers button {
   min-width: 34px;
   min-height: 34px;
   border: 1px solid var(--color-border);
@@ -368,8 +367,7 @@
   color: #fff;
 }
 
-.pageNumbers button:disabled,
-.jumpPage button:disabled {
+.pageNumbers button:disabled {
   opacity: 0.45;
   cursor: not-allowed;
 }
@@ -379,16 +377,14 @@
   text-align: center;
 }
 
-.jumpPage input {
-  width: 52px;
+.jumpPage select {
   min-height: 34px;
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  padding: 5px 8px;
+  padding: 5px 28px 5px 10px;
   background: #fff;
   color: var(--color-text-primary);
   font-size: 0.75rem;
-  text-align: center;
 }
 
 .detailHero {

@@ -44,7 +44,6 @@ export function MembersPage() {
   const [status, setStatus] = useState<"loading" | "ready" | "error" | "forbidden">("loading");
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [jumpPage, setJumpPage] = useState("1");
   const [pageSize, setPageSize] = useState<number>(10);
   const loadSequence = useRef(0);
   const currentCursor = currentPage === 1 ? undefined : String((currentPage - 1) * pageSize);
@@ -78,14 +77,12 @@ export function MembersPage() {
 
   function applyFilters() {
     setCurrentPage(1);
-    setJumpPage("1");
     setApplied({ ...draft });
   }
 
   function resetFilters() {
     setDraft(emptyFilters);
     setCurrentPage(1);
-    setJumpPage("1");
     setApplied(emptyFilters);
   }
 
@@ -94,7 +91,6 @@ export function MembersPage() {
   function goToPage(target: number) {
     const next = Math.min(totalPages, Math.max(1, Math.trunc(target)));
     setCurrentPage(next);
-    setJumpPage(String(next));
   }
 
   return (
@@ -264,7 +260,6 @@ export function MembersPage() {
               <select aria-label="每页展示会员条数" value={pageSize} onChange={(event) => {
                 setPageSize(Number(event.target.value));
                 setCurrentPage(1);
-                setJumpPage("1");
               }}>
                 {pageSizes.map(size => <option key={size} value={size}>{size} 条</option>)}
               </select>
@@ -286,23 +281,18 @@ export function MembersPage() {
               <button disabled={currentPage === totalPages} onClick={() => goToPage(currentPage + 1)} type="button">下一页</button>
               <button disabled={currentPage === totalPages} onClick={() => goToPage(totalPages)} type="button">最后一页</button>
             </nav>
-            <form className={styles.jumpPage} onSubmit={(event) => {
-              event.preventDefault();
-              goToPage(Number(jumpPage));
-            }}>
-              <span>第</span>
-              <input
-                aria-label="跳转页码"
-                inputMode="numeric"
-                max={totalPages}
-                min="1"
-                onChange={(event) => setJumpPage(event.target.value.replace(/\D/g, ""))}
-                type="number"
-                value={jumpPage}
-              />
-              <span>页</span>
-              <button type="submit">确认</button>
-            </form>
+            <label className={styles.jumpPage}>
+              <span>选择第几页</span>
+              <select
+                aria-label="选择第几页"
+                onChange={(event) => goToPage(Number(event.target.value))}
+                value={currentPage}
+              >
+                {Array.from({ length: totalPages }, (_, index) => index + 1).map(pageNumber => (
+                  <option key={pageNumber} value={pageNumber}>第 {pageNumber} 页</option>
+                ))}
+              </select>
+            </label>
           </div>
         </Panel>
       ) : null}
