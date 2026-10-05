@@ -68,7 +68,7 @@ const navigation: readonly NavigationGroup[] = [
       },
       {
         href: "/lottery/draws",
-        label: "开奖候选与复核",
+        label: "开奖候选与复核(修改)",
         icon: "draw",
         permissions: ["draw:review:view", "rule:view", "policy:view", "business-decision:view"],
       },

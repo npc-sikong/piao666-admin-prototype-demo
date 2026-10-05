@@ -16,6 +16,8 @@ import { getAdminOrder, orderFailure, type OrderFailureKind } from "./order-api"
 import type { AdminOrderDetail, Selection, TaskAccepted } from "./order-models";
 import { OrderRetryDialog } from "./order-retry-dialog";
 import { formatDateTime, statusLabel } from "./orders-page";
+import { state } from '@/demo/state';
+import { areaName, orderPresentation, positional } from '@/demo/list-workspaces';
 import styles from "./order-management.module.css";
 
 export function OrderDetailPage({ orderId }: Readonly<{ orderId: string }>) {
@@ -81,11 +83,12 @@ export function OrderDetailPage({ orderId }: Readonly<{ orderId: string }>) {
         <div className={styles.detailGrid}>
           <Panel
             actions={<StatusBadge label={statusLabel(detail.order.status)} status={detail.order.status} />}
-            description={`订单 ${detail.order.id}`}
+            description={orderPresentation(state, detail.order).businessNumber}
             title="订单与规则快照"
           >
             <dl className={styles.definitionGrid}>
-              <Detail label="彩票 / 玩法" value={`${detail.order.lotteryId} / ${detail.order.playId}`} />
+              <Detail label="彩票名称" value={orderPresentation(state, detail.order).lotteryName} />
+              <Detail label="玩法" value={orderPresentation(state, detail.order).playName} />
               <Detail label="期号" value={detail.order.issueCode} />
               <Detail label="注数 × 倍数" value={`${detail.betCount} × ${detail.multiple}`} />
               <Detail label="参与积分" value={`${detail.order.purchasePoints} 积分`} />
@@ -98,7 +101,7 @@ export function OrderDetailPage({ orderId }: Readonly<{ orderId: string }>) {
           </Panel>
 
           <Panel description="号码来自订单不可变内容快照，完整展示全部区域。" title="固定选号内容">
-            <SelectionView selection={detail.selection} />
+            <SelectionView selection={detail.selection} lotteryCode={orderPresentation(state, detail.order).lotteryCode} />
           </Panel>
 
           <Panel description="冻结、锁定与结算交易分别保留引用，不以页面状态代替账本。" title="账本引用">
@@ -169,24 +172,24 @@ export function OrderDetailPage({ orderId }: Readonly<{ orderId: string }>) {
   );
 }
 
-function SelectionView({ selection }: Readonly<{ selection: Selection }>) {
+function SelectionView({ selection, lotteryCode }: Readonly<{ selection: Selection; lotteryCode: string }>) {
   return (
     <div className={styles.selectionBlock}>
-      <div className={styles.selectionMeta}><span>模式 {selection.mode}</span><span>结构 {selection.schemaId}</span><span>版本 {selection.schemaVersion}</span></div>
-      <div className={styles.areaList}>{selection.areas.map((area) => (
+      <div className={styles.selectionMeta}><span>下注方式：{({ SINGLE: '单式', MULTIPLE: '复式', POSITIONAL: '按位选号', DANTUO: '胆拖', GROUP: '组选' } as Record<string,string>)[selection.mode] || '自选号码'}</span></div>
+      <div className={styles.areaList}>{selection.areas.map((area, index) => (
         <section className={styles.area} key={area.key}>
-          <strong>{area.key}</strong>
-          {area.chosen.length > 0 ? <NumberLine label="号码" values={area.chosen} /> : null}
-          {area.dan.length > 0 ? <NumberLine label="胆码" values={area.dan} /> : null}
-          {area.tuo.length > 0 ? <NumberLine label="拖码" values={area.tuo} /> : null}
+          <strong>{areaName(lotteryCode, area.key, index)}</strong>
+          {area.chosen.length > 0 ? <NumberLine label="号码" values={area.chosen} digits={positional(lotteryCode) ? 1 : 2} /> : null}
+          {area.dan.length > 0 ? <NumberLine label="胆码" values={area.dan} digits={positional(lotteryCode) ? 1 : 2} /> : null}
+          {area.tuo.length > 0 ? <NumberLine label="拖码" values={area.tuo} digits={positional(lotteryCode) ? 1 : 2} /> : null}
         </section>
       ))}</div>
     </div>
   );
 }
 
-function NumberLine({ label, values }: Readonly<{ label: string; values: readonly number[] }>) {
-  return <div className={styles.numberLine}><span>{label}</span><div>{values.map((value, index) => <b key={`${value}-${index}`}>{String(value).padStart(2, "0")}</b>)}</div></div>;
+function NumberLine({ label, values, digits }: Readonly<{ label: string; values: readonly number[]; digits: number }>) {
+  return <div className={styles.numberLine}><span>{label}</span><div>{values.map((value, index) => <b key={`${value}-${index}`}>{String(value).padStart(digits, "0")}</b>)}</div></div>;
 }
 
 function Detail({ label, value, mono = false, wide = false }: Readonly<{ label: string; value: string; mono?: boolean; wide?: boolean }>) {

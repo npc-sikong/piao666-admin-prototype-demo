@@ -49,6 +49,8 @@ import type {
   RuleDraftPage,
 } from "./operations-models";
 import styles from "./operations-pages.module.css";
+import { ChangeNotesButton } from '@/features/change-notes/change-notes';
+import { DrawReportTable } from './draw-report-table';
 import { BusinessDecisionsPanel } from "./business-decisions-panel";
 import { FixedAwardDialog } from "./fixed-award-dialog";
 
@@ -410,15 +412,15 @@ export function DrawReviewPage() {
       <PageHeader
         actions={(
           <>
-            {tab === "draw" && canCandidateCreate ? <ActionButton disabled={issueCode === ""} onClick={openCandidate} variant="primary">录入开奖候选</ActionButton> : null}
+            <ChangeNotesButton module="draws" />
             {tab === "rules" && canRuleWrite ? <ActionButton onClick={() => setRuleIntent(newRuleIntent(allPlays[0]))} variant="primary">提交规则版本</ActionButton> : null}
             {tab === "policies" && canPolicyWrite ? <ActionButton onClick={() => setPolicyIntent(newPolicyIntent())} variant="primary">提交政策版本</ActionButton> : null}
             {tab === "policies" && canPolicyWrite && canPolicyView ? <FixedAwardDialog catalog={catalog} policies={policies?.items ?? []} onSaved={async () => setPolicies(await listPolicies())} /> : null}
           </>
         )}
-        description="官方来源校验通过的初次开奖自动确认；异常、更正与人工候选、规则和政策由非作者员工独立复核。"
+        description="按彩种查看开奖报表，支持日期查询、分页和行内修改号码，二次确认后保留新旧版本。"
         pageId="A04"
-        title="开奖候选与复核"
+        title="开奖候选与复核(修改)"
       />
 
       {status === "loading" ? <PageState kind="loading" title="正在读取复核工作区" /> : null}
@@ -429,7 +431,7 @@ export function DrawReviewPage() {
         <Panel flush title="复核工作区">
           <Tabs<ReviewTab>
             items={[
-              { id: "draw", label: "开奖候选", count: candidates?.items.length },
+              { id: "draw", label: "开奖报表" },
               { id: "rules", label: "规则版本", count: rules?.items.length },
               { id: "policies", label: "正式政策", count: policies?.items.length },
               { id: "decisions", label: "业务决定" },
@@ -440,55 +442,7 @@ export function DrawReviewPage() {
           />
           <div className={styles.tabContent}>
             {tab === "decisions" ? <BusinessDecisionsPanel permissions={(identity?.scopeStationIds.length ?? 1) === 0 ? permissions : []} employeeId={identity?.employeeId ?? ""} /> : null}
-            {tab === "draw" ? (
-              !canDrawView ? <PageState kind="forbidden" description="当前员工没有开奖候选查看权限。" /> : (
-                <div className={styles.stack}>
-                  {catalog === null ? null : (
-                    <>
-                      <div className={styles.selectorStrip}>
-                        {catalog.lotteries.map((lottery) => (
-                          <button
-                            data-active={lottery.id === lotteryId || undefined}
-                            key={lottery.id}
-                            onClick={() => setLotteryId(lottery.id)}
-                            type="button"
-                          >
-                            <strong>{lottery.name}</strong>
-                            <small>{lottery.code}</small>
-                          </button>
-                        ))}
-                      </div>
-                      <div className={styles.filterBar}>
-                        <label className={styles.field} data-grow="true">
-                          <span>期次</span>
-                          <select onChange={(event) => setIssueCode(event.target.value)} value={issueCode}>
-                            {issues?.items.map((issue) => <option key={issue.id} value={issue.issueCode}>{issue.issueCode} · {issue.status}</option>)}
-                          </select>
-                        </label>
-                        <ActionButton onClick={() => void loadDrawData()}>刷新当前期</ActionButton>
-                      </div>
-                    </>
-                  )}
-                  {drawStatus === "loading" || drawStatus === "idle" ? <PageState kind="loading" title="正在读取候选与开奖版本" /> : null}
-                  {drawStatus === "error" ? <PageState description={drawError ?? "开奖数据读取失败。"} kind="error" /> : null}
-                  {drawStatus === "ready" ? (
-                    <>
-                      <InlineNotice title="候选不等于已确认开奖">
-                        官方来源校验通过的初次开奖由系统确认；其余候选须独立复核。更正会生成新版本并保留历史事实。
-                      </InlineNotice>
-                      <CandidateTable
-                        canReview={canDrawReview}
-                        employeeId={identity?.employeeId ?? ""}
-                        lotteryCode={selectedLottery?.code ?? "SSQ"}
-                        onReview={openReview}
-                        page={candidates}
-                      />
-                      <VersionTable lotteryCode={selectedLottery?.code ?? "SSQ"} page={versions} />
-                    </>
-                  ) : null}
-                </div>
-              )
-            ) : null}
+            {tab === "draw" ? (!canDrawView ? <PageState kind="forbidden" title="无开奖查看权限" /> : <DrawReportTable canEdit={canDrawReview} />) : null}
             {tab === "rules" ? (
               rules === null ? <PageState kind="forbidden" description="当前员工没有规则版本查看权限。" /> : (
                 <RuleTable

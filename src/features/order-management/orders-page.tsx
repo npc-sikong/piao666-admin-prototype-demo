@@ -1,303 +1,61 @@
 "use client";
-import { ChangeNotesButton } from "@/features/change-notes/change-notes";
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { ActionButton, InlineNotice, MetricStrip, PageHeader, Panel, StatusBadge } from '@/components/admin-workspace/admin-workspace';
+import { ListExport, ListPagination } from '@/components/list-controls';
+import { PageState } from '@/components/page-state/page-state';
+import { ChangeNotesButton } from '@/features/change-notes/change-notes';
+import { useAdminSession } from '@/session/admin-session';
+import { useRoute } from '@/demo/router';
+import { state } from '@/demo/state';
+import { orderExportRows, orderStatusName, queryOrders } from '@/demo/list-workspaces';
+import { reportDate } from '@/demo/operational-reports';
+import { cents, money } from '@/demo/operational-records';
+import type { Row } from '@/demo/seed';
+import type { TaskAccepted } from './order-models';
+import { OrderRetryDialog } from './order-retry-dialog';
+import styles from '@/features/operational-reports/operational-reports.module.css';
 
-import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
-import {
-  ActionButton,
-  InlineNotice,
-  MetricStrip,
-  PageHeader,
-  Panel,
-  StatusBadge,
-} from "@/components/admin-workspace/admin-workspace";
-import { PageState } from "@/components/page-state/page-state";
-import { useAdminSession } from "@/session/admin-session";
-import {
-  listAdminMemberOrders,
-  listAdminOrders,
-  orderFailure,
-  type AdminOrderQuery,
-  type OrderFailureKind,
-} from "./order-api";
-import type { AdminOrderPage, TaskAccepted } from "./order-models";
-import { OrderRetryDialog } from "./order-retry-dialog";
-import styles from "./order-management.module.css";
-
-const orderStatusOptions = [
-  "RESERVED",
-  "LOCKED",
-  "WAITING_DRAW",
-  "SETTLING",
-  "AWARD_PENDING_BUDGET",
-  "SETTLED",
-  "CANCELLING",
-  "CANCELLED",
-  "CORRECTING",
-  "CORRECTED",
-  "EXCEPTION_PENDING",
-] as const;
-
-interface Filters {
-  mode: "all" | "member";
-  memberId: string;
-  lotteryId: string;
-  issueCode: string;
-  status: string;
+const empty = { account: '', businessNumber: '', lotteryId: '', playId: '', issueCode: '', status: '', from: '', to: '' };
+const statuses = ['RESERVED', 'LOCKED', 'WAITING_DRAW', 'SETTLING', 'AWARD_PENDING_BUDGET', 'SETTLED', 'CANCELLING', 'CANCELLED', 'CORRECTING', 'CORRECTED', 'EXCEPTION_PENDING'];
+function initialFilters() {
+  const p = new URLSearchParams(location.hash.split('?')[1] || '');
+  return { ...empty, account: p.get('account') || state.members.find((m: Row) => m.id === p.get('memberId'))?.account || '' };
 }
-
-const emptyFilters: Filters = {
-  mode: "all",
-  memberId: "",
-  lotteryId: "",
-  issueCode: "",
-  status: "",
-};
-
 export function OrdersPage() {
-  const session = useAdminSession();
-  const permissions = session.identity?.permissions ?? [];
-  const canView = permissions.includes("order:view");
-  const canViewMember = permissions.includes("member:orders:view");
-  const canRetry = permissions.includes("order:settlement:retry");
-  const [draft, setDraft] = useState<Filters>(emptyFilters);
-  const [filters, setFilters] = useState<Filters>(emptyFilters);
-  const [page, setPage] = useState<AdminOrderPage | null>(null);
-  const [status, setStatus] = useState<"loading" | "ready" | OrderFailureKind>("loading");
-  const [error, setError] = useState<string | null>(null);
-  const [retryOrderId, setRetryOrderId] = useState<string | null>(null);
-  const [acceptedTask, setAcceptedTask] = useState<TaskAccepted | null>(null);
-
-  const load = useCallback(async (cursor?: string) => {
-    if (filters.mode === "all" && !canView) {
-      setStatus("forbidden");
-      return;
-    }
-    if (filters.mode === "member" && !canViewMember) {
-      setError("当前员工没有授权会员订单读取权限。");
-      setStatus("forbidden");
-      return;
-    }
-    if (filters.mode === "member" && filters.memberId.trim() === "") {
-      setError("按会员范围查询时必须填写会员 ID。");
-      setStatus("error");
-      return;
-    }
-    setStatus("loading");
-    setError(null);
-    try {
-      const next = filters.mode === "member"
-        ? await listAdminMemberOrders(filters.memberId.trim(), cursor)
-        : await listAdminOrders(toQuery(filters, cursor));
-      setPage(next);
-      setStatus("ready");
-    } catch (cause) {
-      const failure = orderFailure(cause);
-      setError(failure.message);
-      setStatus(failure.kind);
-    }
-  }, [canView, canViewMember, filters]);
-
-  useEffect(() => {
-    if (session.status === "authenticated") {
-      void load();
-    }
-  }, [load, session.status]);
-
-  function applyFilters() {
-    setAcceptedTask(null);
-    setFilters({
-      ...draft,
-      memberId: draft.memberId.trim(),
-      lotteryId: draft.lotteryId.trim(),
-      issueCode: draft.issueCode.trim(),
-    });
-  }
-
-  function resetFilters() {
-    setDraft(emptyFilters);
-    setFilters(emptyFilters);
-    setAcceptedTask(null);
-  }
-
-  const items = page?.items ?? [];
-  const pendingCount = items.filter((item) => !["SETTLED", "CANCELLED", "CORRECTED"].includes(item.status)).length;
-  const exceptionCount = items.filter((item) => ["EXCEPTION_PENDING", "AWARD_PENDING_BUDGET"].includes(item.status)).length;
-
-  return (
-    <>
-      <PageHeader
-        actions={<><ActionButton onClick={() => void load()}>刷新订单</ActionButton><ChangeNotesButton module="orders" /></>}
-        description="查询普通积分参与订单的不可变内容快照、冻结、开奖结算、退款与更正事实。"
-        pageId="A22"
-        title="普通参与订单(修改)"
-      />
-
-      <InlineNotice title="订单事实不可人工改写">
-        页面不提供改号码、改中奖结果或直接改余额入口；恢复操作只继续原结算任务，最终结果以账本与服务端订单状态为准。
-      </InlineNotice>
-
-      <Panel description="按会员范围查询使用独立的对象授权接口；切换筛选会清空游标。" title="订单筛选">
-        <form className={styles.filterBar} onSubmit={(event) => { event.preventDefault(); applyFilters(); }}>
-          <label className={styles.field}>
-            <span>查询范围</span>
-            <select value={draft.mode} onChange={(event) => setDraft((current) => ({ ...current, mode: event.target.value as Filters["mode"] }))}>
-              <option disabled={!canView} value="all">授权站点订单</option>
-              <option disabled={!canViewMember} value="member">指定会员订单</option>
-            </select>
-          </label>
-          <label className={styles.field} data-grow="true">
-            <span>会员 ID</span>
-            <input onChange={(event) => setDraft((current) => ({ ...current, memberId: event.target.value }))} placeholder="UUID" value={draft.memberId} />
-          </label>
-          {draft.mode === "all" ? (
-            <>
-              <label className={styles.field}>
-                <span>彩票 ID</span>
-                <input onChange={(event) => setDraft((current) => ({ ...current, lotteryId: event.target.value }))} value={draft.lotteryId} />
-              </label>
-              <label className={styles.field}>
-                <span>期号</span>
-                <input onChange={(event) => setDraft((current) => ({ ...current, issueCode: event.target.value }))} value={draft.issueCode} />
-              </label>
-              <label className={styles.field}>
-                <span>订单状态</span>
-                <select onChange={(event) => setDraft((current) => ({ ...current, status: event.target.value }))} value={draft.status}>
-                  <option value="">全部状态</option>
-                  {orderStatusOptions.map((value) => <option key={value} value={value}>{statusLabel(value)}</option>)}
-                </select>
-              </label>
-            </>
-          ) : null}
-          <div className={styles.filterActions}>
-            <ActionButton type="submit" variant="primary">查询</ActionButton>
-            <ActionButton onClick={resetFilters}>重置</ActionButton>
-          </div>
-        </form>
-      </Panel>
-
-      {acceptedTask === null ? null : (
-        <InlineNotice title={`恢复任务已受理 · ${acceptedTask.taskId}`} tone="success">
-          当前状态 {acceptedTask.status}。202 仅表示任务已持久化受理，不代表返奖、退款或更正已经完成。
-        </InlineNotice>
-      )}
-
-      {status === "loading" ? <PageState kind="loading" title="正在读取订单" /> : null}
-      {status === "forbidden" ? <PageState description={error ?? "当前员工没有订单查看权限。"} kind="forbidden" /> : null}
-      {status === "not-ready" ? <PageState description={error ?? undefined} kind="not-ready" /> : null}
-      {status === "version" ? (
-        <PageState action={<ActionButton onClick={() => void load()}>重新加载</ActionButton>} description={error ?? "订单版本已失效。"} kind="error" title="版本已失效" />
-      ) : null}
-      {status === "error" ? (
-        <PageState action={<ActionButton onClick={() => void load()}>重试</ActionButton>} description={error ?? undefined} kind="error" />
-      ) : null}
-
-      {status === "ready" && page !== null ? (
-        <>
-          <MetricStrip items={[
-            { label: "当前页订单", value: String(items.length), detail: "仅当前游标页" },
-            { label: "未终态", value: String(pendingCount), detail: "不等于异常" },
-            { label: "异常/预算待处理", value: String(exceptionCount), detail: "按当前页状态", tone: exceptionCount > 0 ? "warning" : "good" },
-            { label: "查询快照", value: page.snapshotId === null ? "未提供" : "已固定", detail: page.snapshotId ?? "服务端未返回快照 ID" },
-          ]} />
-          {items.length === 0 ? <PageState kind="empty" title="当前筛选没有订单" /> : (
-            <Panel description="所有积分字段单位均为积分；应返为空表示仍未形成可信结算结果，不按 0 展示。" flush title="订单列表">
-              <div className={styles.tableWrap}>
-                <table className={styles.table}>
-                  <thead>
-                    <tr>
-                      <th>订单 / 创建时间</th>
-                      <th>彩票 / 玩法 / 期号</th>
-                      <th>状态</th>
-                      <th>参与积分</th>
-                      <th>应返 / 已净发</th>
-                      <th>退款</th>
-                      <th>结算版本</th>
-                      <th>操作</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {items.map((order) => (
-                      <tr key={order.id}>
-                        <td><div className={styles.entity}><strong>{order.id}</strong><small>{formatDateTime(order.createdAt)}</small></div></td>
-                        <td><div className={styles.entity}><strong>{order.issueCode}</strong><small>{order.lotteryId} · {order.playId}</small></div></td>
-                        <td><StatusBadge label={statusLabel(order.status)} status={order.status} /></td>
-                        <td><strong className={styles.points}>{order.purchasePoints}</strong></td>
-                        <td><div className={styles.entity}><strong>{order.dueAwardPoints ?? "待结算"}</strong><small>已净发 {order.netPostedAwardPoints}</small></div></td>
-                        <td>{order.refundPoints}</td>
-                        <td>{order.settlementVersion ?? "—"}</td>
-                        <td><div className={styles.rowActions}>
-                          <Link className={styles.textLink} href={`/orders/${encodeURIComponent(order.id)}`}>查看详情</Link>
-                          <button
-                            className={styles.textButton}
-                            disabled={!canRetry || !retryable(order.status)}
-                            onClick={() => setRetryOrderId(order.id)}
-                            type="button"
-                          >恢复结算</button>
-                        </div></td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <div className={styles.pagination}>
-                <span>{page.hasMore ? "还有下一页" : "已到当前筛选末页"}</span>
-                <ActionButton disabled={!page.hasMore || page.nextCursor === null} onClick={() => void load(page.nextCursor ?? undefined)}>下一页</ActionButton>
-              </div>
-            </Panel>
-          )}
-        </>
-      ) : null}
-
-      <OrderRetryDialog
-        onAccepted={setAcceptedTask}
-        onClose={() => setRetryOrderId(null)}
-        orderId={retryOrderId}
-      />
-    </>
-  );
+  const session = useAdminSession(), route = useRoute();
+  const permissions = session.identity?.permissions || [], canView = permissions.includes('order:view') || permissions.includes('member:orders:view'), canRetry = permissions.includes('order:settlement:retry');
+  const [draft, setDraft] = useState(initialFilters), [filters, setFilters] = useState(initialFilters);
+  const [page, setPage] = useState(1), [size, setSize] = useState(10), [retryOrderId, setRetryOrderId] = useState<string | null>(null), [accepted, setAccepted] = useState<TaskAccepted | null>(null), [error, setError] = useState('');
+  const [, refresh] = useState(0);
+  useEffect(() => { const f = initialFilters(); setDraft(f); setFilters(f); setPage(1); }, [route]);
+  if (session.status === 'authenticated' && !canView) return <PageState kind="forbidden" title="无订单查看权限" />;
+  const all = queryOrders(state, filters), current = Math.min(page, Math.max(1, Math.ceil(all.length / size))), rows = all.slice((current - 1) * size, current * size);
+  const input = (key: keyof typeof empty, label: string, type = 'text') => <label className={styles.field}><span>{label}</span><input type={type} value={draft[key]} onInput={e => { const value = e.currentTarget.value; setDraft(f => ({ ...f, [key]: value })); }} /></label>;
+  return <>
+    <PageHeader pageId="A22" title="普通参与订单(修改)" description="用中文彩票名称、玩法和下注内容查看普通订单，并导出完整筛选结果。" actions={<div className={styles.actions}><ActionButton onClick={() => refresh(n => n + 1)}>刷新订单</ActionButton><ChangeNotesButton module="orders" /></div>} />
+    <InlineNotice title="使用说明">彩票和玩法显示中文名称，下注内容来自下单时的号码快照；积分保留两位小数，未结算应返显示待结算。导出包含全部筛选订单。</InlineNotice>
+    <Panel title="订单筛选" description="默认全部本地演示订单；按会员账号、彩票、玩法、期号、状态和下注日期查询。">
+      <form className={styles.filters} onSubmit={e => { e.preventDefault(); if (draft.from && draft.to && draft.from > draft.to) { setError('开始日期不能晚于结束日期。'); return; } setFilters({ ...draft }); setPage(1); setError(''); }}>
+        {input('account', '会员账号 / 名称')}{input('businessNumber', '订单号')}
+        <label className={styles.field}><span>彩票名称</span><select value={draft.lotteryId} onChange={e => setDraft(f => ({ ...f, lotteryId: e.target.value, playId: '' }))}><option value="">全部彩票</option>{state.catalog.lotteries.map((l: Row) => <option value={l.id} key={l.id}>{l.name}</option>)}</select></label>
+        <label className={styles.field}><span>玩法</span><select value={draft.playId} onChange={e => setDraft(f => ({ ...f, playId: e.target.value }))}><option value="">全部玩法</option>{state.catalog.lotteries.filter((l: Row) => !draft.lotteryId || l.id === draft.lotteryId).flatMap((l: Row) => l.plays.map((p: Row) => <option key={p.id} value={p.id}>{p.name}</option>))}</select></label>
+        {input('issueCode', '期号')}<label className={styles.field}><span>订单状态</span><select value={draft.status} onChange={e => setDraft(f => ({ ...f, status: e.target.value }))}><option value="">全部状态</option>{statuses.map(s => <option key={s} value={s}>{statusLabel(s)}</option>)}</select></label>
+        {input('from', '下注开始日期', 'date')}{input('to', '下注结束日期（含）', 'date')}
+        <div className={styles.filterActions}><ActionButton type="submit" variant="primary">查询</ActionButton><ActionButton onClick={() => { setDraft(empty); setFilters(empty); setPage(1); setError(''); }}>重置</ActionButton></div>
+      </form>{error ? <p role="alert" className={styles.error}>{error}</p> : null}
+    </Panel>
+    {accepted ? <InlineNotice title="本地恢复操作已执行" tone="success">相关订单状态和结算历史已更新，可在详情及会员投注记录核对。</InlineNotice> : null}
+    <MetricStrip items={[{ label: '筛选订单数', value: String(all.length), detail: '完整筛选结果' }, { label: '投注积分', value: money(all.reduce((n, o) => n + cents(o.purchasePoints), 0)), detail: '含待结算与退款订单' }, { label: '已净发积分', value: money(all.reduce((n, o) => n + cents(o.netPostedAwardPoints), 0)), detail: '已记录到账' }, { label: '异常/预算待处理', value: String(all.filter(o => ['EXCEPTION_PENDING', 'AWARD_PENDING_BUDGET'].includes(o.status)).length), detail: '正常待开奖不算异常' }]} />
+    <Panel title="订单列表" description={`共 ${all.length} 条；导出包含完整筛选结果，彩票、玩法、状态及下注区域均用中文。`} flush actions={<ListExport rows={orderExportRows(all)} name="普通参与订单" />}>
+      <div className={styles.tableWrap}><table className={styles.table}><thead><tr>{['会员账号', '订单号', '彩票名称', '玩法', '期号', '下注内容', '状态', '投注积分', '应返积分', '已净发积分', '退款积分', '下注时间', '结算时间', '操作'].map(t => <th key={t}>{t}</th>)}</tr></thead><tbody>{rows.map(o => <tr key={o.id}>
+        <td><Link className={styles.link} href={`/members/${o.memberId}`}>{o.memberAccount}</Link></td><td>{o.businessNumber}</td><td>{o.lotteryName}</td><td>{o.playName}</td><td>{o.issueCode}</td><td title={o.selectionText}>{o.selectionText}</td><td><StatusBadge status={o.status} label={statusLabel(o.status)} /></td><td>{money(cents(o.purchasePoints))}</td><td>{o.dueAwardPoints == null ? '待结算' : money(cents(o.dueAwardPoints))}</td><td>{money(cents(o.netPostedAwardPoints))}</td><td>{money(cents(o.refundPoints))}</td><td>{formatDateTime(o.createdAt)}</td><td>{o.settledAt ? formatDateTime(o.settledAt) : '尚未结算'}</td>
+        <td><div className={styles.actions}><Link className={styles.link} href={`/orders/${o.id}`}>查看详情</Link>{canRetry && ['SETTLING', 'AWARD_PENDING_BUDGET', 'EXCEPTION_PENDING', 'CORRECTING'].includes(o.status) ? <button className={styles.textButton} onClick={() => setRetryOrderId(o.id)}>恢复结算</button> : null}</div></td>
+      </tr>)}{!rows.length ? <tr><td className={styles.empty} colSpan={14}>当前筛选没有订单。</td></tr> : null}</tbody></table></div>
+      <ListPagination count={all.length} page={current} size={size} onPage={setPage} onSize={n => { setSize(n); setPage(1); }} />
+    </Panel>
+    <OrderRetryDialog orderId={retryOrderId} onClose={() => setRetryOrderId(null)} onAccepted={task => { setAccepted(task); refresh(n => n + 1); }} />
+  </>;
 }
-
-function toQuery(filters: Filters, cursor?: string): AdminOrderQuery {
-  return {
-    memberId: filters.memberId || undefined,
-    lotteryId: filters.lotteryId || undefined,
-    issueCode: filters.issueCode || undefined,
-    status: filters.status || undefined,
-    cursor,
-  };
-}
-
-function retryable(status: string): boolean {
-  return ["SETTLING", "AWARD_PENDING_BUDGET", "EXCEPTION_PENDING", "CORRECTING"].includes(status);
-}
-
-export function statusLabel(status: string): string {
-  const labels: Readonly<Record<string, string>> = {
-    RESERVED: "已冻结",
-    LOCKED: "已锁定",
-    WAITING_DRAW: "等待开奖",
-    SETTLING: "结算中",
-    AWARD_PENDING_BUDGET: "等待返奖预算",
-    SETTLED: "已结算",
-    CANCELLING: "退款处理中",
-    CANCELLED: "已退款取消",
-    CORRECTING: "更正中",
-    CORRECTED: "已更正",
-    EXCEPTION_PENDING: "异常待处理",
-  };
-  return labels[status] ?? status;
-}
-
-export function formatDateTime(value: string): string {
-  const date = new Date(value);
-  return Number.isNaN(date.getTime()) ? value : new Intl.DateTimeFormat("zh-CN", {
-    timeZone: "Asia/Shanghai",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).format(date);
-}
+export const statusLabel = orderStatusName;
+export const formatDateTime = reportDate;

@@ -342,7 +342,7 @@ export function LedgerPage() {
           value={tab}
         />
         <div className={styles.tabBody}>
-          {tab === "transactions" ? <TransactionLedgerTab canView={canViewLedger} refreshToken={ledgerRefreshToken} /> : null}
+          {tab === "transactions" ? <TransactionLedgerTab canView={canViewLedger} refreshToken={ledgerRefreshToken} onReverse={canReverse ? tx => { setReversalDraft(current => ({ ...current, originalTransactionId: tx.id, points: (Number(tx.economicPoints) - Number(tx.reversedPoints)).toFixed(2), proofCode: '' })); setReversalOpen(true); } : undefined} /> : null}
 
           {tab === "report" ? (
             <>

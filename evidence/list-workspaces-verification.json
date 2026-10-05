@@ -1,0 +1,67 @@
+{
+  "scope": "积分账本列表、开奖报表与二次确认、普通参与订单中文展示及导出",
+  "environment": "本地前端演示；无真实API或后台交易",
+  "currentVersion": "待人为指定；沿用同一当前版本",
+  "backup": ".local/backups/list-workspaces-20261006/",
+  "checks": {
+    "typescript": "passed",
+    "listWorkspaces": {
+      "passed": 9,
+      "command": "npm run verify:lists"
+    },
+    "relatedReports": {
+      "passed": 24,
+      "command": "npm run verify:reports"
+    },
+    "build": {
+      "passed": true,
+      "routes": 37,
+      "avatars": 48,
+      "standaloneMiB": 2.71
+    },
+    "diffWhitespace": "passed"
+  },
+  "browser": {
+    "url": "http://127.0.0.1:8879/",
+    "ledger": [
+      "129条本地交易显示字段列表，默认10条，下拉共13页",
+      "双边分录详情可打开",
+      "行末冲正自动填入原交易和剩余积分；取消后未冲正"
+    ],
+    "draws": [
+      "当前彩票12条记录，默认10条，下拉第2页显示11–12",
+      "重复红球被拦截",
+      "下一步进入独立二次确认界面",
+      "双色球2026251演示号码确认后追加版本2，版本1保留",
+      "刷新和期号查询保留修改；查看历史可核对旧号码与原因",
+      "日期空结果及重置、切换福彩3D全部记录通过"
+    ],
+    "orders": [
+      "全部24条中文彩票、玩法和完整下注内容",
+      "翻到第3页仅显示21–24条，汇总和CSV仍覆盖全部24条",
+      "选择双色球后3条记录，XLSX生成全部3条，分页返回第1页",
+      "订单详情显示双色球、双色球基本玩法、红球/蓝球及单式"
+    ],
+    "downloads": "浏览器生成链接及记录数量已验证；实际导出数据用本地同一生成器检查CSV及XLSX的ZIP/XML。未声称浏览器下载保存成功。",
+    "notes": "普通订单说明已核对；三个模块与版本汇总共用内容"
+  },
+  "exports": {
+    "fullOrderRecords": 24,
+    "rowsWithHeader": 25,
+    "chineseHeaders": [
+      "彩票名称",
+      "玩法",
+      "下注内容"
+    ],
+    "technicalLotteryAndPlayIdsAbsent": true,
+    "csv": ".local/orders-chinese-export.csv",
+    "xlsx": ".local/orders-chinese-export.xlsx"
+  },
+  "screenshots": [
+    ".local/ledger-list.jpg",
+    ".local/draw-report-list.jpg",
+    ".local/draw-double-confirm.jpg",
+    ".local/orders-chinese-list.jpg"
+  ],
+  "deployment": "本文件记录本地验收；GitHub Pages状态另以实际部署任务和线上页面确认"
+}

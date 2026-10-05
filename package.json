@@ -9,7 +9,8 @@
     "start": "node scripts/serve.mjs",
     "check": "tsc --noEmit",
     "verify": "node scripts/verify.mjs",
-    "verify:reports": "node scripts/verify-operational-reports.mjs"
+    "verify:reports": "node scripts/verify-operational-reports.mjs",
+    "verify:lists": "node scripts/verify-list-workspaces.mjs"
   },
   "dependencies": {
     "react": "19.3.0",
