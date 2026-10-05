@@ -8,6 +8,8 @@ import { aiAction } from '../src/demo/ai';
 import { businessAction } from '../src/demo/business';
 import { reportFile } from '../src/demo/export-file';
 import { operationalChanges } from '../src/features/operational-reports/report-notes';
+import { managementDefinitions } from '../src/features/operational-reports/management-definitions';
+import { ensureManagementFacts } from '../src/demo/management-records';
 import { reportDefinitions, type ReportKind } from '../src/features/operational-reports/report-config';
 
 let checked = 0;
@@ -143,6 +145,56 @@ check('旧浏览器数据迁移保留数据，未知历史不填0，迁移幂等
   const count = old.subscriptions.length; ensureOperationalState(old, false); assert.equal(old.subscriptions.length, count);
   persist();
 });
+check('五个新增报表和已有AI经营报表共用说明与真实组成记录',()=>{
+  for(const kind of Object.keys(managementDefinitions) as ReportKind[]){const r=query(kind,base);assert(r.rows.length>0,kind);assert.equal(operationalExportRows(r).length,r.rows.length+1);}
+  assert(query('daily',base).rows.length>10);assert(query('budgetFlows',base).rows.length>10);
+});
+check('经营日报业务日、积分口径与跨日会员去重',()=>{
+  const r=query('daily',base),m=Object.fromEntries(r.metrics.map(m=>[m.label,m.value]));
+  assert.equal(m['会员加分净额'],'13440.00');assert.equal(m['普通有效投注'],'180.00');assert.equal(m['AI净参与积分'],'5000.00');assert.equal(m['期间参与会员数'],'12');
+  assert.equal(query('daily',{...base,from:'2026-09-25T10:12:01',to:'2026-09-25T10:12:01'}).metrics[1].value,'3840.00');
+  assert.equal(query('daily',{...base,from:'2026-09-25T10:12:02',to:'2026-09-25T10:12:02'}).rows.length,0);
+});
+check('站点站长切换和归属迁移保留历史业务',()=>{
+  assert.equal(query('stationBusiness',base).rows.length,6);assert.equal(query('stationBusiness',{...base,groupBy:'station'}).rows.length,3);
+  const filter={...base,groupBy:'station'},before=query('stationBusiness',filter).rows.find(r=>r.id==='demo-station-1')!;
+  businessAction('/members/demo-member-1/membership-migrations','POST',{targetStationId:'demo-station-2',targetStationMasterId:'demo-station-master-2'},{});
+  const after=query('stationBusiness',filter).rows.find(r=>r.id===before.id)!;assert.equal(after.memberCount,before.memberCount-1);assert.equal(after.granted,before.granted);
+});
+check('预算审批、主账户流水、旧面板汇总和重复复核联动',()=>{
+  const batch=state.budgetBatches[0],filter={...base,ownerType:'PLATFORM',budgetType:'DISTRIBUTION_BUDGET',type:'PLATFORM_BUDGET_TOPUP'};
+  assert.equal(query('budgetFlows',filter).rows.length,0);const balance=state.budgets[0].availablePoints,ledgerCount=state.ledgers.length;
+  businessAction(`/platform-budget-batches/${batch.id}/reviews`,'POST',{decision:'APPROVE',reason:'测试独立复核'},{});
+  assert.equal(cents(state.budgets[0].availablePoints)-cents(balance),5000000);assert.equal(query('budgetFlows',filter).rows.length,1);assert.equal(query('budgetFlows',filter).rows[0].delta,'50000.00');
+  businessAction(`/platform-budget-batches/${batch.id}/reviews`,'POST',{decision:'APPROVE',reason:'重复'},{});assert.equal(state.ledgers.length,ledgerCount+1);
+  const old=businessAction('/platform-budget-flows','GET',{}, {period:'REALTIME'}).rows.find((r:Row)=>r.category==='DISTRIBUTION_BUDGET');assert.equal(old.inflowPoints,'50000.00');
+  assert.equal(query('exceptions',{...base,type:'BUDGET_REVIEW'}).rows.length,0);assert.equal(query('budgetFlows',{...base,budgetMode:'snapshot'}).rows.length,10);
+});
+check('实际分录对账保存一致、差异、缺失三个状态，旧快照不回写',()=>{
+  const first=businessAction('/reconciliations','POST',{},{}),id=first.statusUrl.split('/').at(-1),old=structuredClone(state.reconciliations[id]);assert.equal(old.status,'MATCHED');
+  const e=state.ledgers[0].entries[0],after=e.balanceAfter;e.balanceAfter=(Number(after)+10).toFixed(2);
+  businessAction('/reconciliations','POST',{},{});assert(query('reconciliations',base).rows.some(r=>r.status==='MISMATCHED'&&r.difference==='10.00'));assert.deepEqual(state.reconciliations[id],old);
+  const delta=e.changePoints;e.changePoints=(Number(delta)+10).toFixed(2);
+  const task=businessAction('/reconciliations','POST',{},{}),mismatchId=task.statusUrl.split('/').at(-1);
+  assert.equal(state.reconciliations[mismatchId].differencePoints,'0.00');assert.equal(query('exceptions',base).rows.find(r=>r.id===`recon:${mismatchId}`)!.amount,'10.00');
+  e.changePoints=delta;
+  e.balanceAfter=after;e.balanceBefore=null;businessAction('/reconciliations','POST',{},{});assert(query('reconciliations',base).rows.some(r=>r.status==='INCOMPLETE'&&r.missingCount===1));
+});
+check('异常待办排除正常待开奖，合买部分到账不重复计，处理后自动更新',()=>{
+  const r=query('exceptions',base);assert(!r.rows.some(r=>r.status==='WAITING_DRAW'||r.status==='OPEN'));const ai=r.rows.filter(r=>r.type==='AI_BACKLOG'&&r.issueCode===state.pools[4].issueCode);assert.equal(ai.length,1);assert.equal(ai[0].pending,'825.00');
+  assert(query('exceptions',{...base,priority:'P1'}).rows.every(r=>r.type==='RECON_BACKLOG'));
+  aiAction('/payout-batches/report-payout-partial/retries','POST',{},{});assert(!query('exceptions',base).rows.some(r=>r.id===ai[0].id));
+});
+check('AI经营报表开奖未知、实际对象、加权收益率和筛选正确',()=>{
+  const open=query('aiBusiness',base).rows.find(r=>r.id==='demo-pool-1')!;assert.equal(open.due,null);assert.equal(open.platformProfit,null);assert.equal(open.participantCount,10);
+  assert.equal(query('aiBusiness',{...base,lotteryId:open.lotteryId}).rows.find(r=>r.id===open.id)!.purchase,'1000.00');
+  aiAction('/payout-batches/report-payout-partial/retries','POST',{},{});const sub=state.subscriptions.find((s:Row)=>s.poolIssueId==='demo-pool-4'&&s.status!=='REFUNDED');sub.points=(Number(sub.points)+500).toFixed(2);
+  assert.equal(query('aiBusiness',base).metrics.at(-1)!.value,'-12.00%');
+});
+check('新增演示快照迁移不覆盖已有数据且可重复刷新',()=>{
+  const old=createSeed();old.customNote='保留';old.reconciliations.custom={id:'custom',status:'MATCHED',expectedPoints:'5.00',actualPoints:'5.00'};ensureManagementFacts(old);const original=structuredClone(old);ensureManagementFacts(old);assert.deepEqual(old,original);assert.equal(old.customNote,'保留');assert.equal(old.reconciliations.custom.expectedPoints,'5.00');persist();
+});
+reset();
 const exportResult = query('bets', base);
 const csv = await reportFile(operationalExportRows(exportResult), 'CSV').text();
 assert(csv.includes('会员账号') && csv.includes('输赢值'));

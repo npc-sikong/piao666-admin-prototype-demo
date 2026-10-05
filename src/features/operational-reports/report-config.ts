@@ -1,6 +1,7 @@
-export type ReportKind = 'finance' | 'changes' | 'ai' | 'referrals' | 'vip' | 'bets';
+import { managementDefinitions, type ManagementKind } from './management-definitions';
+export type ReportKind = 'finance' | 'changes' | 'ai' | 'referrals' | 'vip' | 'bets' | ManagementKind;
 export type ReferralTab = 'relations' | 'rewards';
-export interface ReportColumn { key: string; label: string; format?: 'money' | 'time' | 'rate' | 'status'; }
+export interface ReportColumn { key: string; label: string; format?: 'money' | 'time' | 'rate' | 'status'; help?:string; }
 export interface ReportDefinition { name: string; href: string; pageId: string; purpose: string; business: string[]; columns: ReportColumn[]; }
 const col = (key: string, label: string, format?: ReportColumn['format']): ReportColumn => ({ key, label, format });
 const identity = [col('memberAccount', '会员账号'), col('stationName', '所属站点'), col('stationMasterName', '所属站长')];
@@ -10,6 +11,7 @@ export const rewardColumns = [col('memberAccount', '推荐人'), col('sourceMemb
   col('status', '发放状态', 'status'), col('createdAt', '奖励形成时间', 'time'), col('postedAt', '最近发放时间', 'time'), col('policyVersion', '政策版本')];
 
 export const reportDefinitions: Record<ReportKind, ReportDefinition> = {
+  ...managementDefinitions,
   finance: { name: '充值提现报表(新增)', href: '/finance/recharge-withdrawals', pageId: 'A25',
     purpose: '查看站长给会员加分、减分及冲正记录，按站点、站长和操作人分析积分流动。金额单位为虚拟积分。',
     business: ['“充值/提现”在此对应会员加分/减分，没有现金支付或提现。站长预算调整不纳入本表。', '归属和操作人取操作记录，冲正关联原单。汇总按原业务类别扣除冲正，仅计算筛选内的净额。', '样例账本是部分演示历史，不能用筛选期间净额推算会员累计余额。'],
@@ -51,6 +53,9 @@ export const reportDefinitions: Record<ReportKind, ReportDefinition> = {
 };
 
 export const valueLabels: Record<string, string> = {
+  DISTRIBUTION_BUDGET:'平台拨付预算', INITIAL:'预算初始化', TOPUP:'预算追加', PLATFORM_BUDGET_INITIALIZE:'预算初始化', PLATFORM_BUDGET_TOPUP:'预算追加', ADMIN_GRANT:'平台给站长加预算',ADMIN_DEDUCT:'平台收回站长预算',
+  MATCHED:'一致',MISMATCHED:'存在差异',RUNNING:'检查中',INCOMPLETE:'历史资料不足',PENDING_REVIEW:'待独立复核',APPROVED:'已批准',REJECTED:'已驳回',
+  P1:'优先核对账务',P2:'跟进会员到账',P3:'待独立审批', AI_BACKLOG:'AI返还/结算异常',ORDINARY_BACKLOG:'普通订单返还待办',REFERRAL_BACKLOG:'推广奖励待办',RECON_BACKLOG:'对账差异',BUDGET_REVIEW:'预算审批',
   AVAILABLE: '积分账户·可用积分', RESERVED: '已冻结', AI_QUOTA: 'AI合买日额度',
   STATION_VIP_CREDIT: '站长加积分', STATION_DEBIT: '站长减积分', STATION_VIP_CREDIT_REVERSAL: '加分冲正', STATION_DEBIT_REVERSAL: '减分冲正',
   ORDINARY_RESERVE: '普通投注冻结', ORDINARY_LOCK: '普通投注锁定', ORDINARY_AWARD: '普通投注返还', ORDINARY_REFUND: '普通投注退款',

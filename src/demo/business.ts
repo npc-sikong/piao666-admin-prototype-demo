@@ -1,6 +1,7 @@
 import { state,find,paged,filtered,make,page,task,update,uid,STAMP,receipt,fail,ref,points,localLedger,ledgerViews,creditDemoMember } from './state';
 import { selectionFor,AUTHOR,type Row } from './seed';
 import { eventTime, rebuildQualifications, reverseDemoTransaction } from './operational-records';
+import { createDemoReconciliation, recordBudgetApproval, budgetFlowSummary } from './management-records';
 
 export function businessAction(path:string,method:string,b:Row,q:Row):any {
   let m=path.match(/^\/(stations|station-masters|members|employees)(?:\/([^/]+)(?:\/(.+))?)?$/);
@@ -39,12 +40,12 @@ export function businessAction(path:string,method:string,b:Row,q:Row):any {
   if(path==='/budget-accounts')return paged(state.budgets,q);
   if(path==='/ledger-transactions')return paged(state.ledgers,q);
   if(path==='/ledger-reversals'){const tx=find(state.ledgers,b.originalTransactionId||b.transactionId||b.referenceTransactionId);const amount=Number(b.points);if(!Number.isFinite(amount)||amount<=0||amount>Number(tx.economicPoints)-Number(tx.reversedPoints))fail('INVALID_VALUE','冲正积分须大于0且不超过剩余可冲正额');const reversal=reverseDemoTransaction(state,tx,amount,b.reason);if(tx.type==='STATION_VIP_CREDIT')rebuildQualifications(state,'有效站长加分冲正');return receipt('createLedgerReversal',reversal.id);}
-  if(path==='/reconciliations'){const id=uid('reconciliation');state.reconciliations[id]={id,status:'MATCHED',expectedPoints:'1000.00',actualPoints:'1000.00',differencePoints:'0.00',asOf:STAMP};return task('LEDGER_RECONCILIATION',`/api/admin/v1/reconciliations/${id}`);}
+  if(path==='/reconciliations'){const row=createDemoReconciliation(state);return task('LEDGER_RECONCILIATION',`/api/admin/v1/reconciliations/${row.id}`);}
   m=path.match(/^\/reconciliations\/([^/]+)$/);if(m)return state.reconciliations[m[1]]||fail('NOT_FOUND','对账任务不存在',404);
-  if(path==='/platform-budget-flows')return {from:q.from||'2026-10-01',to:q.to||'2026-10-03',asOf:STAMP,rows:state.budgets.map((budget:Row)=>({category:budget.type,inflowPoints:budget.availablePoints,outflowPoints:'0.00',netFlowPoints:budget.availablePoints}))};
+  if(path==='/platform-budget-flows')return budgetFlowSummary(state,q);
   m=path.match(/^\/platform-budget-batches(?:\/([^/]+)\/reviews)?$/);
-  if(m){if(m[1]){const row=find(state.budgetBatches,m[1]);if(row.authorId===state.identity.employeeId)fail('FORBIDDEN','原版要求另一名员工复核',403);row.status=b.decision==='APPROVE'?'APPROVED':'REJECTED';row.reviewedBy=state.identity.employeeId;row.reviewReason=b.reason;if(row.status==='APPROVED'){const budget=state.budgets.find((x:Row)=>x.type===row.category);budget.availablePoints=points(Number(budget.availablePoints)+Number(row.points));row.transactionId=uid('demo-budget-transaction');}return row;}
-    if(method==='GET')return page(state.budgetBatches);const row={...b,id:uid('budget-batch'),authorId:state.identity.employeeId,status:'PENDING_REVIEW',reviewedBy:null,reviewReason:null,transactionId:null,createdAt:STAMP};state.budgetBatches.unshift(row);return row;
+  if(m){if(m[1]){const row=find(state.budgetBatches,m[1]);if(row.authorId===state.identity.employeeId)fail('FORBIDDEN','原版要求另一名员工复核',403);if(row.status!=='PENDING_REVIEW')return row;row.status=b.decision==='APPROVE'?'APPROVED':'REJECTED';row.reviewedBy=state.identity.employeeId;row.reviewReason=b.reason;row.reviewedAt=eventTime();if(row.status==='APPROVED')recordBudgetApproval(state,row);return row;}
+    if(method==='GET')return page(state.budgetBatches);const row={...b,id:uid('budget-batch'),authorId:state.identity.employeeId,status:'PENDING_REVIEW',reviewedBy:null,reviewReason:null,transactionId:null,createdAt:eventTime()};state.budgetBatches.unshift(row);return row;
   }
   if(path==='/robot-strategies')return page(state.strategies);
   m=path.match(/^\/robot-masters(?:\/([^/]+)(?:\/(.+))?)?$/);

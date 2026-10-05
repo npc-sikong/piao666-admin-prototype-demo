@@ -115,11 +115,17 @@ const navigation: readonly NavigationGroup[] = [
     items: [
       { href: "/finance/recharge-withdrawals", label: "充值提现报表(新增)", icon: "ledger", permissions: ["ledger:view", "report:view"] },
       { href: "/finance/member-changes", label: "会员帐变记录(新增)", icon: "ledger", permissions: ["ledger:view", "report:view"] },
+      { href: "/finance/budget-flows", label: "预算收支报表(新增)", icon: "ledger", permissions: ["report:view"] },
+      { href: "/finance/reconciliations", label: "对账异常报表(新增)", icon: "ledger", permissions: ["report:view"] },
     ],
   },
   {
     label: "运营报表(新增)",
     items: [
+      { href: "/reports/business-daily", label: "经营日报(新增)", icon: "overview", permissions: ["report:view"] },
+      { href: "/reports/station-business", label: "站点站长经营报表(新增)", icon: "station", permissions: ["report:view"] },
+      { href: "/ai-pools/reports", label: "AI合买经营报表(修改)", icon: "pool", permissions: ["report:view"] },
+      { href: "/reports/exception-backlog", label: "异常待办报表(新增)", icon: "security", permissions: ["report:view"] },
       { href: "/reports/ai-participations", label: "AI合买参与记录(新增)", icon: "pool", permissions: ["report:view"] },
       { href: "/reports/referrals", label: "会员推广记录(新增)", icon: "member", permissions: ["report:view"] },
       { href: "/reports/vip-upgrades", label: "VIP升级记录(新增)", icon: "member", permissions: ["report:view"] },

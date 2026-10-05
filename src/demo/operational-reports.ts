@@ -1,6 +1,7 @@
 import { state } from './state';
 import { cents, money, isFinalOrder, memberSnapshot, aiMemberAmounts } from './operational-records';
 import type { Row } from './seed';
+import { isManagementReport, queryManagementReport } from './management-reports';
 import { reportDefinitions, rewardColumns, valueLabels, type ReportColumn, type ReportKind, type ReferralTab } from '@/features/operational-reports/report-config';
 
 export interface OperationalFilters {
@@ -11,9 +12,10 @@ export interface OperationalFilters {
   drawStatus: string; participationStatus: string; reversal: string;
   beforeLevel: string; afterLevel: string; referralLevel: string; sourceMember: string;
   vipMode: 'upgrades' | 'all'; referralTab: ReferralTab;
+  groupBy:string; budgetMode:'flows'|'snapshot'; ownerType:string; budgetType:string; priority:string;
 }
 export const emptyOperationalFilters: OperationalFilters = { account: '', stationId: '', stationMasterId: '', from: '', to: '', dateField: 'createdAt',
-  keyword: '', status: '', type: '', accountType: '', direction: '', deltaMin: '', deltaMax: '', balanceMin: '', balanceMax: '', amountMin: '', amountMax: '',
+  groupBy:'stationMaster',budgetMode:'flows',ownerType:'',budgetType:'',priority:'',keyword: '', status: '', type: '', accountType: '', direction: '', deltaMin: '', deltaMax: '', balanceMin: '', balanceMax: '', amountMin: '', amountMax: '',
   projectId: '', issueCode: '', lotteryId: '', playId: '', winLoss: '', drawStatus:'', participationStatus:'', reversal:'', beforeLevel: '', afterLevel: '', referralLevel: '', sourceMember: '', vipMode: 'upgrades', referralTab: 'relations' };
 export interface ReportMetric { label: string; value: string; detail: string; }
 export interface OperationalReportResult { rows: Row[]; sourceRows: Row[]; columns: ReportColumn[]; metrics: ReportMetric[]; asOf: string; }
@@ -24,9 +26,10 @@ export function reportDate(value: unknown): string {
   return Number.isFinite(timestamp) ? new Date(timestamp + 8 * 3600000).toISOString().slice(0, 19).replace('T', ' ') : '未记录';
 }
 export function reportValue(column: ReportColumn, row: Row): string {
+  if (row.notApplicableFields?.includes(column.key)) return '不适用';
   const value = row[column.key];
   if (value === null || value === undefined || value === '') {
-    if (['due', 'profit', 'pending'].includes(column.key)) return row.valueState || '待结算';
+    if (['due', 'profit', 'pending','platformReturn','platformProfit','memberRate'].includes(column.key)) return row.valueState || '待结算';
     if (column.key === 'postedAt') return '尚未发放';
     return '未记录';
   }
@@ -143,7 +146,7 @@ function betRows(): Row[] {
   });
 }
 function shanghaiInput(value: string): number { return new Date(/[zZ]|[+-]\d\d:\d\d$/.test(value) ? value : `${value}+08:00`).getTime(); }
-function timeMatches(value: unknown, filters: OperationalFilters): boolean {
+export function timeMatches(value: unknown, filters: OperationalFilters): boolean {
   if (!filters.from && !filters.to) return true;
   if (!value) return false;
   const time = new Date(String(value)).getTime(), from = filters.from ? shanghaiInput(filters.from) : -Infinity;
@@ -164,9 +167,9 @@ export function validateOperationalFilters(f: OperationalFilters): string | null
   }
   return null;
 }
-function matches(row: Row, kind: ReportKind, f: OperationalFilters): boolean {
+export function matches(row: Row, kind: ReportKind, f: OperationalFilters): boolean {
   if (f.account && !`${row.memberAccount} ${row.memberName || ''}`.toLowerCase().includes(f.account.trim().toLowerCase())) return false;
-  for (const key of ['stationId', 'stationMasterId', 'status', 'type', 'accountType', 'projectId', 'lotteryId', 'playId', 'winLoss', 'drawStatus','participationStatus','reversal','beforeLevel', 'afterLevel'] as const) if (f[key] && row[key] !== f[key]) return false;
+  for (const key of ['ownerType','budgetType','priority','stationId', 'stationMasterId', 'status', 'type', 'accountType', 'projectId', 'lotteryId', 'playId', 'winLoss', 'drawStatus','participationStatus','reversal','beforeLevel', 'afterLevel'] as const) if (f[key] && row[key] !== f[key]) return false;
   if (f.issueCode && !String(row.issueCode || '').includes(f.issueCode.trim())) return false;
   if (f.referralLevel && row.level !== f.referralLevel) return false;
   if (f.sourceMember && !String(row.sourceMemberAccount || '').toLowerCase().includes(f.sourceMember.trim().toLowerCase())) return false;
@@ -203,6 +206,7 @@ function metricsFor(kind: ReportKind, rows: Row[], f: OperationalFilters): Repor
 }
 
 export function queryOperationalReport(kind: ReportKind, filters: OperationalFilters): OperationalReportResult {
+  if(isManagementReport(kind))return queryManagementReport(kind,filters,queryOperationalReport);
   let sourceRows: Row[];
   if (kind === 'finance' || kind === 'changes') sourceRows = changeRows().filter(r => kind === 'changes' || r.finance);
   else if (kind === 'ai') sourceRows = aiRows();

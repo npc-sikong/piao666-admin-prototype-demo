@@ -574,6 +574,36 @@
       "component": "MemberBetRecordsPage",
       "import": "@/features/operational-reports/operational-reports-page",
       "props": []
+    },
+    {
+      "path": "/reports/business-daily",
+      "component": "BusinessDailyPage",
+      "import": "@/features/operational-reports/operational-reports-page",
+      "props": []
+    },
+    {
+      "path": "/reports/station-business",
+      "component": "StationBusinessPage",
+      "import": "@/features/operational-reports/operational-reports-page",
+      "props": []
+    },
+    {
+      "path": "/finance/budget-flows",
+      "component": "BudgetFlowsPage",
+      "import": "@/features/operational-reports/operational-reports-page",
+      "props": []
+    },
+    {
+      "path": "/finance/reconciliations",
+      "component": "ReconciliationReportPage",
+      "import": "@/features/operational-reports/operational-reports-page",
+      "props": []
+    },
+    {
+      "path": "/reports/exception-backlog",
+      "component": "ExceptionBacklogPage",
+      "import": "@/features/operational-reports/operational-reports-page",
+      "props": []
     }
   ]
 }

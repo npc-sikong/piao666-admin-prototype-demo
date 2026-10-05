@@ -2,6 +2,7 @@ import { ApiError } from '../../shared/api-client';
 import { createSeed, EMPLOYEE, make, page, points, ref, STAMP, uid, type Row } from './seed';
 import { refreshMemberMetrics } from './member-metrics';
 import { ensureOperationalState } from './operational-records';
+import { ensureManagementFacts } from './management-records';
 
 export const STORAGE_KEY='piao666-admin-prototype-v1';
 let freshState = true;
@@ -9,6 +10,7 @@ function initial() { try { const saved=localStorage.getItem(STORAGE_KEY);if(save
 export const state:Row=initial();
 refreshMemberMetrics(state.members, state.ledgers);
 ensureOperationalState(state, freshState);
+ensureManagementFacts(state);
 persist();
 export function persist(){ try { localStorage.setItem(STORAGE_KEY,JSON.stringify(state)); } catch { /* File preview and private mode still work in memory. */ } }
 export function fail(code:string,message:string,status=400):never { throw new ApiError({type:'about:blank',title:message,code,status,requestId:'demo',traceId:'demo',retryable:false},null,'REJECTED'); }

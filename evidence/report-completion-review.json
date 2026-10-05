@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-06",
+  "productVersion": "待人为指定；本次补全归入同一当前版本",
+  "scope": "前端原型、本地虚构数据与交互；主项目只读核对",
+  "backup": ".local/backups/report-completion-20261006",
+  "sourceAudit": {
+    "repository": "/Volumes/pro990/piao666/NexaLotto",
+    "commit": "726fc81",
+    "files": [
+      "backend/app-api/src/main/java/com/piao777/reporting/api/ReportingApiModels.java",
+      "backend/app-api/src/main/java/com/piao777/reporting/infrastructure/JdbcReportSourceRepository.java",
+      "backend/app-api/src/main/java/com/piao777/reporting/infrastructure/JdbcOperationalReportRepository.java",
+      "backend/app-api/src/main/java/com/piao777/ledger/application/PlatformBudgetService.java",
+      "apps/admin/src/features/member-management/member-reports-page.tsx"
+    ],
+    "findings": [
+      "原代码已有会员概况、积分、VIP、推广等级、AI额度、AI期次、站长及账本对账报表模型；会员等级与额度沿用既有入口",
+      "管理员给站长调整预算与站长给会员加减分属于不同业务；预算来源对手分录不能重复记成主账户收入",
+      "预算初始化或追加需独立复核通过才入账；待审批金额单独展示",
+      "业务期间归属与查询时会员归属分开，保留迁移前历史",
+      "对账使用保存的检查快照；不以部分历史或当前余额推算期初期末",
+      "原型已有AI报表路由；完善该页面并增加运营报表入口，避免重复模块"
+    ]
+  },
+  "modules": [
+    {"name": "经营日报(新增)", "route": "/reports/business-daily", "review": "业务发生日、参与人数去重、加减分/投注/认购/返还/推广/退款分列；展开组成事件与区间关联跳转"},
+    {"name": "站点站长经营报表(新增)", "route": "/reports/station-business", "review": "站点站长维度切换，历史业务与当前会员数/余额明确分开；查看当前账号名单"},
+    {"name": "预算收支报表(新增)", "route": "/finance/budget-flows", "review": "主账户收支与当前预算切换；内部分配不当作经营收入；旧审批缺少余额与时间显示未记录"},
+    {"name": "对账异常报表(新增)", "route": "/finance/reconciliations", "review": "任务、检查范围、结果、差异与资料缺失；本地分录校验生成持久化快照，不宣称真实数据库总账对账"},
+    {"name": "异常待办报表(新增)", "route": "/reports/exception-backlog", "review": "当前状态生成待办，普通待开奖排除；部分发放按期次合并，审批与账务差异分别汇总，不适用字段明确显示"},
+    {"name": "AI合买经营报表(修改)", "route": "/ai-pools/reports", "review": "期次级实际参与对象、平台投入、会员应返/已到/待到与平台分配；未开奖未知值及已结算加权收益率"}
+  ],
+  "operationsDirectorReview": {
+    "explainAmounts": "积分与AI日额度、预算与会员加减分、应返与实际到账、平台分配与现金利润分别解释；不新增真实现金收支假设",
+    "traceSources": "组成记录、会员名单、原交易/冲正、订单、合买分配/发放批次和关联报告可追溯",
+    "identifyPending": "预算不足、结算修正、待发奖励、部分到账、审批及对账差异单列；处理顺序仅为运营建议",
+    "avoidDuplication": "已有会员概况、VIP/推广等级与AI额度报告继续复用；没有代码数据依据的留存率/真实支付/供应商报表未编造",
+    "governance": "新增/修改菜单与标题一致；每页用途、四部分修改说明和同版本汇总共用定义"
+  },
+  "validation": {
+    "typecheck": "npm run check: passed",
+    "businessChecks": "npm run verify:reports: 24 targeted checks passed; includes original six and directly related flows",
+    "build": "npm run build: 37 routes and 48 avatars",
+    "diffCheck": "git diff --check: passed",
+    "browser": [
+      "五个新页及已有AI经营页入口、标题与标记可用",
+      "日报48条、默认10条、下拉跳第5页后汇总不变；组成明细与带日期站点条件的关联链接可用",
+      "秒级时间空区间查询为0条、重置恢复；日期输入事件已修正",
+      "站长6组、站点3组；详情展示当前会员账号与历史组成业务",
+      "预算分录81条、当前预算10个账户；CSV生成提示覆盖完整筛选10条",
+      "对账3个历史样例；本地模拟保存第4个快照，刷新后保留",
+      "异常待办6条，P1筛选仅保留1条对账差异；详情说明与关联入口可用",
+      "AI经营5期，未开奖不填0；修改说明四部分和版本汇总可用",
+      "控制台未发现error或warn"
+    ],
+    "browserData": "沿用已有本地浏览器状态，历史部分缺失保留，不清空数据；上述数量仅该次演示记录",
+    "screenshot": ".local/report-completion-preview.jpg",
+    "exportLimit": "CSV/XLSX生成结构及完整筛选范围通过业务检查；本次浏览器核对下载入口，未重复执行旧全模块检查"
+  }
+}

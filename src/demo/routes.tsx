@@ -30,6 +30,11 @@ import { AiParticipationsPage } from '@/features/operational-reports/operational
 import { ReferralRecordsPage } from '@/features/operational-reports/operational-reports-page';
 import { VipUpgradeRecordsPage } from '@/features/operational-reports/operational-reports-page';
 import { MemberBetRecordsPage } from '@/features/operational-reports/operational-reports-page';
+import { BusinessDailyPage } from '@/features/operational-reports/operational-reports-page';
+import { StationBusinessPage } from '@/features/operational-reports/operational-reports-page';
+import { BudgetFlowsPage } from '@/features/operational-reports/operational-reports-page';
+import { ReconciliationReportPage } from '@/features/operational-reports/operational-reports-page';
+import { ExceptionBacklogPage } from '@/features/operational-reports/operational-reports-page';
 export const routes=[{ path:"/account-recovery", component:AccountRecoveryPage, params:[] },
 { path:"/ai-pools", component:AiProjectsPage, params:[] },
 { path:"/ai-pools/reports", component:AiReportPage, params:[] },
@@ -55,6 +60,11 @@ export const routes=[{ path:"/account-recovery", component:AccountRecoveryPage, 
 { path:"/reports/referrals", component:ReferralRecordsPage, params:[] },
 { path:"/reports/vip-upgrades", component:VipUpgradeRecordsPage, params:[] },
 { path:"/reports/member-bets", component:MemberBetRecordsPage, params:[] },
+{ path:"/reports/business-daily", component:BusinessDailyPage, params:[] },
+{ path:"/reports/station-business", component:StationBusinessPage, params:[] },
+{ path:"/finance/budget-flows", component:BudgetFlowsPage, params:[] },
+{ path:"/finance/reconciliations", component:ReconciliationReportPage, params:[] },
+{ path:"/reports/exception-backlog", component:ExceptionBacklogPage, params:[] },
 { path:"/ai-pools/[poolIssueId]/allocation", component:AiAllocationPage, params:["poolIssueId"] },
 { path:"/ai-pools/[poolIssueId]", component:AiPoolDetailPage, params:["poolIssueId"] },
 { path:"/ai-pools/[poolIssueId]/payout", component:AiPayoutPage, params:["poolIssueId"] },

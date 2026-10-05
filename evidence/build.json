@@ -31,12 +31,17 @@
     "/reports/ai-participations",
     "/reports/referrals",
     "/reports/vip-upgrades",
-    "/reports/member-bets"
+    "/reports/member-bets",
+    "/reports/business-daily",
+    "/reports/station-business",
+    "/finance/budget-flows",
+    "/finance/reconciliations",
+    "/reports/exception-backlog"
   ],
-  "inputCount": 129,
-  "routeCount": 32,
+  "inputCount": 132,
+  "routeCount": 37,
   "avatarCount": 48,
-  "standaloneBytes": 2796829,
-  "assetVersion": "10a844e9d9ab",
+  "standaloneBytes": 2826237,
+  "assetVersion": "f028444a474a",
   "apiServer": false
 }

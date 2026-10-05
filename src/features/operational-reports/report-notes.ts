@@ -1,4 +1,5 @@
 import { reportDefinitions, rewardColumns, type ReportKind } from './report-config';
+import { budgetSnapshotColumns } from './management-definitions';
 
 export interface ModuleChange { name: string; href: string; summary: string; changes: string[]; fields: string[][]; business: string[]; functions?: string[]; }
 const help: Record<string, string> = {
@@ -58,17 +59,23 @@ const help: Record<string, string> = {
 };
 export const operationalChanges: Record<ReportKind, ModuleChange> = Object.fromEntries(Object.entries(reportDefinitions).map(([key, definition]) => [key, {
   name: definition.name, href: definition.href, summary: definition.purpose,
-  changes: ['新增左侧菜单入口、报表列表、会员/站点/站长/时间筛选、全筛选统计和 CSV/XLSX 导出。',
-    '默认每页10条，支持10/20/40/60/80/100条、并排页码、末页及下拉即时跳页；会员账号和操作列冻结。',
+  changes: [definition.name.includes('(修改)')?'完善已有报表，增加直接菜单入口、可追溯统计和实际到账/待处理口径。':'新增左侧菜单入口、报表列表、适用的对象/站点/站长/时间筛选、全筛选统计和 CSV/XLSX 导出。',
+    '默认每页10条，支持10/20/40/60/80/100条、并排页码、末页及下拉即时跳页；首列和操作列冻结。',
     '新增可追溯详情与关联业务跳转，说明和当前版本汇总共用同一份内容。'],
-  fields: [...definition.columns, ...(key === 'referrals' ? rewardColumns : [])].filter((c, i, all) => all.findIndex(x => x.key === c.key) === i)
-    .map(c => [c.label, help[c.key] || '只读演示字段，详情保留业务来源；历史缺失明确显示未记录。']),
+  fields: [...definition.columns, ...(key === 'referrals' ? rewardColumns : []),...(key==='budgetFlows'?budgetSnapshotColumns:[])].filter((c, i, all) => all.findIndex(x => x.key === c.key) === i)
+    .map(c => [c.label, c.help || help[c.key] || '只读分析字段，按页面说明中的业务口径展示；历史缺失明确显示未记录。']),
   business: definition.business,
-  functions: ['查询与重置；秒级时间区间；站点与站长联动；适用页面的状态、类型、金额区间筛选。',
+  functions: [`查询与重置；秒级时间区间；${key==='aiBusiness'?'项目、彩种、期号与结算状态筛选':key==='reconciliations'?'对账结果与相关积分区间筛选':'站点与站长联动；适用的状态、类型、金额区间筛选'}。`,
     '完整筛选结果汇总；10条默认分页；下拉选页立即跳转；导出完整筛选结果并点击下载链接保存。',
     '查看详情；点击会员账号及关联业务；缺失历史、待开奖、待发放与空结果提示。',
     ...(key === 'referrals' ? ['推荐关系与奖励明细切换；点击推广会员数或有效会员数查看对应账号名单。'] : []),
-    ...(key === 'vip' ? ['仅升级与全部等级变更切换，查看跨级、降级和历史额度。'] : [])],
+    ...(key === 'vip' ? ['仅升级与全部等级变更切换，查看跨级、降级和历史额度。'] : []),
+    ...(key==='daily'?['按业务发生日汇总；详情列出组成事件，跳转原始业务。']:[]),
+    ...(key==='stationBusiness'?['站长/站点维度切换；查看当前会员名单与期间事件，跨日期参与人数去重。']:[]),
+    ...(key==='budgetFlows'?['账户分录/当前预算切换；账户归属、预算类别、业务类型、方向和变动额筛选。']:[]),
+    ...(key==='reconciliations'?['对账结果筛选；查看保存的差异项；本地模拟分录对账并保存快照。']:[]),
+    ...(key==='exceptions'?['按待办类型、处理顺序和当前状态筛选；跳回原模块处理后刷新读取状态。']:[]),
+    ...(key==='aiBusiness'?['按项目、彩种和期号筛选；核对会员参与、平台投入与待到账；收益率按已结算金额加权。']:[])],
 }])) as Record<ReportKind, ModuleChange>;
 
 export const linkedChanges: Record<string, ModuleChange> = {
@@ -80,10 +87,10 @@ export const linkedChanges: Record<string, ModuleChange> = {
     changes: ['模拟结算完成时保存真实本地操作时间、结算记录和交易引用；订单详情读取同一份历史。'],
     fields: [['结算 / 更正 / 退款历史', '沿用订单字段，补充本地历史与完成时间；未知历史显示未记录。']],
     business: ['待结算不计输赢，退款与追回单独展示；恢复任务仅补足未到账返还。'], functions: ['订单详情、结算重试、投注报表跳转。'] },
-  ledger: { name: '积分账本与对账(修改)', href: '/ledger', summary: '冲正按本次数额生成分录并更新相关本地积分；关联会员帐变可追溯原单。',
-    changes: ['部分冲正按实际冲正金额生成前后余额和关联分录；保存操作人及操作时间。'],
-    fields: [['冲正金额 / 原单引用 / 前后余额', '只读显示本次变动，冲正累计不超过原交易可冲正额；详情保留原单和对应冲正。']],
-    business: ['不复制原单全额作为部分冲正；会员与对手分录平衡，相关本地记录同步。'], functions: ['原单查看、冲正、会员帐变跳转。'] },
+  ledger: { name: '积分账本与对账(修改)', href: '/ledger', summary: '冲正按实际数额留痕；预算审批形成主账户分录；本地分录对账保存快照并同步相关报表。',
+    changes: ['部分冲正按实际冲正金额生成前后余额和关联分录；保存操作人及操作时间。','预算批准后形成预算主账户和来源对手分录，重复复核不重复增加；模拟对账保存实际分录校验快照。'],
+    fields: [['冲正金额 / 原单引用 / 前后余额', '只读显示本次变动，冲正累计不超过原交易可冲正额；详情保留原单和对应冲正。'],['预算分录 / 复核时间', '独立复核通过后留存预算主账户和来源对手账户、实际变动及前后余额；旧记录缺失字段显示未记录。'],['对账范围 / 差异项 / 缺失数', '每次模拟保存不可回写的快照；只校验本地已记录分录，不根据当前余额倒推完整历史。']],
+    business: ['不复制原单全额作为部分冲正；会员与对手分录平衡，相关本地记录同步。','对账只校验已记录本地分录，资料不足单独标记；不能声称完成真实数据库总账核算。'], functions: ['原单查看、冲正、会员帐变跳转。','预算审批联动收支报表；模拟对账形成历史快照及异常待办。'] },
   qualifications: { name: 'VIP与推广配置(修改)', href: '/members/vip', summary: '本地资格重算按有效加分和有效直属会员匹配等级，并保留等级变化历史。',
     changes: ['本地资格重算更新当前等级和日额度，等级变化写入历史报表。'],
     fields: [['等级 / 额度历史快照', '记录变更前后等级、有效加分、门槛、AI基础日额度、规则版本和生效时间。']],
