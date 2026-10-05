@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { ActionButton, Dialog, PageHeader, Panel } from '@/components/admin-workspace/admin-workspace';
 import styles from './change-notes.module.css';
+import { linkedChanges, operationalChanges, type ModuleChange } from '../operational-reports/report-notes';
 
 export const availablePointsFormula = '可用积分 = 累计充值积分 + 总推广积分 + 净输赢值 + AI合买分红 - 站长扣除积分';
 
@@ -45,15 +46,16 @@ const versionChange = {
   business: ['所有本次新增与修改统一归入当前版本；只有人为明确指定新版本时才建立新版本。'],
 };
 
-const changes = { members: memberChange, versions: versionChange };
+const changes: Record<string, ModuleChange> = { members: memberChange, versions: versionChange, ...operationalChanges, ...linkedChanges };
 type ChangeKey = keyof typeof changes;
-type Change = typeof memberChange;
+type Change = ModuleChange;
 
 function ChangeContent({ change }: { change: Change }) {
   return <div className={styles.content}>
     <section><h3>修改内容</h3><ul>{change.changes.map(item => <li key={item}>{item}</li>)}</ul></section>
     <section><h3>字段说明</h3><dl>{change.fields.map(([label, description]) => <div key={label}><dt>{label}</dt><dd>{description}</dd></div>)}</dl></section>
     <section><h3>业务说明</h3><ul>{change.business.map(item => <li key={item}>{item}</li>)}</ul></section>
+    <section><h3>功能清单</h3><ul>{(change.functions || change.changes).map(item => <li key={item}>{item}</li>)}</ul></section>
   </div>;
 }
 

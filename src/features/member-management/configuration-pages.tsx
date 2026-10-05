@@ -1,4 +1,5 @@
 "use client";
+import { ChangeNotesButton } from "@/features/change-notes/change-notes";
 
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
 import {
@@ -212,7 +213,7 @@ export function VipConfigurationPage() {
       load={load}
       pageId="A19"
       status={status}
-      title="VIP 等级配置"
+      title="VIP等级配置(修改)"
     >
       {snapshot === null ? null : (
         <>
@@ -451,7 +452,7 @@ export function ReferralConfigurationPage() {
       load={load}
       pageId="A20"
       status={status}
-      title="推广等级配置"
+      title="推广等级配置(修改)"
     >
       {snapshot === null ? null : (
         <>
@@ -542,7 +543,7 @@ function ConfigurationBoundary({ children, description, error, load, pageId, sta
   return (
     <>
       <MemberNavigation />
-      <PageHeader actions={<ActionButton onClick={() => void load()}>重新加载当前版本</ActionButton>} description={description} pageId={pageId} title={title} />
+      <PageHeader actions={<><ActionButton onClick={() => void load()}>重新加载当前版本</ActionButton><ChangeNotesButton module="qualifications" /></>} description={description} pageId={pageId} title={title} />
       {status === "loading" ? <PageState kind="loading" title="正在读取整表配置" /> : null}
       {status === "forbidden" ? <PageState description={error ?? undefined} kind="forbidden" /> : null}
       {status === "not-ready" ? <PageState action={<ActionButton onClick={() => void load()}>重新检查</ActionButton>} description="D08 正式等级与权益初值尚未形成可读取配置；页面不会用原型数字自动初始化。" kind="not-ready" /> : null}

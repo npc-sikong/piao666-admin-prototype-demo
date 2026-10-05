@@ -92,7 +92,7 @@ const navigation: readonly NavigationGroup[] = [
       },
       {
         href: "/ai-pools",
-        label: "AI 合买",
+        label: "AI合买(修改)",
         icon: "pool",
         permissions: ["ai-project:view", "ai-pool:view", "ai-payout:view", "report:view"],
       },
@@ -104,10 +104,26 @@ const navigation: readonly NavigationGroup[] = [
       },
       {
         href: "/orders",
-        label: "普通参与订单",
+        label: "普通参与订单(修改)",
         icon: "order",
         permissions: ["order:view", "member:orders:view"],
       },
+    ],
+  },
+  {
+    label: "财务管理(新增)",
+    items: [
+      { href: "/finance/recharge-withdrawals", label: "充值提现报表(新增)", icon: "ledger", permissions: ["ledger:view", "report:view"] },
+      { href: "/finance/member-changes", label: "会员帐变记录(新增)", icon: "ledger", permissions: ["ledger:view", "report:view"] },
+    ],
+  },
+  {
+    label: "运营报表(新增)",
+    items: [
+      { href: "/reports/ai-participations", label: "AI合买参与记录(新增)", icon: "pool", permissions: ["report:view"] },
+      { href: "/reports/referrals", label: "会员推广记录(新增)", icon: "member", permissions: ["report:view"] },
+      { href: "/reports/vip-upgrades", label: "VIP升级记录(新增)", icon: "member", permissions: ["report:view"] },
+      { href: "/reports/member-bets", label: "会员投注记录(新增)", icon: "order", permissions: ["report:view"] },
     ],
   },
   {
@@ -115,7 +131,7 @@ const navigation: readonly NavigationGroup[] = [
     items: [
       {
         href: "/ledger",
-        label: "积分账本与对账",
+        label: "积分账本与对账(修改)",
         icon: "ledger",
         permissions: ["ledger:view", "report:view", "budget:view", "ledger:reverse", "ledger:reconcile"],
       },

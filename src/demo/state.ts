@@ -1,11 +1,15 @@
 import { ApiError } from '../../shared/api-client';
 import { createSeed, EMPLOYEE, make, page, points, ref, STAMP, uid, type Row } from './seed';
 import { refreshMemberMetrics } from './member-metrics';
+import { ensureOperationalState } from './operational-records';
 
 export const STORAGE_KEY='piao666-admin-prototype-v1';
-function initial() { try { const saved=localStorage.getItem(STORAGE_KEY);if(saved){const parsed=JSON.parse(saved);if(parsed.schemaVersion===2)return parsed;} } catch {} return createSeed(); }
+let freshState = true;
+function initial() { try { const saved=localStorage.getItem(STORAGE_KEY);if(saved){const parsed=JSON.parse(saved);if(parsed.schemaVersion===2||parsed.schemaVersion===3){freshState=false;return parsed;}} } catch {} return createSeed(); }
 export const state:Row=initial();
 refreshMemberMetrics(state.members, state.ledgers);
+ensureOperationalState(state, freshState);
+persist();
 export function persist(){ try { localStorage.setItem(STORAGE_KEY,JSON.stringify(state)); } catch { /* File preview and private mode still work in memory. */ } }
 export function fail(code:string,message:string,status=400):never { throw new ApiError({type:'about:blank',title:message,code,status,requestId:'demo',traceId:'demo',retryable:false},null,'REJECTED'); }
 export function find(rows:Row[],id:string):Row { const row=rows.find(x=>(x.id||x.robot?.id)===id);return row||fail('NOT_FOUND','演示记录不存在',404); }
@@ -51,7 +55,7 @@ export function ledgerViews(q:Row={}) {return filtered(state.ledgers,q).map(tx=>
 export function creditDemoMember(memberId:string,amount:number,context:Row){
   const member=find(state.members,memberId),budget=find(state.budgets,context.budgetId),id=uid('demo-transaction');
   const before=Number(member.wallet.availablePoints),budgetBefore=Number(budget.availablePoints);
-  const metric = context.type === 'AI_AWARD' ? 'aiDividendPoints' : 'netProfitPoints';
+  const metric = context.type === 'AI_AWARD' ? 'aiDividendPoints' : context.type.startsWith('REFERRAL_') ? 'totalReferralPoints' : 'netProfitPoints';
   member[metric] = points(Number(member[metric]) + amount);
   member.wallet.availablePoints=points(before+amount);budget.availablePoints=points(budgetBefore-amount);
   state.ledgers.unshift(make('ledger-management','AdminLedgerTransaction',{
@@ -59,7 +63,7 @@ export function creditDemoMember(memberId:string,amount:number,context:Row){
     type:context.type,sourceType:context.sourceType,sourceId:context.sourceId,issueCode:context.issueCode,
     economicPoints:points(amount),reversedPoints:'0.00',stationId:member.scope.station.id,stationCode:member.scope.station.code,stationName:member.scope.station.name,
     stationMasterId:member.scope.stationMaster.id,stationMasterCode:member.scope.stationMaster.code,stationMasterName:member.scope.stationMaster.name,memberId,
-    operatorRealm:'ADMIN',operatorId:state.identity.employeeId,reason:context.reason||'本地演示发放',createdAt:STAMP,
+    operatorRealm:'ADMIN',operatorId:state.identity.employeeId,reason:context.reason||'本地演示发放',createdAt:new Date().toISOString(),
     entries:[make('ledger-management','AdminLedgerEntry',{id:uid('entry'),entryNo:1,accountId:budget.id,ownerType:'PLATFORM',ownerId:'demo-platform',ownerName:'平台演示预算',bucket:'AVAILABLE',direction:'DEBIT',changePoints:points(-amount),balanceBefore:points(budgetBefore),balanceAfter:budget.availablePoints}),
       make('ledger-management','AdminLedgerEntry',{id:uid('entry'),entryNo:2,accountId:member.id,ownerType:'MEMBER',ownerId:member.id,ownerAccount:member.account,ownerName:member.displayName,bucket:'AVAILABLE',direction:'CREDIT',changePoints:points(amount),balanceBefore:points(before),balanceAfter:member.wallet.availablePoints})],
   }));

@@ -1,4 +1,5 @@
 "use client";
+import { ChangeNotesButton } from "@/features/change-notes/change-notes";
 
 import { foregroundPollDelayMs, isTaskTerminal } from "@piao777/api-client";
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
@@ -315,13 +316,13 @@ export function LedgerPage() {
       <PageHeader
         actions={(
           <>
-            <ActionButton disabled={!canReconcile} onClick={() => setReconciliationOpen(true)}>发起对账</ActionButton>
+            <ChangeNotesButton module="ledger" /><ActionButton disabled={!canReconcile} onClick={() => setReconciliationOpen(true)}>发起对账</ActionButton>
             <ActionButton disabled={!canReverse} onClick={() => setReversalOpen(true)} variant="danger">受控冲正</ActionButton>
           </>
         )}
         description="按交易查看全局双边分录、对账投影、平台预算和任务状态；差错只能引用原交易追加冲正。"
         pageId="A23"
-        title="积分账本与对账"
+        title="积分账本与对账(修改)"
       />
 
       <InlineNotice title="账本不可编辑">

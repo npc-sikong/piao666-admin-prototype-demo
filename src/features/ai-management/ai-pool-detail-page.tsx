@@ -1,4 +1,5 @@
 "use client";
+import { ChangeNotesButton } from "@/features/change-notes/change-notes";
 
 import { numberAreaPresentations } from "@piao777/ui-tokens";
 import Link from "next/link";
@@ -324,11 +325,11 @@ export function AiPoolDetailPage({ poolIssueId }: Readonly<{ poolIssueId: string
     <div className={styles.stack}>
       <Breadcrumbs current={`期次 ${value.issueCode}`} />
       <PageHeader
-        actions={<div className={styles.pageActions}><Link className={styles.linkButton} href={`/ai-pools/${encodeURIComponent(poolIssueId)}/allocation`}>分配与公示</Link><Link className={styles.linkButton} href={`/ai-pools/${encodeURIComponent(poolIssueId)}/payout`}>发放中心</Link>{canCloseNow ? <ActionButton onClick={() => { setCloseReason(""); setCloseIntent(newIntent("closeAiPoolFunding")); setSubmitError(null); setCloseOpen(true); }} variant="primary">截止认购</ActionButton> : null}</div>}
+        actions={<div className={styles.pageActions}><ChangeNotesButton module="aiManagement" /><Link className={styles.linkButton} href={`/ai-pools/${encodeURIComponent(poolIssueId)}/allocation`}>分配与公示</Link><Link className={styles.linkButton} href={`/ai-pools/${encodeURIComponent(poolIssueId)}/payout`}>发放中心</Link>{canCloseNow ? <ActionButton onClick={() => { setCloseReason(""); setCloseIntent(newIntent("closeAiPoolFunding")); setSubmitError(null); setCloseOpen(true); }} variant="primary">截止认购</ActionButton> : null}</div>}
         description="固定号码、认购资金与开奖证据以同一期次版本为边界；浏览器只提交操作意图。"
         meta={<div className={styles.inlineActions}><PoolStatusBadge status={value.status} /><span>{lottery?.name ?? value.lotteryId} · {play?.name ?? value.playId}</span><span>输入集 {shortHash(pool.inputVersionSetHash)}</span></div>}
         pageId="A14"
-        title={`AI 合买期次 · ${value.issueCode}`}
+        title={`AI合买期次(修改) · ${value.issueCode}`}
       />
       {feedback === null ? null : <InlineNotice tone="success" title="服务端回执">{feedback}</InlineNotice>}
       {session.identity?.permissions.includes("ai-project:configure") ? <AiBudgetDialog pools={[value]} /> : null}

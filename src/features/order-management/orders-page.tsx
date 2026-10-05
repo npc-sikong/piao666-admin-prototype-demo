@@ -1,4 +1,5 @@
 "use client";
+import { ChangeNotesButton } from "@/features/change-notes/change-notes";
 
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
@@ -126,10 +127,10 @@ export function OrdersPage() {
   return (
     <>
       <PageHeader
-        actions={<ActionButton onClick={() => void load()}>刷新订单</ActionButton>}
+        actions={<><ActionButton onClick={() => void load()}>刷新订单</ActionButton><ChangeNotesButton module="orders" /></>}
         description="查询普通积分参与订单的不可变内容快照、冻结、开奖结算、退款与更正事实。"
         pageId="A22"
-        title="普通积分参与订单"
+        title="普通参与订单(修改)"
       />
 
       <InlineNotice title="订单事实不可人工改写">

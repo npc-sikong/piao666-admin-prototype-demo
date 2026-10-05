@@ -1,4 +1,5 @@
 "use client";
+import { ChangeNotesButton } from "@/features/change-notes/change-notes";
 
 import Link from "next/link";
 import { useCallback, useEffect, useState, type FormEvent } from "react";
@@ -204,11 +205,11 @@ export function AiAllocationPage({ poolIssueId }: Readonly<{ poolIssueId: string
     <div className={styles.stack}>
       <Breadcrumbs current="分配与公示" poolIssueId={poolIssueId} />
       <PageHeader
-        actions={<div className={styles.pageActions}><Link className={styles.linkButton} href={`/ai-pools/${encodeURIComponent(poolIssueId)}/payout`}>前往发放</Link>{canCalculateNow && selected === null ? <ActionButton onClick={() => { setCalculateTarget(pool.pool.defaultTargetNetReturnPercent); setCalculateReason(""); setCalculateIntent(newIntent("calculateAllocation")); setSubmitError(null); setCalculateOpen(true); }} variant="primary">生成默认预览</ActionButton> : null}</div>}
+        actions={<div className={styles.pageActions}><ChangeNotesButton module="aiManagement" /><Link className={styles.linkButton} href={`/ai-pools/${encodeURIComponent(poolIssueId)}/payout`}>前往发放</Link>{canCalculateNow && selected === null ? <ActionButton onClick={() => { setCalculateTarget(pool.pool.defaultTargetNetReturnPercent); setCalculateReason(""); setCalculateIntent(newIntent("calculateAllocation")); setSubmitError(null); setCalculateOpen(true); }} variant="primary">生成默认预览</ActionButton> : null}</div>}
         description="开奖后选择0%—100%的整数目标收益率，服务端在固定总池内自动生成50组额度。"
         meta={<div className={styles.inlineActions}><PoolStatusBadge status={pool.pool.status} /><span>期次 {pool.pool.issueCode}</span><span>输入集 {shortHash(pool.inputVersionSetHash)}</span></div>}
         pageId="A15"
-        title="配额分配与结果公示"
+        title="配额分配与结果公示(修改)"
       />
       {feedback === null ? null : <InlineNotice tone="success" title="服务端回执">{feedback}</InlineNotice>}
       <TaskReceipt accepted={task.accepted} error={task.error} status={task.status} />

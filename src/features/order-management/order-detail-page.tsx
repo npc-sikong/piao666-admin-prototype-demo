@@ -1,4 +1,5 @@
 "use client";
+import { ChangeNotesButton } from "@/features/change-notes/change-notes";
 
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
@@ -57,12 +58,12 @@ export function OrderDetailPage({ orderId }: Readonly<{ orderId: string }>) {
         actions={(
           <>
             <Link className={styles.backLink} href="/orders">返回订单列表</Link>
-            <ActionButton onClick={() => void load()}>刷新详情</ActionButton>
+            <ActionButton onClick={() => void load()}>刷新详情</ActionButton><ChangeNotesButton module="orders" />
           </>
         )}
         description="查看下单时固定的选号、规则、冻结账本、结算版本、退款和更正链。"
         pageId="A22"
-        title="普通订单详情"
+        title="普通订单详情(修改)"
       />
 
       {task === null ? null : (

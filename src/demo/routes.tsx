@@ -24,6 +24,12 @@ import { OrderDetailPage } from '@/features/order-management/order-detail-page';
 import { OrdersPage } from '@/features/order-management/orders-page';
 import { OverviewPage } from '@/features/operations/overview-page';
 import { StationManagementPage } from '@/features/station-management/station-management-page';
+import { RechargeWithdrawalsPage } from '@/features/operational-reports/operational-reports-page';
+import { MemberChangesPage } from '@/features/operational-reports/operational-reports-page';
+import { AiParticipationsPage } from '@/features/operational-reports/operational-reports-page';
+import { ReferralRecordsPage } from '@/features/operational-reports/operational-reports-page';
+import { VipUpgradeRecordsPage } from '@/features/operational-reports/operational-reports-page';
+import { MemberBetRecordsPage } from '@/features/operational-reports/operational-reports-page';
 export const routes=[{ path:"/account-recovery", component:AccountRecoveryPage, params:[] },
 { path:"/ai-pools", component:AiProjectsPage, params:[] },
 { path:"/ai-pools/reports", component:AiReportPage, params:[] },
@@ -43,6 +49,12 @@ export const routes=[{ path:"/account-recovery", component:AccountRecoveryPage, 
 { path:"/orders", component:OrdersPage, params:[] },
 { path:"/", component:OverviewPage, params:[] },
 { path:"/stations", component:StationManagementPage, params:[] },
+{ path:"/finance/recharge-withdrawals", component:RechargeWithdrawalsPage, params:[] },
+{ path:"/finance/member-changes", component:MemberChangesPage, params:[] },
+{ path:"/reports/ai-participations", component:AiParticipationsPage, params:[] },
+{ path:"/reports/referrals", component:ReferralRecordsPage, params:[] },
+{ path:"/reports/vip-upgrades", component:VipUpgradeRecordsPage, params:[] },
+{ path:"/reports/member-bets", component:MemberBetRecordsPage, params:[] },
 { path:"/ai-pools/[poolIssueId]/allocation", component:AiAllocationPage, params:["poolIssueId"] },
 { path:"/ai-pools/[poolIssueId]", component:AiPoolDetailPage, params:["poolIssueId"] },
 { path:"/ai-pools/[poolIssueId]/payout", component:AiPayoutPage, params:["poolIssueId"] },

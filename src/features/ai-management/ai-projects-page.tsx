@@ -1,4 +1,5 @@
 "use client";
+import { ChangeNotesButton } from "@/features/change-notes/change-notes";
 
 import Link from "next/link";
 import {
@@ -354,7 +355,7 @@ export function AiProjectsPage() {
       <PageHeader
         actions={(
           <div className={styles.pageActions}>
-            <Link className={styles.linkButton} href="/ai-pools/reports">每期报表</Link>
+            <Link className={styles.linkButton} href="/ai-pools/reports">每期报表</Link><ChangeNotesButton module="aiManagement" />
             {canCreate ? <ActionButton onClick={() => {
               setCreateOpen(true);
               setCreateIntent(newIntent("createAiProject"));
@@ -364,7 +365,7 @@ export function AiProjectsPage() {
         )}
         description="管理长期项目、下一期配置版本和逐期实例；号码、金额、分配与余额均由服务端权威流程产生。"
         pageId="A13"
-        title="AI 合买项目"
+        title="AI合买项目(修改)"
       />
 
       <InlineNotice title="福彩3D直选固定规则" tone="info">

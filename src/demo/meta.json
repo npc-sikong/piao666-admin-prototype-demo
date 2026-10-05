@@ -538,6 +538,42 @@
       "component": "StationManagementPage",
       "import": "@/features/station-management/station-management-page",
       "props": []
+    },
+    {
+      "path": "/finance/recharge-withdrawals",
+      "component": "RechargeWithdrawalsPage",
+      "import": "@/features/operational-reports/operational-reports-page",
+      "props": []
+    },
+    {
+      "path": "/finance/member-changes",
+      "component": "MemberChangesPage",
+      "import": "@/features/operational-reports/operational-reports-page",
+      "props": []
+    },
+    {
+      "path": "/reports/ai-participations",
+      "component": "AiParticipationsPage",
+      "import": "@/features/operational-reports/operational-reports-page",
+      "props": []
+    },
+    {
+      "path": "/reports/referrals",
+      "component": "ReferralRecordsPage",
+      "import": "@/features/operational-reports/operational-reports-page",
+      "props": []
+    },
+    {
+      "path": "/reports/vip-upgrades",
+      "component": "VipUpgradeRecordsPage",
+      "import": "@/features/operational-reports/operational-reports-page",
+      "props": []
+    },
+    {
+      "path": "/reports/member-bets",
+      "component": "MemberBetRecordsPage",
+      "import": "@/features/operational-reports/operational-reports-page",
+      "props": []
     }
   ]
 }

@@ -1,0 +1,37 @@
+{
+  "scope": "requirements 5-10 operations prototype",
+  "sourceCommit": "726fc81",
+  "prototypeRoutes": 32,
+  "newReportPages": 6,
+  "apiDevelopment": false,
+  "currentProductVersion": "待人为指定",
+  "targetedChecksPassed": 16,
+  "typeCheck": "passed",
+  "build": "passed",
+  "browserChecks": [
+    "six report menus and page titles",
+    "default 10 rows and immediate dropdown page 2",
+    "filter resets to page 1 and preserves full-filter totals",
+    "account/change type/signed amount/post-balance combined filtering",
+    "AI subscription and payout details",
+    "direct-member account list and same-route rewards drilldown",
+    "VIP downgrade filter",
+    "ordinary refunded-order settlement/recovery details",
+    "sticky account/action columns and second-level date controls",
+    "four explanation sections and version summary",
+    "CSV generation and visible download link"
+  ],
+  "exportFiles": {
+    "csv": "24 rows plus Chinese header validated",
+    "xlsx": "CRC, ZIP, worksheet XML and 24 rows validated",
+    "inAppNativeDownload": "automation download event unavailable; generated file and visible link verified"
+  },
+  "businessNotes": [
+    "points and daily quota summarized separately",
+    "member ledger entries counted once",
+    "same member/pool subscriptions merged and return counted once",
+    "pending/refunded profit remains null",
+    "historical rewards do not follow changed current membership",
+    "schema 2 migration keeps existing state and unknown history null"
+  ]
+}

@@ -1,5 +1,6 @@
 import { state,find,paged,make,page,task,update,uid,STAMP,receipt,points,fail,creditDemoMember } from './state';
 import { allocationFor,combinationsFor,type Row } from './seed';
+import { cents, money, eventTime, syncAiReferralRewards, aiMemberAmounts, lockAiSubscriptions } from './operational-records';
 
 function currentAllocation(id:string){return state.allocations.filter((a:Row)=>a.poolIssueId===id&&a.status!=='SUPERSEDED').at(-1)||null;}
 function actions(pool:Row){
@@ -15,12 +16,20 @@ function actions(pool:Row){
 function execution(pool:Row){const a=currentAllocation(pool.id),batch=state.payouts.find((p:Row)=>p.poolIssueId===pool.id);return make('ai-management','SettlementExecution',{poolIssueId:pool.id,settlementMode:pool.settlementMode,modeChangeAllowed:!batch,currentAllocationId:a?.id||null,currentAllocationVersion:a?.version||null,targetNetReturnPercent:a?.requestedTargetNetReturnPercent??pool.defaultTargetNetReturnPercent,totalReturnPoints:a?.totalWinningPoints||null,postedReturnPoints:batch?.postedPoints||'0.00',targetRoundingAdjustmentPoints:a?.targetRoundingAdjustmentPoints||null,payoutBatchId:batch?.id||null,automaticTaskId:null,automaticTaskStatus:pool.settlementMode==='AUTO'?(pool.status==='EXCEPTION_PENDING'?'FAILED':batch?'SUCCEEDED':'PENDING'):null,failureCode:pool.status==='EXCEPTION_PENDING'?'DEMO_RETRY_REQUIRED':null});}
 function newAllocation(pool:Row,target:number){const all=state.allocations.filter((a:Row)=>a.poolIssueId===pool.id);for(const a of all)a.status='SUPERSEDED';const row=allocationFor(pool,String(all.length+1),target);state.allocations.push(row);pool.status='ALLOCATION_PENDING';update(pool,{});return row;}
 function payout(pool:Row){
-  const existing=state.payouts.find((x:Row)=>x.poolIssueId===pool.id);if(existing)return existing;
-  const a=currentAllocation(pool.id)||newAllocation(pool,pool.defaultTargetNetReturnPercent),batchId=uid('demo-payout');
-  const recipients=state.members.slice(0,pool.participantCount),cents=Math.round(Number(a.userWinningPoints)*100),base=Math.floor(cents/Math.max(recipients.length,1));
-  const items=recipients.map((member:Row,i:number)=>{const amount=(base+(i<cents%Math.max(recipients.length,1)?1:0))/100;const transactionId=creditDemoMember(member.id,amount,{budgetId:'demo-budget-3',type:'AI_AWARD',sourceType:'AI_POOL',sourceId:pool.id,issueCode:pool.issueCode});return make('ai-management','PayoutItem',{id:`${batchId}-${i+1}`,maskedBeneficiary:member.displayName,duePoints:points(amount),postedPoints:points(amount),status:'POSTED',transactionId});});
-  const batch=make('ai-management','PayoutBatch',{id:batchId,poolIssueId:pool.id,status:'COMPLETED',expectedPoints:a.userWinningPoints,postedPoints:a.userWinningPoints,pendingPoints:'0.00',differencePoints:'0.00',inputVersionSetHash:a.inputVersionSetHash,completedItemCount:items.length,totalItemCount:items.length,updatedAt:STAMP,items});
-  state.payouts.push(batch);update(pool,{status:'SETTLED',totalWinningPoints:a.totalWinningPoints,userWinningPoints:a.userWinningPoints});return batch;
+  const existing=state.payouts.find((x:Row)=>x.poolIssueId===pool.id);if(existing?.status==='COMPLETED')return existing;
+  lockAiSubscriptions(state,pool.id);
+  const a=currentAllocation(pool.id)||newAllocation(pool,pool.defaultTargetNetReturnPercent),batchId=existing?.id||uid('demo-payout');
+  const recipients=aiMemberAmounts(state,pool,a.userWinningPoints);
+  const time=eventTime();
+  const items=recipients.map(({memberId,due},i)=>{
+    const member=find(state.members,memberId),prior=existing?.items?.find((r:Row)=>r.memberId===memberId),posted=cents(prior?.postedPoints),remaining=Math.max(due-posted,0);
+    const transactionId=remaining?creditDemoMember(member.id,remaining/100,{budgetId:'demo-budget-3',type:'AI_AWARD',sourceType:'AI_POOL',sourceId:pool.id,issueCode:pool.issueCode}):prior?.transactionId||null;
+    return make('ai-management','PayoutItem',{...prior,id:prior?.id||`${batchId}-${i+1}`,memberId,maskedBeneficiary:member.displayName,duePoints:money(due),postedPoints:money(posted+remaining),status:'POSTED',transactionId,postedAt:remaining?time:prior?.postedAt||null});
+  });
+  const batch=make('ai-management','PayoutBatch',{...existing,id:batchId,poolIssueId:pool.id,status:'COMPLETED',expectedPoints:a.userWinningPoints,postedPoints:money(items.reduce((n:number,r:Row)=>n+cents(r.postedPoints),0)),pendingPoints:'0.00',differencePoints:'0.00',inputVersionSetHash:a.inputVersionSetHash,completedItemCount:items.length,totalItemCount:items.length,updatedAt:time,items});
+  if(existing)Object.assign(existing,batch);else state.payouts.push(batch);
+  for(const sub of state.subscriptions.filter((r:Row)=>r.poolIssueId===pool.id&&r.status!=='REFUNDED'))sub.status='SETTLED';
+  update(pool,{status:'SETTLED',participantCount:recipients.length,totalWinningPoints:a.totalWinningPoints,userWinningPoints:a.userWinningPoints});syncAiReferralRewards(state,pool);return batch;
 }
 
 export function aiAction(path:string,method:string,b:Row,q:Row):any {
@@ -39,8 +48,8 @@ export function aiAction(path:string,method:string,b:Row,q:Row):any {
     if(!action)return make('ai-management','AiPoolAdmin',{pool,configVersion:pool.configVersion,combinations:combinationsFor(id),inputVersionSetHash:`inputs-${id}`,allowedActions:actions(pool)});
     if(action==='settlement-execution')return execution(pool);
     if(action==='settlement-mode'){if(state.payouts.some((p:Row)=>p.poolIssueId===id))fail('CONFLICT','已有发放批次，不能更改方式',409);return update(pool,{settlementMode:b.settlementMode});}
-    if(action==='funding-closure'){update(pool,{status:'ALLOCATION_PENDING'});return receipt('closeAiPoolFunding',id);}
-    if(action==='subscriptions')return page(Array.from({length:pool.participantCount},(_,i)=>make('ai-management','Subscription',{id:`subscription-${id}-${i+1}`,poolIssueId:id,points:points(Number(pool.userPurchasePoints)/Math.max(pool.participantCount,1)),quotaDate:'2026-10-03',status:pool.status==='OPEN'?'RESERVED':pool.status==='SETTLED'?'SETTLED':'LOCKED',ledgerTransactionId:`demo-transaction-${i+1}`,lockedAt:pool.status==='OPEN'?null:STAMP,createdAt:STAMP})));
+    if(action==='funding-closure'){lockAiSubscriptions(state,id);update(pool,{status:'ALLOCATION_PENDING'});return receipt('closeAiPoolFunding',id);}
+    if(action==='subscriptions')return page(state.subscriptions.filter((r:Row)=>r.poolIssueId===id));
     if(action==='allocations')return page(state.allocations.filter((a:Row)=>a.poolIssueId===id).slice().reverse());
     if(action==='allocation-jobs'){const a=newAllocation(pool,b.targetNetReturnPercent??pool.defaultTargetNetReturnPercent);return task('AI_ALLOCATION',`/api/admin/v1/allocations/${a.id}`);}
     if(action==='allocation-previews')return newAllocation(pool,b.targetNetReturnPercent);
@@ -52,5 +61,5 @@ export function aiAction(path:string,method:string,b:Row,q:Row):any {
   m=path.match(/^\/allocations\/([^/]+)(?:\/(confirmations))?$/);
   if(m){const allocation=find(state.allocations,m[1]);if(m[2])allocation.confirmationStatus='CONFIRMED';return allocation;}
   m=path.match(/^\/payout-batches\/([^/]+)(?:\/(items|retries))?$/);
-  if(m){const batch=find(state.payouts,m[1]);if(m[2]==='items')return page(batch.items||Array.from({length:batch.totalItemCount},(_,i)=>make('ai-management','PayoutItem',{id:`${batch.id}-${i+1}`,maskedBeneficiary:`演示会员${i+1}`,duePoints:points(Number(batch.expectedPoints)/Math.max(batch.totalItemCount,1)),postedPoints:points(Number(batch.postedPoints)/Math.max(batch.totalItemCount,1)),status:'POSTED',transactionId:`demo-payout-ledger-${i+1}`})));if(m[2]==='retries'){batch.status='COMPLETED';batch.postedPoints=batch.expectedPoints;batch.pendingPoints='0.00';batch.differencePoints='0.00';return task('AI_PAYOUT_RETRY',`/api/admin/v1/payout-batches/${batch.id}`);}return batch;}
+  if(m){const batch=find(state.payouts,m[1]);if(m[2]==='items')return page(batch.items||[]);if(m[2]==='retries'){payout(find(state.pools,batch.poolIssueId));return task('AI_PAYOUT_RETRY',`/api/admin/v1/payout-batches/${batch.id}`);}return batch;}
 }

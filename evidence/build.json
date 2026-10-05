@@ -25,12 +25,18 @@
     "/orders/[orderId]",
     "/orders",
     "/",
-    "/stations"
+    "/stations",
+    "/finance/recharge-withdrawals",
+    "/finance/member-changes",
+    "/reports/ai-participations",
+    "/reports/referrals",
+    "/reports/vip-upgrades",
+    "/reports/member-bets"
   ],
-  "inputCount": 123,
-  "routeCount": 26,
+  "inputCount": 129,
+  "routeCount": 32,
   "avatarCount": 48,
-  "standaloneBytes": 2701134,
-  "assetVersion": "99e599b22426",
+  "standaloneBytes": 2796829,
+  "assetVersion": "10a844e9d9ab",
   "apiServer": false
 }

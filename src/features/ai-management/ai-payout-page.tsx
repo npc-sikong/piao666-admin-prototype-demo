@@ -1,4 +1,5 @@
 "use client";
+import { ChangeNotesButton } from "@/features/change-notes/change-notes";
 
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from "react";
@@ -296,11 +297,11 @@ export function AiPayoutPage({ poolIssueId }: Readonly<{ poolIssueId: string }>)
     <div className={styles.stack}>
       <Breadcrumbs current="发放中心" poolIssueId={poolIssueId} />
       <PageHeader
-        actions={<div className={styles.pageActions}><Link className={styles.linkButton} href={`/ai-pools/${encodeURIComponent(poolIssueId)}/allocation`}>返回分配</Link>{canPrepareNow ? <ActionButton disabled={preparing} onClick={() => void createPreparation()} variant="primary">{preparing ? "准备中…" : "生成发放准备"}</ActionButton> : null}</div>}
+        actions={<div className={styles.pageActions}><ChangeNotesButton module="aiManagement" /><Link className={styles.linkButton} href={`/ai-pools/${encodeURIComponent(poolIssueId)}/allocation`}>返回分配</Link>{canPrepareNow ? <ActionButton disabled={preparing} onClick={() => void createPreparation()} variant="primary">{preparing ? "准备中…" : "生成发放准备"}</ActionButton> : null}</div>}
         description="单个有权限的管理员确认后提交发放；任务受理、逐笔入账和批次对账分别呈现，不把 202 当作发放完成。"
         meta={<div className={styles.inlineActions}><PoolStatusBadge status={pool.pool.status} /><span>期次 {pool.pool.issueCode}</span><span>公示 {pool.pool.disclosureVersion ?? "未发布"}</span></div>}
         pageId="A16"
-        title="AI 中奖积分发放"
+        title="AI中奖积分发放(修改)"
       />
       {feedback === null ? null : <InlineNotice tone="success" title="服务端状态">{feedback}</InlineNotice>}
       {error === null ? null : <InlineNotice tone="danger" title="批次读取失败">{error.message}</InlineNotice>}
